@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>svg연습</title>
+    <style>
+        body{margin: 0}
+        svg{background: #eaeaea;}
+    </style>
+</head>
+<body>
+<!--
+svg와 캔버스
+
+svg
+아이콘, 이미지, 그래프. 유저인터페이스 등에 사용
+DOM의 일부
+백터 이미지로 크기 상관없이 선명함 , 복잡한 정도에 따라 파일 사이즈가 커지거나 작아짐
+CSS와 JS로 조작이 가능
+모양이 복잡하고 개체수가 많을수록 성능이 저하됨
+
+캔버스
+이미지, 비디오, 게임, 퍼포먼스가 중요한 이미지 등의 조작에 사용
+단일태그 <canvas>로 표현
+css로 조작 불가, js로 조작 가능
+픽셀 단위 조작이 가능하여 html 엘리먼트로 불가능한 다양한 표현이 가능
+저수준 api로 코딩량이 많고 까다로움
+크기가 커질수록 성능이 떨어짐
+svg, rect의 각 width ,height 값은 단위로 px을 갖음.
+-->
+<svg width="500" height="500">
+    <rect x="0" y="0" width="100" height="100"></rect>
+</svg>
+
+<!--
+viewBox 사용 시 값은 순서대로 x값 y값 너비값 높이값
+svg의 속성에 viewBox = "0 0 500 500"을 넣어주면
+전체를 채우게 되고 , 창 크기에 따라 변한다
+
+<svg> 영역을 너비 500, 높이 500으로보고
+<rect> 영역을 400/500 , 400/500 으로 잡는다.
+-->
+<svg viewBox ="0 0 500 500">
+    <rect x="0" y="0" width="400" height="400"></rect>
+</svg>
+
+<!--
+<svg> 영역 (500x500)을 1000,1000 으로 보고
+<rect>는 400/1000, 400/1000 만큼 차지한다
+-->
+<svg viewBox ="0 0 1000 1000" width="500" height="500">
+    <rect x="0" y="0" width="1000" height="400"></rect>
+</svg>
+
+<!--
+svg 압축
+간결함과 , 용량 압축을 위해  svgomg사이트 등 이용하여 사용 가능
+
+-->
+
+</body>
+</html>
