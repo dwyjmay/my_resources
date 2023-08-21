@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>페이지 url </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Cache-Control" content="max-age=0">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquer y/3.3.1/jquery.min.js"></script>
+	<style>
+		body{background-color:#e3d8cd; font-family:Verdana, 'Verdana';margin:0}
+		a{text-decoration:none; font-family:Verdana, 'Verdana'}
+		li{list-style:none;}
+		h1{display:block; padding:0 20px; position:relative; color:#fff; font-size:20px; font-weight:bold; z-index:1}
+		h1 a{color:#111;}
+		.btn_mobile{position:absolute; right:20px}
+		ul{ margin:0; padding:0}
+		body>div.list{padding:140px 0 10px; user-select: none; white-space: nowrap; overflow: auto; position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+		body>div>div{height:100%;text-align:left; margin:0 10px;display:inline-block; vertical-align:top;}
+		body>div>div>ul>li{display:inline-block; position:relative; width:270px; height:100%; background-color:#e2e4e6; white-space: nowrap; padding:8px; border-radius:4px; vertical-align: top; box-sizing:border-box; box-shadow:-1px 1px 3px rgba(0, 0, 0, 0.12);}
+		body>div>div>ul>li>a{display:inline-block;  position:relative; width:100%; color:#4d4d4d; font-weight:bold;  margin-bottom:5px;}
+		body>div>div>ul>li>.progress{padding:8px; background:#fff; border-radius:4px; margin-bottom:3px;box-shadow:1px 1px 1px #c1c1c1;}
+		body>div>div>ul>li>ul>li:last-child a{margin-bottom:0}
+		body>div>div>ul>li>ul>li>a{display:block; position:relative; background:#fff; padding:8px; border-radius:4px; margin-bottom:8px; box-shadow:1px 1px 1px #c1c1c1;font-size:14px; color:#4d4d4d; overflow:hidden;}
+		body>div>div>ul>li>ul>li>a:hover{background-color:#f3f3f3}
+		a.unurl:hover{background-color:#fff; cursor:default}
+		a.unurl:hover::after{content:'url이없습니다.'; position:absolute; left:0px; top:50%; width:100%; text-align:center;z-index:2; opacity: 0.9; font-weight: bold; color:#969696; margin-top: -10px;}
+		a.unurl:hover::before{content:''; position:absolute; left:0px; top:0px; width:100%; height:100%; line-height:100%; background:#fff; opacity:0.8; z-index:1}
+		body>div>div>ul>li a span{display:inline-block;position:relative;box-sizing:border-box; padding-left:14px; white-space: pre-line; word-break: break-word;}
+		body>div>div>ul>li a span::before{content:'';position:absolute;left:0px;top:0px; width:8px; height:100%;}
+		body>div>div>ul>li a.level0 span::before{background:#e2e4e6}
+		body>div>div>ul>li a.level1 span::before{background:#61bd4f}
+		body>div>div>ul>li a.level2 span::before{background:#f2d600}
+		body>div>div>ul>li a.level3 span::before{background:#eb5a46}
+		body>div>div>ul>li a.level4 span::before{background:#c377e0}
+		body>div>div>ul>li a.level5 span::before{background:#0079bf}
+		body>div>div>ul>li a.ing{animation-name: ing; animation-duration: 2s; animation-timing-function:ease-in-out; animation-iteration-count: infinite; box-sizing:border-box;}
+		body>div>div>ul>li>ul>li ul{padding-left:15px; margin-top:5px;}
+		body>div>div>ul>li>ul>li ul>li{position:relative; margin-bottom:5px;}
+		body>div>div>ul>li>ul>li ul>li:before{content:'└'; position:absolute; left:-15px; top:6px; font-size:10px; color:#333}
+		body>div>div>ul>li>ul>li ul>li>a{display:block;  color:#4d4d4d; font-size:13px;background:#fff;  border-radius:4px;padding:8px; box-shadow:1px 1px 1px #c1c1c1;}
+		body>div>div>ul>li>ul>li ul>li>a:hover{background-color:#f3f3f3}
+		body>div>div>ul>li>ul>li ul>li>a.unrul:hover{background-color:#fff; cursor:default}
+		body>span{position:absolute; left:0px; top:60px; background:rgba(0, 0, 0, 0.7);; width:100%; height:auto; z-index:99; box-sizing:border-box; padding:20px 5px;}
+		.ing strong{display:block; line-height:20px; color:#fff; font-size:11px; font-weight:normal; letter-spacing:-1px;}
+		.ing ul{text-align:center;}
+		.ing ul  li{display:inline-block; width:46px; text-align:center;}
+		body>span>div>span{margin-right:5px;}
+		body>span>div>strong{display:inline-block;; margin-bottom:10px;}
+		div.progress{line-height: 6px;}
+		div.progress span{display:inline-block; width:36px; height:8px; border-radius:4px; vertical-align:top; }
+		div.progress span.level0{background-color:#e2e4e6}
+		div.progress span.level1{background-color:#61bd4f}
+		div.progress span.level2{background-color:#f2d600}
+		div.progress span.level3{background-color:#eb5a46}
+		div.progress span.level4{background-color:#c377e0}
+		div.progress span.level5{background-color:#0079bf}
+		div.progress span.ing {animation-name: ing; animation-duration: 2s; animation-timing-function:ease-in-out; animation-iteration-count: infinite; box-sizing:border-box;}
+		.scrollRight{position:fixed; right:0px; top:50%; width:100px; height:300px; transform: translateY(-50%); line-height:300px; text-align:center; background:rgba(0,0,0,0.3); color:rgba(255,255,255,0.8); font-size:25px; border-top-left-radius:30px; border-bottom-left-radius:30px; animation-name:scrollAni; animation-duration: 2s; animation-timing-function:ease-in-out; animation-iteration-count: infinite;}
+		.mgt {margin-top:10px;}
+		/* animation */
+		.btn_progress{background:#333; color:#fff; position:fixed; width:60px; height:60px; border-radius:100%}
+
+		@keyframes ing{
+			0%{
+				border:2px solid rgba(255,255,255,0);
+				color:#4d4d4d;
+			}
+			50%{
+				border:2px solid #61bd4f;
+				color:#4d4d4d;
+			}
+			100%{
+				border:2px solid rgba(255,255,255,0);
+				color:#4d4d4d;
+			}
+		}
+		@keyframes scrollAni{
+			0%{
+				opacity:0;
+			}50%{
+				 opacity:1;
+			 }100%{
+				  opacity:0;
+			  }
+		}
+	</style>
+</head>
+<body>
+<h1>
+	<a href="javascript:;">페이지 url ❣️</a>
+</h1>
+	<span class="ing">
+			<div class="progress">
+				<ul>
+					<li>
+						<span class="level0"></span>
+						<strong>준비중</strong>
+					</li>
+					<li>
+						<span class="level1"></span>
+						<strong>코딩중</strong>
+					</li>
+					<li>
+						<span class="level2"></span>
+						<strong>코딩완료</strong>
+					</li>
+					<li>
+						<span class="level3"></span>
+						<strong>개발중</strong>
+					</li>
+					<li class="ing">
+						<span class="ing"></span>
+						<strong>진행중</strong>
+					</li>
+					<!--<li>
+						<span class="level4"></span>
+						<strong>개발완료</strong>
+					</li>
+					<li>
+						<span class="level5"></span>
+						<strong>확인완료</strong>
+					</li>
+					-->
+				</ul>
+			</div>
+		</span>
+<div class="list">
+	<!--
+	상태
+	<span class="level0"></span>준비중
+	<span class="level1"></span>코딩중
+	<span class="level2"></span>코딩완료
+	<span class="level3"></span>개발중
+	<span class="level4"></span>개발완료
+	<span class="level5"></span>확인완료
+	-->
+	<!-- list -->
+	<div>
+		<ul>
+			<li>
+				<a href="./index.jsp" class="level1"><span>메인페이지</span></a>
+				<ul>
+					<li><a href="./index.jsp" class="level2"><span>메인</span></a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:" class="level2"><span>스크립트</span></a>
+				<ul>
+					<li><a href="" class="level1"><span></span></a></li>
+					<!--<li><a href="./brands/index.html" class="level2"><span>인덱스</span></a></li>
+					<li><a href="./brands/men.html" class="level2"><span>맨</span></a></li>
+					<li>
+						<a href="./journal/campaign/list.html" class="level2"><span>캠페인</span></a>
+						<ul>
+							<li><a href="./journal/campaign/list.html" class="level2"><span>리스트</span></a></li>
+							<li><a href="./journal/campaign/campaign.html" class="level2"><span>기본</span></a></li>
+							<li><a href="./journal/campaign/campaignA.html" class="level2"><span>_A</span></a></li>
+							<li><a href="./journal/campaign/campaignB.html" class="level2"><span>_B</span></a></li>
+						</ul>
+					</li>
+					<li><a href="./brands/kids.html" class="level2"><span>키즈</span></a></li>
+					<li><a href="./brands/accessory.html" class="level2"><span>악세서리</span></a></li>
+					<li><a href="./brands/golf.html" class="level2"><span>골프</span></a></li>-->
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:" class="level2"><span>CSS</span></a>
+				<ul>
+					<li>
+						<a href="" class=""><span>animation</span></a>
+						<ul>
+							<li><a href="/css/animation/onewayFlowEffect/example.jsp" class="level1"><span>끊임없이 한 방향으로 흘러가는 효과</span></a></li>
+						</ul>
+					</li>
+					<li><a href="" class=""><span></span></a></li>
+					<li><a href="" class=""><span></span></a></li>
+					<li><a href="" class=""><span></span></a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:" class="level2"><span>SVG</span></a>
+				<ul>
+					<li><a href="" class=""><span></span></a></li>
+					<li><a href="" class=""><span></span></a></li>
+					<li><a href="" class=""><span></span></a></li>
+					<li><a href="" class=""><span></span></a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- //list -->
+	<span class="scrollRight">→</span>
+</div>
+<!--<a href="javascript:;" class="btn_progress">진행률</a>
+<div class="progressArea">
+	<div class="progress1">코딩완료 : <em>0</em>%</div>
+	<div class="progress2">개발완료 : <em>0</em>%</div>
+	<div class="progress3">기타 : <em>0</em>%</div>
+</div>
+-->
+</body>
+<script>
+    $(function(){
+        $('.list li').each(function(i){
+            if($('.list li:eq('+ i +')').children('a').length > 0)
+                var linkChk = $('.list li').eq( i ).children('a').attr('href');
+
+            if(linkChk == "" || linkChk == "javascript:;" || linkChk == "none")
+                $('.list li:eq('+ i +') a').addClass('unurl').click(function(){
+                    //alert('경로가 없습니다.');
+                    return false
+                });
+        });
+        var exexex = Math.floor($('.list li a.level2').length / $('.list li a').length * 100);
+        var exexex2 = Math.floor($('.list li a.level3').length / $('.list li a').length * 100);
+        $('.progress1 em').text(exexex+exexex2);
+        $('.progress2 em').text(exexex2);
+        $('.progress3 em').text(100 - (parseInt($('.progressArea>div:eq(0) em').text()) + parseInt($('.progressArea>div:eq(1) em').text())))
+        // $('.progressArea>div').each(function(i){
+        //     i = i+1;
+
+        //     if(i == 3){
+        //         $('.progress3 em').text(100 - (parseInt($('.progressArea>div:eq(0) em').text()) + parseInt($('.progressArea>div:eq(1) em').text())))
+        //     }else{
+        //         $('.progress'+ i +' em').text(Math.floor($('.list li a.level'+ (i = i +1)).length / $('.list li a').length * 100))
+        //     }
+        // });
+        // $('.progress1 em').text(Math.floor($('.list li a.level2').length / $('.list li a').length * 100))
+        // $('.progress2 em').text(Math.floor($('.list li a.level3').length / $('.list li a').length * 100))
+
+    });
+    $('.list').scroll(function(){
+        var listWidth = Math.ceil($('.list>div').outerWidth(true));
+        var winWidth = $(window).outerWidth();
+        var scrollAvg = parseInt(listWidth - winWidth) + 17;
+        if($(this).scrollLeft() >= scrollAvg) $('.scrollRight').hide();
+        else $('.scrollRight').show();
+    });
+</script>
+</html>
