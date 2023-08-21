@@ -34,8 +34,22 @@
         </li>
     </ul>
 </section>
+<section class="head_area2">
+    <p class="slideText">
+        <span>
+            <em aria-hidden="true">PRINT BAKERY</em>
+        </span>
+    </p>
+    <p class="slideText reverse">
+        <span>
+            <em aria-hidden="true">BEANPOLE COLLABORATION</em>
+        </span>
+    </p>
+</section>
 <script>
     elementCopy()
+
+    elementCopy2()
     function elementCopy(){
         $('section li').each(function(index,item){
             let copyTag = $(item).find('div').html();
@@ -52,11 +66,29 @@
             }
         })
     }
-    $(function(){
-        $('section li.text_type').find('span').eq(0).innerWidth()
-        $('section li.text_type').find('span').eq(1).innerWidth()
-    })
 
+    function elementCopy2(){
+        $('.slideText').each(function(index,item){
+            let copyTag = $(item).find('span').html();
+            let copyNum = Math.ceil( screen.width / $(item).outerWidth()) + 4;
+            for(let i = 0 ; i < copyNum; i++){
+                $(item).find('span').append(copyTag);
+            }
+            let copyTag2 = $(item).html();
+            $(item).append(copyTag2);
+        })
+
+        let getWidth = $('.slideText').not('.reverse').find('span').eq(0).innerWidth();
+
+        let standardDuration = parseInt($('.slideText.reverse').find('span').css('animation-duration').replace("s",""));
+        let standardWidth = $('.slideText.reverse').find('span').innerWidth();
+        let getSec = (getWidth / (standardWidth / standardDuration));
+        $('.slideText').not('.reverse').find('span').eq(0).css('animation','loop '+getSec+'s -'+(getSec/2)+'s linear infinite');
+        $('.slideText').not('.reverse').find('span').eq(1).css('animation','loop2 '+(getSec)+'s linear infinite');
+
+        /*$('.slideText').not('.reverse').find('span').eq(0).css('animation',`loop ${getSec}s -${getSec/2}s linear infinite`)
+        $('.slideText').not('.reverse').find('span').eq(1).css('animation',`loop2 ${getSec}s linear infinite`)*/
+    }
     gsap.to('.head_area',{
         scrollTrigger : {
             trigger:'.slide_img',
