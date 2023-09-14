@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <style>
+        section {
+            display: flex;
+            gap: 30px;
+            min-height: 800px;
+        }
+        .btnBox{margin-top:30px;}
+        .btnBox a,button{display:block; background:#2c68f1; color:#fff; text-align: center; padding:20px 0; border-radius: 18px; outline: 0; border:none;}
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <article style="height:80vh;"></article>
+    <main>
+        <section id="rpyNum0093">
+            <div><img src="https://dummyimage.com/700x446/ddd/999" alt=""></div>
+            <div class="textArea">
+                <h5>The 10th ONE Concert</h5>
+                <p>감동의 여운이 가득한 레전드 뮤지컬과 예술감독 김이곤의 재치있는 해설이 함께하는 시간으로 고객님을 초대합니다.</p>
+                <ul>
+                    <li>
+                        <strong>기간</strong>
+                        <span>2021년 10월 5일(화) 오전 11시</span>
+                    </li>
+                </ul>
+                <span>신청은 선착순으로 조기마감될 수 있으며, 신청하신 고객님께서는 행사 전 세부 내용을 공지해 드립니다.<br>
+                    상기 프로그램은 당사 사정 및 사회적 거리두기 권고수칙에 따라 취소 및 변경될 수 있습니다.</span>
+                <div class="btnBox">
+                    <!-- 신청이 가능 할 경우 -->
+                    <a href="javascript:;" onclick="setCookie('0093');">신청하기</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="rpyNum0083">
+            <div><img src="https://dummyimage.com/700x446/aaa/999" alt=""></div>
+            <div class="textArea">
+                <h5>두번째 영역</h5>
+                <p>감동의 여운이 가득한 레전드 뮤지컬과 예술감독 김이곤의 재치있는 해설이 함께하는 시간으로 고객님을 초대합니다.</p>
+                <ul>
+                    <li>
+                        <strong>내용</strong>
+                        <span>1부. 본 공연<br>2부. 스페셜 브런치</span>
+                    </li>
+                </ul>
+                <span>
+                                        신청은 선착순으로 조기마감될 수 있으며, 신청하신 고객님께서는 행사 전 세부 내용을 공지해 드립니다.<br>
+                                        상기 프로그램은 당사 사정 및 사회적 거리두기 권고수칙에 따라 취소 및 변경될 수 있습니다.
+                                    </span>
+                <div class="btnBox">
+                    <!-- 신청이 가능 할 경우 -->
+                    <a href="javascript:;" onclick="setCookie('0093');">신청하기!!!!!!!</a>
+                </div>
+            </div>
+        </section>
+        <article class="caution">
+            <ul class="listTypeA">
+                <li>신청 기간 외에는 신청이 불가능합니다.</li>
+                <li>수령 기간 외에는 제품 수령이 불가능합니다.</li>
+                <li>매장에 재고가 없는 제품은 신청 및 변경이 불가능 합니다.</li>
+                <li>신청한 명절 선물은 안내 된 수령 지점에 방문하셔서 수령해주세요.</li>
+                <li>해당 제품의 상세문의는 지점별 안내데스크로 문의하시기 바랍니다.</li>
+            </ul>
+        </article>
+    </main>
+    <article>
+        <button onclick="deleteCookie('repayingNum')">쿠키삭제</button>
+    </article>
+</div>
+<script>
+    //신청하기 버튼을 통해 cookie값 저장
+    function setCookie(rpyNum) {
+        document.cookie = "repayingNum" + '=' + rpyNum;
+    }
+
+    const deleteCookie = (key) => {
+        document.cookie = key + '=;expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+    }
+
+    const getCookieValue = (key) => {
+        let cookieKey = key + '=';
+        let result = '';
+        const cookieArr = document.cookie.split(";"); //각각의 쿠키 네임=value 쌍을 ;로  저장
+        for (let i = 0; i < cookieArr.length; i++) {
+            if (cookieArr[i][0] === "") {
+                cookieArr[i] = cookieArr[i].substring(1);
+            }
+            if (cookieArr[i].indexOf(cookieKey) === 0) {
+                result = cookieArr[i].slice(cookieKey.length, cookieArr[i].length);
+                return result;
+            }
+        }
+        return result;
+    }
+
+    if (getCookieValue('repayingNum')) {
+        var target = '#rpyNum' + getCookieValue('repayingNum');
+        var scHeight = $(target).offset().top;
+        setTimeout(function () {
+            //console.log(scHeight);
+            $(window).scrollTop(scHeight);
+        }, 300)
+        //deleteCookie('repayingNum')
+    } else { // 쿠키name의 값이 없을경우 scrollTop(0)으로 이동
+        setTimeout(function () {
+            $(window).scrollTop(0);
+        }, 500)
+    }
+</script>
+</body>
+</html>

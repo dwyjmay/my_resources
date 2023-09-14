@@ -3,4 +3,3 @@
 <script src="/static/js/gsap.min.js"></script>
 <script src="/static/js/ScrollTrigger.min.js"></script>
 <script src="/static/js/common.js"></script>
-<script src="/static/js/common.js"></script>
