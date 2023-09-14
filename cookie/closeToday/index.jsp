@@ -15,7 +15,7 @@
         $(function(){
             $.ajax({
                 type:"GET",
-                url:"/cookie/popup.jsp",
+                url:"/cookie/closeToday/popup.jsp",
                 dataType:'html',
                 success:function(data){
                     $('.wrapper').prepend(data);
