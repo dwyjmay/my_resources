@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/timepickerfull.css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="container">
+    <h1>datetimepicker</h1>
+    시작일시 : <input type='text' class='datetimepicker' name='start_dt'  style='width:140px;'>,
+    종료일시 : <input type='text' class='datetimepicker' name='end_dt'   style='width:140px; padding-left:10px;'>
+
+    https://xdsoft.net/jqplugins/datetimepicker/
+    참고
+</div><!-- //container -->
+<script>
+    $.datetimepicker.setLocale('ko');
+    $(".datetimepicker").datetimepicker({
+        format: "Y-m-d H:i",
+        step: 30,
+    });
+
+</script>
+</body>
+</html>
