@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/default.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <style>
+        .flex{display:flex; flex-direction: row; width:600px;}
+        #flexA{flex-wrap: nowrap;} /* default값.  flex-container의 영역 내에서 벗어나더라도 강제로 한 줄에 배치 */
+        #flexA li{width: 300px;}/* 너비 지정 무의미*/
+        #flexB{flex-wrap: wrap;} /* flex-container의 영역 내에서 벗어나지 않고 여러 행으로 나누어 표현*/
+        #flexB li{width: 200px;}
+
+        .flexbox{display:flex; flex-wrap: nowrap; gap:0; padding:10px; background:#e8e8e8; width:800px;}
+        .item{min-height:150px; flex-basis: 100px;}
+
+        /* flex-grow :  flex-item 요소를 각 너비에 맞게 설정하고, 남은 여백에 대하여 비율 설정 */
+        .item:nth-child(1){flex-grow: 1;}
+        .item:nth-child(2){flex-grow: 2;}
+        .item:nth-child(3){flex-grow: 1;}
+        /*
+        플렉스 컨테이너의 너비 800px
+        각각의 아이템의 너비 : 100px  => 100px * 4 = 400px
+        컨테이너의 너비 - 각각의 아이템의 너비 총합 = 800px - 400px = 400px;
+        남은 400px에 대해서 비율을 1 : 2 : 1 : 0 으로 나눠갖는다,
+        item(0) : 100px + (100px * 1)
+        item(1) : 100px + (100px * 2)
+        item(2) : 100px + (100px * 1)
+        item(3) : 100px
+        */
+
+        /* 남은 영역의 비율로 나누는게 아니라 실제 컨테이너의 영역에 따라서 나누고 싶다면 */
+        /*
+        .item{flex-basis: 0;}
+        item(0) : (전체 컨테이너 - item(3)의 텍스트 너비) *  1/ (1 + 2 + 1)
+        item(1) : (전체 컨테이너 - item(3)의 텍스트 너비) *  2/ (1 + 2 + 1)
+        item(2) : (전체 컨테이너 - item(3)의 텍스트 너비) *  3/ (1 + 2 + 1)
+        item(3) : 텍스트크기만큼 갖음
+        */
+    </style>
+</head>
+<body>
+<ul class="flex" id="flexA">
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+</ul>
+
+<ul class="flex" id="flexB">
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+    <li><img src="/static/images/example-1000x1250.jpg" alt=""></li>
+</ul>
+
+<div class="flexbox">
+    <div class="item">content1</div>
+    <div class="item">content2</div>
+    <div class="item">content3</div>
+    <div class="item">content4</div>
+</div>
+
+</body>
+
+</html>
