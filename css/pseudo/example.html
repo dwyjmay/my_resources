@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>가상클래스와 가상요소</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+    <style>
+        .subTitle{display:inline-block; margin-bottom:10px;font-style: normal; padding:4px 2px; background:#959da6; color:#fff; border-radius: 4px;}
+        table{}
+        table th{padding:10px 0;}
+        table td{padding:6px 0;}
+        table tr+ tr{border-top :1px solid #3c3c3c;}
+        #focus-sibling{position:relative; padding-left:10px; transition: 0.5s all; opacity:0;}
+        #focus-sibling:before{content: ''; display: block; position: absolute; bottom:0; left:0; width: 0; border-bottom: 2px solid #4297d7; transition: 0.3s width;}
+        #focus-element::placeholder{text-indent: 0; transition: 0.2s all; opacity: 1;}
+
+        #focus-element:focus-within + #focus-sibling{font-weight: 600; color:#0079bf; opacity: 1;}
+        #focus-element:focus-within + #focus-sibling:before{width: 100%;}
+        #focus-element:focus-within::placeholder{opacity: 0;}
+    </style>
+</head>
+<body>
+<main>
+    <section class="section" id="element">
+        <h1>가상요소(::before, ::after , ::placeholder )</h1>
+        <p>
+            가상 클래스와 비슷하게 요소를 만들어 스타일을 부여할 수 있다.
+            가상 클래스와의 구분을 위해 :: (이중 콜론) 권장
+        </p>
+    </section>
+
+    <section class="section" id="class">
+        <h1>가상클래스</h1>
+        <table>
+            <colgroup>
+                <col width="120">
+                <col width="*">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>가상 클래스</th>
+                <th>설명</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>:focus-within</td>
+                <td>
+                    <p>포커스를 가질 수 있는 요소에 포커스 됐을 때의 스타일</p>
+                    <div>
+                        <em class="subTitle">example</em>
+                        <div>
+                            <input type="text" name="" id="focus-element" style="width: 120px;" placeholder="값을 입력하세요 ❣️">
+                            <span id="focus-sibling">입력값을 넣어주세요.</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>:active</td>
+                <td>
+                    <a href="">:active</a>
+                    <p>해당하는 요소를 활성화(클릭한 상태일 때의 스타일 부여)</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+</main>
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+@mixin  center($axis){
+  @if $axis == x{
+    left:50%; transform: translateX(-50%);
+  } @else if($axis == y){
+    left:0; top:50%; transform: translateY(-50%);
+  } @else {
+    left:50%; top:50%; transform: translate(-50%,-50%);
+  }
+}
+
+/*
+  $object: before or after
+  $position : relative or absolute or fixed
+*/
+@mixin content($obj:before,$position:relative){
+  &{
+    position:$position;
+    &:#{$obj}{content:''; position:absolute; @content;}
+  }
+}
+
+@mixin clearFix{
+  &:after{content:''; display:block; clear:both;}
+}
+
+/*
+!* function *!
+@function getColors ( $findKey : 'text' ) {//$findKey의 기본값을 'text'입니다.
+  $list : (); //빈 값을 가진 변수를 선언합니다.
+  @each $key , $value in $colors {
+    @if ( $key == unquote( $findKey )) {// $key값이 == 'default' 또는 'text' 또는 'primary'이면
+      $list: $value; //값을 받습니다.
+    }
+  }
+  @return $list; //$list를 리턴합니다.
+}
+
+$colors : (
+        default : #959da6 #f8f9fa #e0e2e6 #ccd2d8 #bcb5b9 #2c68f1,
+        text : #7d7e80 #6c7580 #16181a #c2c7cc #575e66 #0063c5,
+        primary : #f27935,
+)
+
+
+$fontColor5: nth(getColors(default), 5 );*/

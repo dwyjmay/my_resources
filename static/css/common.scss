@@ -1,3 +1,24 @@
 @charset "utf-8";
 @import "default.css";
+@import "mixin";
 img{max-width: 100%; vertical-align: top;}
+
+main{
+  > section.section{
+    > h1{ padding-left:30px; font-weight: 900;
+      @include content(){
+        content: '✨'; @include center(y);
+      }
+    }
+    + .section {
+      margin-top:80px;
+    }
+  }
+}
+
+input{
+  border:1px solid #838383; border-radius: 4px; padding:10px 4px; background:#fff;
+  &[type=text]{
+    height:40px;
+  }
+}
