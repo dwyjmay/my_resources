@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>input css 커스텀</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="input.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+</head>
+
+<body>
+<main>
+    <section class="section" id="accent-section">
+        <h1>:accent-color 사용</h1>
+        <div>
+            <label for="check-accent">항목1</label>
+            <input type="checkbox" name="" id="check-accent" class="accent-color">
+        </div>
+        <div>
+            <label for="radio-accent">항목2</label>
+            <input type="radio" name="" id="radio-accent" class="accent-color">
+        </div>
+        <div>
+            <label for="range-accent">항목3</label>
+            <input type="range" name="" id="range-accent" class="accent-color">
+        </div>
+    </section>
+
+    <section class="section" id="custom-section">
+        <h1>custom</h1>
+        <div class="check-type">
+            <input type="checkbox" id="termsAgreeYn" name="termsAgreeYn" value="Y">
+            <label for="termsAgreeYn">무료체험 이용약관 동의 <span class="ess">필수</span></label>
+        </div>
+        <div class="radio-type">
+            <input type="radio" id="radio-element1" name="radio-test" value="무료">
+            <label for="radio-element1">무료</label>
+        </div>
+        <div class="radio-type">
+            <input type="radio" id="radio-element2" name="radio-test" value="유료">
+            <label for="radio-element2">유료</label>
+        </div>
+        <div class="file-type">
+            <label for="file-element">첨부파일</label>
+            <input type="file" name="" id="file-element">
+        </div>
+        <div class="file-typeB">
+            <input type="text" id="filename" readonly="readonly">
+            <label for="file-element2">첨부파일</label>
+            <input type="file" name="" id="file-element2" onchange="document.getElementById('filename').value=document.getElementById('file-element2').value">
+        </div>
+    </section>
+</main>
+</body>
+
+</html>

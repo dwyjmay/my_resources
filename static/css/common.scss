@@ -7,7 +7,7 @@ main{
   > section.section{
     > h1{ padding-left:30px; font-weight: 900;
       @include content(){
-        content: '✨'; @include center(y);
+        content: '✨'; @include center(y); left: 0;
       }
     }
     + .section {

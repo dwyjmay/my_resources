@@ -1,0 +1,145 @@
+@charset "UTF-8";
+/*
+  $object: before or after
+  $position : relative or absolute or fixed
+*/
+/*
+!* function *!
+@function getColors ( $findKey : 'text' ) {//$findKey의 기본값을 'text'입니다.
+  $list : (); //빈 값을 가진 변수를 선언합니다.
+  @each $key , $value in $colors {
+    @if ( $key == unquote( $findKey )) {// $key값이 == 'default' 또는 'text' 또는 'primary'이면
+      $list: $value; //값을 받습니다.
+    }
+  }
+  @return $list; //$list를 리턴합니다.
+}
+
+$colors : (
+        default : #959da6 #f8f9fa #e0e2e6 #ccd2d8 #bcb5b9 #2c68f1,
+        text : #7d7e80 #6c7580 #16181a #c2c7cc #575e66 #0063c5,
+        primary : #f27935,
+)
+
+
+$fontColor5: nth(getColors(default), 5 );*/
+.accent-color {
+  accent-color: #abcf83;
+}
+
+label {
+  cursor: pointer;
+}
+
+#custom-section > div + div {
+  margin-top: 10px;
+}
+#custom-section input[type=checkbox], #custom-section input[type=radio] {
+  display: none;
+}
+#custom-section input[type=checkbox]:checked + label, #custom-section input[type=radio]:checked + label {
+  color: #abcf83;
+}
+#custom-section .check-type label {
+  position: relative;
+}
+#custom-section .check-type label:before {
+  content: "";
+  position: absolute;
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #bfbfbf;
+  border-radius: 3px;
+  background: url(../../static/images/ico_check_off.png) no-repeat center/auto;
+  vertical-align: middle;
+}
+#custom-section .check-type input:checked + label:before {
+  background: #abcf83 url(../../static/images/ico_check_on.png) no-repeat center/auto;
+  border: 1px solid #abcf83;
+}
+#custom-section .radio-type {
+  display: inline-block;
+}
+#custom-section .radio-type label {
+  position: relative;
+}
+#custom-section .radio-type label:before {
+  content: "";
+  position: absolute;
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #e1e4e6;
+  border-radius: 50%;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+#custom-section .radio-type input:checked + label:before {
+  border: 4px solid #abcf83;
+}
+#custom-section .radio-type + .radio-type {
+  margin-left: 10px;
+}
+
+.file-type {
+  position: relative;
+}
+.file-type label {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #111;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+}
+.file-type label {
+  position: relative;
+}
+.file-type label:after {
+  content: "";
+  position: absolute;
+  position: static;
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  margin-left: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16.839 15.983'%3E%3Cg transform='translate(0.7 0.7)'%3E%3Cpath d='M8.716,4h2.573L13,5.716h4.289A1.716,1.716,0,0,1,19.01,7.431v6a1.716,1.716,0,0,1-1.716,1.716H8.716A1.716,1.716,0,0,1,7,13.436V5.716A1.716,1.716,0,0,1,8.716,4' transform='translate(-3.57 -4)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.4'/%3E%3Cpath d='M15.01,15.72v1.716a1.716,1.716,0,0,1-1.716,1.716H4.716A1.716,1.716,0,0,1,3,17.436V9.716A1.716,1.716,0,0,1,4.716,8H6.431' transform='translate(-3 -4.569)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.4'/%3E%3C/g%3E%3C/svg%3E%0A") no-repeat 50% 50%;
+}
+.file-type input[type=file] {
+  display: none;
+  /*position: absolute; left:0; top:0;
+  width:0; height:0; opacity: 0;*/
+}
+
+.file-typeB {
+  display: flex;
+  align-self: center;
+}
+.file-typeB input[type=file] {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+  background: none;
+}
+.file-typeB label {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16.839 15.983'%3E%3Cg transform='translate(0.7 0.7)'%3E%3Cpath d='M8.716,4h2.573L13,5.716h4.289A1.716,1.716,0,0,1,19.01,7.431v6a1.716,1.716,0,0,1-1.716,1.716H8.716A1.716,1.716,0,0,1,7,13.436V5.716A1.716,1.716,0,0,1,8.716,4' transform='translate(-3.57 -4)' fill='none' stroke='%23111' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.4'/%3E%3Cpath d='M15.01,15.72v1.716a1.716,1.716,0,0,1-1.716,1.716H4.716A1.716,1.716,0,0,1,3,17.436V9.716A1.716,1.716,0,0,1,4.716,8H6.431' transform='translate(-3 -4.569)' fill='none' stroke='%23111' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.4'/%3E%3C/g%3E%3C/svg%3E%0A") no-repeat center/20px auto;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=input.css.map */
