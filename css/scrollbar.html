@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>스크롤바</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+    <style>
+        /*스크롤바 커스텀
+        https://minineko.tistory.com/entry/CSS-scrollbar-IE-Chrome-Safari-%EC%8A%A4%ED%81%AC%EB%A1%A4%EB%B0%94-%EC%9D%B5%EC%8A%A4-%ED%81%AC%EB%A1%AC-%EC%82%AC%ED%8C%8C%EB%A6%AC
+        */
+        .box{max-height:100px; overflow-y:auto; width:200px;}
+        li{padding:10px 0; border-bottom: 2px solid #bfbfbf;}
+        /* ie*/
+        html{scrollbar-arrow-color:#fff; /* 화살표 색 지정*/
+            scrollbar-3dlight-color:#aaa; /*3D 경계*/
+            scrollbar-darkshadow-color:red; /* 어두운 그림자*/
+            scrollbar-face-color:#fa7b78; /* 스크롤위치 색 지정 */
+            scrollbar-shadow-color:#fa7b78; /* 그림자 (테두리)*/
+            scrollbar-hightlight-color:red; /*선택*/
+            scrollbar-track-color:#fabd34;} /*트랙 색*/
+
+        .box::-webkit-scrollbar{width:10px; background: #f5d0d0;}
+        .box::-webkit-scrollbar-thumb{background: #695658; opacity: .2; border-radius: 5px;}
+        .box::-webkit-scrollbar-track{ background: none;}
+
+
+        /* 스크롤바 없이, 기능만 */
+        .box2{max-height:100px; overflow-y:auto; width:200px;}
+        .box2{ -ms-overflow-style:none;                    /*ie에서 스크롤바 감춤*/}
+        .box2::-webkit-scrollbar{display:none!important;    /*크롬 등*/}
+        li{padding:10px 0; border-bottom: 2px solid #bfbfbf;}
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>스크롤바 커스텀</h1>
+        <ul class="box">
+            <li>상품1</li>
+            <li>상품2</li>
+            <li>상품3</li>
+            <li>상품4</li>
+            <li>상품5</li>
+            <li>상품6</li>
+        </ul>
+    </section>
+    <section class="section">
+        <h1>스크롤바 없이 스크롤</h1>
+        <ul class="box2">
+            <li>상품1</li>
+            <li>상품2</li>
+            <li>상품3</li>
+            <li>상품4</li>
+            <li>상품5</li>
+            <li>상품6</li>
+        </ul>
+    </section>
+</main>
+</body>
+</html>
