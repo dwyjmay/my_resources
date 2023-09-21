@@ -1,9 +1,11 @@
 @charset "utf-8";
 @import "default.css";
+@import "font.css";
 @import "mixin";
 img{max-width: 100%; vertical-align: top;}
 
 main{
+  padding:20px;
   > section.section{
     > h1{ padding-left:30px; font-weight: 900;
       @include content(){
@@ -14,6 +16,15 @@ main{
       margin-top:80px;
     }
   }
+  article.explanation{
+    max-width: 60vw;
+    padding:20px 10px; margin-bottom: 20px;
+    line-height:1.6em; border: 1px dashed #4d4d4d; border-radius: 20px;
+    .exp-typeA{display:inline-block; padding: 4px; background: #aaa; color:#fff; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeB{display:inline-block; padding: 4px; background: #ffe423; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    + & {margin-top: 20px;}
+    &:first-of-type{margin-top: 40px;}
+  }
 }
 
 input{
@@ -21,4 +32,24 @@ input{
   &[type=text]{
     height:40px;
   }
+}
+
+table.tableTypeA{
+  thead{
+    tr{
+      border-bottom:0;
+      th{
+        &:first-of-type{border-radius: 10px 0 0 10px;}
+        &:last-of-type{border-radius: 0 10px 10px 0;}
+      }
+    }
+  }
+  tr{
+    border-bottom: 1px solid #ddd;
+  }
+  th{
+    background:#f5f5f5; color:#666; font-size: 16px; padding:10px 0;
+
+  }
+  td{padding:6px;}
 }
