@@ -5,60 +5,103 @@
 <head>
     <c:import url="/include/head.jsp" />
     <script>
-        var dday = new Date("Sep 20,2023,14:13:30").getTime(); // 특정일 지정
+        var dday = new Date("Sep 21,2023,14:26:30").getTime(); // 특정일 지정
 
-        function ddaySetting(target,setDday){
+        function ddaySetting(target){
             setInterval(()=>{
                 let today = new Date(); //현재 날짜
-                let curToDday = setDday-today;
+                let curToDday = dday-today;
+                const getTimer = calc(curToDday);
 
-                let d= Math.floor(curToDday / (1000 * 60 * 60 * 24));
-                let h= Math.floor((curToDday % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let m= Math.floor((curToDday % (1000 * 60 * 60)) / (1000 * 60));
-                let s= Math.floor((curToDday % (1000 * 60)) / 1000);
-
-                /* typeA에 한해서..! 다른 유형은 안 써도 됨 */
-                if(target==='#typeA' && (curToDday < 0)){
-                    //setDday += (604800000); // 7일 = 604800000ms , 1일 = 86400000
+                if (curToDday < 0 ){
+                    /*dday += (604800000); // 7일 = 604800000ms , 1일 = 86400000*/
                     $('#typeA  span').hide();
                     $('#typeA .content').html('기간이 종료되었습니다.')
+
+                } else{
+                    getTimer[3] = getTimer[3] < 10 ? '0' + getTimer[3] : getTimer[3];
+                    $(target).find('.day').html("Days : "+getTimer[0]);
+                    $(target).find('.hours').html(', Hours : '+getTimer[1]);
+                    $(target).find('.minutes').html(', Minutes : '+getTimer[2]);
+                    $(target).find('.second').html(', Second : '+getTimer[3]);
+                }
+            },1000)
+        }
+        ddaySetting('#typeA');
+
+
+
+        function period() {
+            let periodDday = new Date("Sep 21,2023,00:00:00").getTime(); // 특정일 지정
+            let periodToday = new Date(); //현재 시간 가져오기
+            let periodDistance = periodDday - periodToday; //  양수 => 기간 남음, 음수 => 기간 지남
+
+            let intoDays = periodDistance / (1000 * 60 * 60 * 24); //
+            let calcWeek;
+            let corresText;
+
+
+            /******페이지 처음 진입 시 *******/
+
+            if(periodDistance < 0 ){
+                intoDays = -intoDays
+                corresText='일 지남'
+                if(intoDays % 7 > 0) {
+                    console.log(intoDays/7)
+                    calcWeek = Math.floor((intoDays / 7 )) + 1;
+                } else{
+                    calcWeek = (intoDays / 7);
+                }
+                /* 1주 = 604800 초  = 604800*1000 밀리초*/
+                periodDday += 604800000 * calcWeek;
+                periodDistance = periodDday - periodToday;
+            } else{
+                corresText='일 남음'
+            }
+            setTimeout(()=>{
+                console.log(new Date(periodDistance))
+                const timer = calc(periodDistance);
+                console.log(timer)
+                timer[3] = timer[3] < 10 ? '0' + timer[3] : timer[3];
+                $('#typeB .day').html("Days : "+timer[0]);
+                $('#typeB .hours').html(', Hours : '+timer[1]);
+                $('#typeB .minutes').html(', Minutes : '+timer[2]);
+                $('#typeB .second').html(', Second : '+timer[3]);
+            },100)
+            console.log(Math.floor(intoDays)+corresText)
+
+
+            /*********페이지 접속 중 만료 되었을 경우 ↓ ***********/
+
+            setInterval(()=>{
+                const realTime = new Date();
+
+                let realTimeDistance = periodDday - realTime
+                if (realTimeDistance < 0 ){
+                    realTimeDistance += 604800000;
                 }
 
-                s = s < 10 ? '0' + s : s;
-                $(target).find('.day').html("Days : "+d);
-                $(target).find('.hours').html(', Hours : '+h);
-                $(target).find('.minutes').html(', Minutes : '+m);
-                $(target).find('.second').html(', Second : '+s);
+                const newTimer = calc(realTimeDistance)
+                newTimer[3] = newTimer[3] < 10 ? '0' + newTimer[3] : newTimer[3];
+                $('#typeB .day').html("Days : "+newTimer[0]);
+                $('#typeB .hours').html(', Hours : '+newTimer[1]);
+                $('#typeB .minutes').html(', Minutes : '+newTimer[2]);
+                $('#typeB .second').html(', Second : '+newTimer[3]);
+
             },1000)
         }
 
-        function period(type) {
-            let dday2 = new Date("Sep 20,2023,14:20:00").getTime(); // 특정일 지정
-            let today = new Date(); //현재 날짜 가져오기
-            let curToDday = dday2 - today;//  양수 => 기간 남음, 음수 => 기간 지남
-            let calcDay = Math.floor(curToDday / (1000 * 60 * 60 * 24));
-            console.log((-calcDay) + " 일 지남");
+        function calc(distance){
+            let d= Math.floor(distance / (1000 * 60 * 60 * 24));
+            let h= Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let m= Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let s= Math.floor((distance % (1000 * 60)) / 1000);
 
-            //기간 지났을 경우, 지정일로부터 7일씩 갱신
-            if (curToDday < 0) {
-                calcDay = Math.floor((-calcDay / 7)); //지정한 특정일로부터 몇 주 지났는지
-                //console.log(calcDay)
-                dday2 += (604800000) * (calcDay); //carToDday가 양수가 될 때 까지,  지정 특정일로부터  지정한단위로 더해준다.
-            }
-            ddaySetting('#typeB',dday2);
-
-            /* !!!!!!!!!!월별 주기!!!!!!!!!! */
-                /*var now2=new Date(); //현재 날짜 가져오기
-                var year= now2.getFullYear();
-                var month= now2.getMonth()+1;
-                var cycle=new Date(year,month,1).getDate(); //현재 월의 마지막 날
-                console.log(year+": year", month+": month", cycle+":date");
-                var dday = new Date(year,month,1);
-                console.log(dday);*/
+            return [d,h,m,s];
         }
 
-        period('week')
-        ddaySetting('#typeA',dday);
+        period()
+
     </script>
 </head>
 <body>
