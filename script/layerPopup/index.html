@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <script src="../../static/js/ui.js"></script>
+    <style>
+        button{display: inline-block; padding:4px; background: #e0e2e6; color:#111; border-radius: 6px;}
+    </style>
+</head>
+<body>
+<button type="button" onclick="uiUx.popupLayer.open('./popup.html','testPopup','')">레이어팝업 보이기</button>
+
+<script>
+    $(function(){
+        custom.test()
+    })
+</script>
+</body>
+</html>

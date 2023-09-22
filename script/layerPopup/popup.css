@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/*
+  $object: before or after
+  $position : relative or absolute or fixed
+*/
+/*
+!* function *!
+@function getColors ( $findKey : 'text' ) {//$findKey의 기본값을 'text'입니다.
+  $list : (); //빈 값을 가진 변수를 선언합니다.
+  @each $key , $value in $colors {
+    @if ( $key == unquote( $findKey )) {// $key값이 == 'default' 또는 'text' 또는 'primary'이면
+      $list: $value; //값을 받습니다.
+    }
+  }
+  @return $list; //$list를 리턴합니다.
+}
+
+$colors : (
+        default : #959da6 #f8f9fa #e0e2e6 #ccd2d8 #bcb5b9 #2c68f1,
+        text : #7d7e80 #6c7580 #16181a #c2c7cc #575e66 #0063c5,
+        primary : #f27935,
+)
+
+
+$fontColor5: nth(getColors(default), 5 );*/
+.popupLayerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: 0.5s opacity;
+  z-index: 100;
+}
+.popupLayerWrapper.show {
+  opacity: 1;
+}
+.popupLayerWrapper .popupLayer {
+  position: relative;
+  width: 100%;
+  max-height: 100%;
+}
+.popupLayerWrapper .popupLayerFrame {
+  width: 100%;
+  max-height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.popupLayerWrapper .layerFrame {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  vertical-align: top;
+  background: #fff;
+}
+.popupLayerWrapper .btnLayerClose {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background: ico_close(fff, 4);
+}
+
+/*# sourceMappingURL=popup.css.map */
