@@ -96,6 +96,60 @@ window.uiUtil=
         chkClear : function(obj){
             $(obj).prop('checked',false);
         }
+        , setCookie : function setCookie( name, value, expiredays){
+            if(expiredays == null || expiredays == ""){ expiredays = 1; };
+            var todayDate = new Date();
+            todayDate.setDate( todayDate.getDate() + expiredays );
+            document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+        }
+
+        ,getCookie : function getCookie( name ) {
+            var nameOfCookie = name + "=";
+            var x = 0;
+            while( x <= document.cookie.length ){
+                var y = (x+nameOfCookie.length);
+                if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+                    if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+                        endOfCookie = document.cookie.length;
+                    return unescape( document.cookie.substring( y, endOfCookie ) );
+                }
+                x = document.cookie.indexOf( " ", x ) + 1;
+                if ( x == 0 )  break;
+            }// - while
+            return "";
+        }
+        ,imgPreLoad : function imgPreLoad( arry, callback ) {
+            var count = arry.length;
+            if(count === 0 && callback) {
+                callback();
+            }
+            var loaded = 0;
+            $(arry).each(function() {
+                $('<img>').attr('src', this).load(function() {
+                    loaded++;
+                    if (loaded === count && callback) {
+                        callback();
+                    }
+                });
+            });
+        }
+
+        ,numberWithComma : function numberWithComma(x) {
+            var x = String(x);
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        ,otherClickLayerHide : function otherClickLayerHide(obj){
+            $(document).on("click keyup", function(e) {
+                if($(obj).is(":visible")){
+                    if(!($(e.target).parents(".otherClickHideArea").length)){
+                        $(obj).hide();
+                        $(document).off("click keyup");
+                        wrapFix('off');
+                    }
+                }
+            });
+        }
     }
 
 window.custom = {
