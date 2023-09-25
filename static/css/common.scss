@@ -27,11 +27,48 @@ main{
     &:first-of-type{margin-top: 40px;}
   }
 }
-
 input{
-  border:1px solid #838383; border-radius: 4px; padding:10px 4px; background:#fff;
-  &[type=text]{
-    height:40px;
+  &[type=text],&[type=password],&[type=number]{
+    border:1px solid #838383; border-radius: 4px; padding:10px 4px; background:#fff;height:40px;
+  }
+  &[type=checkbox],&[type=radio],&[type=range]{
+    appearance: auto;
+  }
+}
+.check-type input[type=checkbox],.radio-type input[type=radio]{
+  display: none;
+  &:checked + label{color:#abcf83;}
+}
+
+.check-type{
+  label{
+    @include content(before){
+      position: relative; display: inline-block;
+      margin-right:8px; width:22px; height:22px;
+      border:1px solid #bfbfbf; border-radius:3px;
+      background:url(../../static/images/ico_check_off.png) no-repeat center/ auto;
+      vertical-align:middle;
+    }
+  }
+  input:checked + label:before{
+    background:#abcf83 url(../../static/images/ico_check_on.png) no-repeat center/ auto; border:1px solid #abcf83;
+  }
+}
+
+.radio-type{
+  display: inline-block;
+  label{
+    @include content(before){
+      position: relative; display: inline-block;
+      margin-right:8px; width:16px; height: 16px;
+      border: 1px solid #e1e4e6; border-radius: 50%;
+      vertical-align:middle; box-sizing:border-box;
+    }
+  }
+  input:checked + label:before{border:4px solid #abcf83;}
+
+  + .radio-type{
+    margin-left: 10px;
   }
 }
 

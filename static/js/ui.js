@@ -65,6 +65,36 @@ window.uiUtil=
                     afterFunc();
                 }
             })
+        },
+        chkAll : function(chkAll, chkList){
+            let $chkAll = $(chkAll);
+            let $chkList = $(chkList);
+            let checkitemLength = $chkList.length;
+            $chkAll.change(function () {
+                let currentState = $(this).prop('checked');
+                if (!currentState) {
+                    $chkList.prop('checked', false);
+                } else {
+                    $chkList.prop('checked', true);
+                }
+            })
+            $chkList.change(function(){
+                let checkedLength = 0;
+                $chkList.each(function(){
+                    if($(this).is(':checked')){
+                        checkedLength +=1;
+                    }
+                })
+                if(checkitemLength > checkedLength){
+                    //uiUtil.chkClear($chkAll)
+                    $chkAll.prop('checked',false)
+                }else{
+                    $chkAll.prop('checked',true)
+                }
+            })
+        },
+        chkClear : function(obj){
+            $(obj).prop('checked',false);
         }
     }
 
