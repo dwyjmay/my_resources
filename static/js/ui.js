@@ -39,10 +39,34 @@ window.uiUx = {
                 console.log($(this))
                 $target.remove();
             })
+        }
+    },
+    afterFunction : function(before, after, time){
+        const afterTime = time ? time : 100;
+        before();
+        setTimeout(function(){
+            after();
+        },afterTime);
+    },
+}
 
+window.uiUtil=
+    {
+        scrollMove : function (obj,speed,easing,gap,afterFunc){
+            if(speed == null || speed ===''){speed = 500;} // 기본 속도는 500ms
+            if(easing == null || easing===''){easing='easeInOutQuint';}//
+            if(gap == null || gap ===''){gap=0;}
+            let offset = $(obj).offset();
+            let topValue = offset.top;
+            $('html,body').stop().animate({
+                scrollTop : topValue - gap
+            }, speed, easing, function(){
+                if(afterFunc){
+                    afterFunc();
+                }
+            })
         }
     }
-}
 
 window.custom = {
     test : function(){
@@ -53,3 +77,15 @@ window.custom = {
 function setHeightIframe(height) {
     $(".layerFrame").css("height", height);
 }
+
+/* layer팝업 딤 창 클릭 시 팝업 닫힘 */
+$(document).click(function(e){
+    if ((e.target.classList.contains('popupLayerWrapper'))) {
+        let $targetElement = e.target.children[0].querySelector('.btnLayerClose');
+        uiUx.popupLayer.close($targetElement);
+    }
+    if ((e.target.classList.contains('spreadPopupLayer'))) {
+        let $targetElement = e.target.children[0].querySelector('.btnLayerClose');
+        $targetElement.click();
+    }
+})
