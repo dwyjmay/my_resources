@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jquery extend</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+    <style>
+        pre{white-space: pre-line;}
+        .code-area{white-space: pre-wrap;}
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>플러그인 제작을 위한 $.fn.extend() 메소드</h1>
+        <h3>개발자가 직접 제작한 함수를 jQuery에 확장시켜주는 역할.</h3>
+        <article class="explanation">
+            <h3 class="exp-typeD">$fn.extend() 메소드의 기본형 1</h3>
+            <div class="code-area">
+                $.fn.extend({
+                    myMethod : function(매개변수1, 매개변수2, ...){
+                    $(this) //플러그인을 적용한 요소를 가리킴.
+                    ...
+                    }
+                })
+
+                $("요소").myMethod(인자1,인자2,...)
+            </div>
+        </article>
+        <article class="explanation">
+            <h3 class="exp-typeB">$fn.extend() 메소드의 기본형 2</h3>
+            <div class="code-area">
+                $.fn.myMethod = function(매개변수1, 매개변수2, ...){
+                    ...
+                }
+                $("요소").myMethod(인자1,인자2,...)
+
+                ex) xss필터링으로 변환된 문자열을 다시 복원하는 메소드
+                $.fn.HTMLtagRESTORE = function(){
+                    var value = this.val();
+                        if(this.is("input") || this.is("textarea")){
+                            this.val(
+                                value.replaceAll('&lt','<')
+                                value.replaceAll('&gt','>')
+                            )
+                        }
+                    return this;
+                }
+                $('span').HTMLtagRESTORE();
+
+                <input id="testExtend" type="text" value="텍스트를 대체할고야!!">
+            </div>
+        </article>
+        <article class="explanation">
+            <h3 class="exp-typeC">번외 - <sup>$.fn의 궁극적 목적은 셀렉터를 이용할 수 있는 확장 메소드를 구현하는 것인데, 셀렉터를 이용하지 않는 $.ajax와 같은 메소드 구현도
+                가능하다.</sup></h3>
+            <div class="code-area">
+                ex) $.HTMLTagRestoreAll = function(){
+                        $("input, textarea").each(function(){
+                            var value = $(this).val();
+                            $(this).val(
+                                value.replaceAll('& lt;', '<')
+                                .replaceAll('& gt;', '>')
+                            );
+                        });
+                    };
+                $.HTMLtagRestoreAll();</div>
+        </article>
+        <a href="https://annotations.tistory.com/89">[참고]https://annotations.tistory.com/89</a>
+    </section>
+
+    <section class="section">
+        <h1>extend()함수</h1>
+        <h3>jQuery.extend(object1,object2,...)-<sup> 파라미터 object를 합쳐서(merge) 돌려주는 함수</sup></h3>
+        <article class="explanation">
+            <div class="code-area">
+                let object = $.extend(target,object1,...)
+                [기본] : target(object)에 뒤의 파라미터들을 확장한다.
+                        뒤 파라미터에 같은 프로퍼티(property, {name :value}의 형태, object의 속성)가 있을 경우,
+                        target의 해당 프로퍼티name의 value가 덮어쓰기 된다. => <span class="exp-typeC">target이 변하게 됨</span>
+                        변경을 원치 않으면 <span class="exp-typeB">첫 파라미터에 {}, 리턴값을 새 오브젝트에 넣는다.</span>
+
+                [예제] :
+                let targetB = {
+                    arrive : 9.5,
+                    leave : 6,
+                    member : 7
+                }
+
+                let objB = {
+                    member : 8,
+                    empty : 1
+                }
+
+                <span class="exp-typeC">
+                    $.extend(targetB,objB)<br>
+                    console.log(targetB);<br>
+                [출력] : {arrive: 9.5, leave: 6, member: 8, empty: 1}
+                </span>
+
+                <span class="exp-typeB">
+                    let temp = $.extend({},targetB,objB)<br>
+                    console.log(temp, targetB)<br>
+                [출력] : {arrive: 9.5, leave: 6, member: 8, empty: 1}, {arrive: 9.5, leave: 6, member: 7}
+                </span>
+            </div>
+        </article>
+        <h3>extend의 파라미터 프로퍼티의 value가 object 일 경우</h3>
+        <article class="explanation">
+            <div class="code-area">
+                let a = {
+                    style : {
+                        top:100,
+                        left:200,
+                        width:300
+                        },
+                    duration:100
+                };
+
+                let b = {
+                style: {
+                    height:400
+                    }
+                }
+
+                $.extend(a,b);
+                console.log(a);
+                ▲ a.style.top, a.style.left, a.style,width는 모두 지워지고 b.style.height만  덮어씌움 => 교체
+                [출력] : {duration:1000, style:{height:400}}
+
+                $.extend(true,a,b);
+                console.log(a);
+                ▲ 밑의 계층을 가지고 가고싶은 경우는 extend()의 첫번재 파라미터에 true를 넣는다.  => 확장
+                [출력] : {style : {top:100, left:200, width:300, height:400}, duration:1000}
+            </div>
+        </article>
+    </section>
+</main>
+<script>
+    /* section1 - 첫 번째 방법 */
+   $.fn.extend({
+       HTMLtagRESTORE:function(){
+           var value = this.val();
+           /*var value = $(this).val();*/
+           if(this.is("input") || this.is("textarea")){
+               this.val(
+                   value.replaceAll('!!',',이렇게')
+                       .replaceAll('&gt','>')
+               )
+           }
+           return this;
+       }
+   })
+
+    /* section1 - 두 번째 방법 */
+   /* $.fn.HTMLtagRESTORE = function(){
+        var value = this.val();
+
+        if(this.is("input") || this.is("textarea")){
+            this.val(
+                value.replaceAll('!!',',이렇게')
+                    .replaceAll('&gt','>')
+            )
+        }
+        return this;
+    }*/
+    let test = $('#testExtend').HTMLtagRESTORE();
+</script>
+<script>
+
+    let targetB = {
+        arrive : 9.5,
+        leave : 6,
+        member : 7
+    }
+
+    let objB = {
+        member : 8,
+        empty : 1
+    }
+
+    let temp = $.extend({},targetB,objB)
+    console.log(temp, targetB)
+
+    /*$.extend(targetB,objB)
+    console.log(targetB);*/
+
+
+    let targetA = {
+        arrive : 9.5,
+        leave : 6,
+        member : {male : 2, female : 5}
+    }
+
+    let objA = {
+        member : {female: 6},
+        empty : 1
+    }
+
+    $.extend(true,targetA,objA)
+    console.log(targetA)
+
+    /*$.extend(targetA,objA)
+    console.log(targetA)*/
+
+    let a = {
+        style : {
+            top:100,
+            left:200,
+            width:300
+        },
+        duration:100
+    };
+
+    let b = {
+        style: {
+            height:400
+        }
+    }
+
+    $.extend(a,b);
+    console.log(a);
+</script>
+</body>
+</html>

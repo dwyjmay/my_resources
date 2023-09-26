@@ -8,11 +8,12 @@ img{max-width: 100%; vertical-align: top;}
 main{
   padding:20px;
   > section.section{
-    > h1{ padding-left:30px; font-weight: 900;
+    > h1{ padding-left:30px; font-weight: 900; font-size: 18px;
       @include content(){
         content: '✨'; @include center(y); left: 0;
       }
     }
+    >h3{font-weight: 600; font-size: 16px;}
     + .section {
       margin-top:80px;
     }
@@ -21,8 +22,10 @@ main{
     max-width: 60vw;
     padding:20px 10px; margin-bottom: 20px;
     line-height:1.6em; border: 1px dashed #4d4d4d; border-radius: 20px;
-    .exp-typeA{display:inline-block; padding: 4px; background: #aaa; color:#fff; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
-    .exp-typeB{display:inline-block; padding: 4px; background: #ffe423; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeA{display:inline-block; padding: 4px 6px; background: #aaa; color:#fff; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeB{display:inline-block; padding: 4px 6px; background: #ffef7ba8; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeC{display:inline-block; padding: 4px 6px; background: #e4f4ff; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeD{display:inline-block; padding: 4px 6px; background: rgba(255,123,123,0.66); color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
     + & {margin-top: 20px;}
     &:first-of-type{margin-top: 40px;}
   }
