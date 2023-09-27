@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/*
+  $object: before or after
+  $position : relative or absolute or fixed
+*/
+/*
+!* function *!
+@function getColors ( $findKey : 'text' ) {//$findKey의 기본값을 'text'입니다.
+  $list : (); //빈 값을 가진 변수를 선언합니다.
+  @each $key , $value in $colors {
+    @if ( $key == unquote( $findKey )) {// $key값이 == 'default' 또는 'text' 또는 'primary'이면
+      $list: $value; //값을 받습니다.
+    }
+  }
+  @return $list; //$list를 리턴합니다.
+}
+
+$colors : (
+        default : #959da6 #f8f9fa #e0e2e6 #ccd2d8 #bcb5b9 #2c68f1,
+        text : #7d7e80 #6c7580 #16181a #c2c7cc #575e66 #0063c5,
+        primary : #f27935,
+)
+
+
+$fontColor5: nth(getColors(default), 5 );*/
+.eui_custom-select {
+  display: inline-flex;
+  position: relative; /*width:100% !important;*/
+}
+.eui_custom-select .euiSelectMain {
+  width: 100%;
+  height: 100%;
+}
+.eui_custom-select .euiSelectMain button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 0 40px 0 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: left;
+  color: #111;
+}
+.eui_custom-select .euiSelectMain button {
+  position: relative;
+}
+.eui_custom-select .euiSelectMain button:after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  margin-top: -10px;
+  width: 20px;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg id='ic_arrow_20' transform='translate(20) rotate(90)'%3E%3Cpath d='M1411,2476l6,6-6,6' transform='translate(-1404 -2472)' fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Crect width='20' height='20' fill='none'/%3E%3C/g%3E%3C/svg%3E") no-repeat 50% 50%;
+}
+.eui_custom-select .euiSelectMain button:disabled {
+  color: #888;
+  background-color: #f9f9f9;
+  cursor: default;
+}
+.eui_custom-select .euiSelectList {
+  position: absolute;
+  left: 0;
+  top: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.eui_custom-select .euiSelectList li {
+  width: 100%;
+  height: 100%;
+}
+.eui_custom-select .euiSelectList li button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #888;
+}
+.eui_custom-select .euiSelectList li button:hover, .eui_custom-select .euiSelectList li button.on {
+  color: #111;
+}
+
+/*# sourceMappingURL=custom.css.map */

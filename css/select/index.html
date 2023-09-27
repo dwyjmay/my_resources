@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>셀렉트 박스</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <script src="custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+    <link rel="stylesheet" href="custom.css">
+    <style>
+        .select-wrapper{
+            width: 120px; height: 30px; border:1px solid #111; border-radius: 6px; background: #fff;
+        }
+        .select-wrapper select{width: 100%; height: 100%; line-height:30px; padding:0 28px 0 10px;
+            background:url(../../static/images/ico_check_off.png) no-repeat 92% 50%; vertical-align: top;
+            border-right: 0; border-bottom: 0;
+            border-radius: 0;/* 아이폰 사파리 보더 없애기 */
+            -webkit-appearance: none;/* 화살표 없애기 for chrome*/
+            -moz-appearance: none;/* 화살표 없애기 for firefox*/
+            appearance: none;/* 화살표 없애기 공통*/
+        }
+        /* 화살표 없애기 for IE10, 11*/
+        select::-ms-expand{display: none;}
+        .select-wrapper.on select{background-image:url(../../static/images/ico_check_off.png)}
+        
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>셀렉트 기본</h1>
+        <div class="select-wrapper">
+            <select name="" id="">
+                <option value="1">첫번째 옵션</option>
+                <option value="2">두 번째 옵션은 이 정도</option>
+                <option value="3">세 번째 옵션은 조금더 길게 작성했어요.</option>
+                <option value="4">네 번째항목</option>
+            </select>
+        </div>
+    </section>
+
+    <select name="" id="custom-select" class="custom-select" style="min-width: 120px;">
+        <option value="1">첫번째 옵션</option>
+        <option value="2">두 번째 옵션은 이 정도</option>
+        <option value="3">세 번째 옵션은 조금더 길게 작성했어요.</option>
+        <option value="4">네 번째항목</option>
+    </select>
+</main>
+<script>
+    $(function(){
+        $('.select-wrapper').on('click',function(e){
+            if(!$(this).hasClass('on')){
+                $(this).addClass('on');
+                console.log("옵션이보인다")
+            }else{
+                $(this).removeClass('on');
+            }
+        })
+
+
+        $(".custom-select").each(function() {
+            let euiSelect = new ef.ui.Select($(this), {
+                html :
+                    "<div>" +
+                    "<p class='euiSelectMain'>" +
+                    "<button type='button' class='euiSelectTitle'></button>" +
+                    "</p>" +
+                    "<ul class='euiSelectList' style='display:none;'>" +
+                    "</ul>" +
+                    "</div>",
+                visualClass : "eui_" + $(this).attr("class")
+            });
+            euiSelect.render();
+        });
+        // ef.ui.UIManager.updateUi($(".selectBasic"))
+
+    })
+</script>
+</body>
+</html>

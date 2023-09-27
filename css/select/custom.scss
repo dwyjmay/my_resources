@@ -1,0 +1,44 @@
+@import "../../static/css/svg";
+@import "../../static/css/mixin";
+.eui_custom-select {
+  display: inline-flex;
+  position: relative; /*width:100% !important;*/
+  .euiSelectMain {
+    width:100%; height:100%;
+    button {
+      display: flex; align-items: center;
+      width:100%; height: 48px; padding:0 40px 0 20px;
+      background: #fff; border: 1px solid #ddd;
+      border-radius: 10px;
+      font-weight: 400; font-size: 18px;text-align: left; color: #111;
+      @include content(after) {
+        right:14px; top:50%; margin-top:-10px;
+        width:20px; height:20px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg id='ic_arrow_20' transform='translate(20) rotate(90)'%3E%3Cpath d='M1411,2476l6,6-6,6' transform='translate(-1404 -2472)' fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Crect width='20' height='20' fill='none'/%3E%3C/g%3E%3C/svg%3E") no-repeat 50% 50%;
+      }
+      &:disabled {
+        color: #888; background-color: #f9f9f9;
+        cursor: default;
+      }
+    }
+  }
+  .euiSelectList {
+    position: absolute; left:0; top:56px;
+    display: flex; flex-direction: column; gap: 12px;
+    width:100%; padding:16px 0;
+    background: #fff; border: 1px solid #ddd;
+    border-radius: 10px;
+    li {
+      width:100%; height:100%;
+      button {
+        display: flex; align-items: center;
+        width:100%; height:100%; padding:0 20px;
+        font-size: 18px; line-height: 24px; color: #888;
+        &:hover,
+        &.on {
+          color:#111;
+        }
+      }
+    }
+  }
+}
