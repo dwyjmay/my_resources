@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CORS</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+    <style>
+        .explanation{white-space: pre-line; word-break: break-all;}
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>CORS에러</h1>
+        <h3>출처(Origin)란?</h3>
+        <article class="explanation">
+            https://www.domain.com:3000/user?query=name&page=1#first
+
+            Protocol : http, https
+            Host : 사이트 도메인 - www.domain.com
+            Port : 포트번호 - :3000
+            Path : 사이트 내부 경로 - /user
+            Query string : 요청 key,name - ?query=name&page=1
+            Fragment : 해시태그 - #first
+
+            출처 = Protocol + Host + Port 가 합쳐진 URL
+            console.log(location.origin); 으로 확인 가능
+        </article>
+
+        <h3>동일 출처 정책(Same Origin Policy)</h3>
+        <article class="explanation">
+            SOP정책은 동일 출처에서만 리소스를 공유할 수 있다라는 법률.
+            => 다른 출처(Cross-Origin)서버에 있는 이미지나 유튜브 영상 같은 리소스는 상호작용이 불가능하다.
+
+            <span class="exp-typeB">목적</span>
+            예를 들어 해커가 CSFR나 XSS등의 방법으로 우리의 어플리케이션에서 해커가 심어놓은 코드가 실행되어 개인정보를 가로채는 등의 상황을 막기 위해서.
+
+            <span class="exp-typeD">기준</span>
+            Protocol, Host, port 가 동일하면 동일출처로
+
+            <span class="exp-typeC">실행</span>
+            출처를 비교하는 로직은 서버가 아니라 브라우저에 구현된 스펙에 의해 이루어진다.
+            브라우저가 정책으로 차단한다 → 브라우저를 통하지 않고 서버간 통신 할 때는 적용 x
+            클라이언트 단 코드에서 api 요청하는게 아니라 서버단 코드에서 다른출처의 서버로 api요청을 하면 cors에러로부터 자유롭다 (proxy서버)
+
+            <span class="exp-typeA">하지만 다른 출처의 리소스 요청이라도 예외 조항을 만족할 경우 허용하기로 했다 . 그 중 하나가 CORS정책을 지킨 리소스 요청</span>
+        </article>
+        <h3>교차 출처 리소스 공유(Cross-origin Resource Sharing)</h3>
+        <article class="explanation">
+            다른 출처의 리소스 공유에 대한 허용/비허용 정책.
+            => SOP을 위반해도 CORS정책에 맞으면 다른출처의 리소스도 허용 됨.
+        </article>
+        <h3>브라우저의 CORS 기본 동작</h3>
+        <article class="explanation">
+            <span class="exp-typeA">클라이언트</span>에서 <strong>http요청의 헤더에 Origin을 담아 전달</strong>
+            기본적으로 웹은 HTTP포로토콜을 이용하여 서버에 요청을 보내는데, 브라우저는 요청 헤더에 Origin이라는 필드에 출처를 담아 보낸다.
+            ex ) Origin : http://localhost:3000
+
+            <strong><span class="exp-typeA">서버</span>는 응답헤더에 access-control-allow-origin을 담아 클라이언트로 전달</strong>
+            이후 서버가 요청에 대한 응답을 할 때 응답 헤더에 access-control-allow-origin이라는 필드를 추가하고,
+            값으로 '리소스를 접근하는 것이 허용된 출처 url'을 보낸다.
+            ex ) Access-Control-Allow-Origin : http://localhost:3000
+
+            <strong>비교</strong>
+            클라이언트에서 Origin과 서버가 보내준 access-control-allow-origin을 비교
+            유효하지않으면 그 응답을 사용하지 않고 버린다 => CORS 에러
+
+            사실 CORS는 세 가지의 시나리오로 동작..
+        </article>
+    </section>
+</main>
+</body>
+</html>

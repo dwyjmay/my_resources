@@ -1,3 +1,16 @@
+function wrapFix(state){
+    if(state == "on"){
+        $("body").css({
+            "overflow" : "hidden"
+        });
+    } else if(state == "off"){
+        $("body").css({
+            "overflow" : "visible"
+        });
+    }
+}
+
+
 window.uiUx = {
     popupLayer:{
         popCount:1,
@@ -118,6 +131,14 @@ window.uiUtil=
             }// - while
             return "";
         }
+
+        // arry : 이미지 경로가 들어간 배열 ex) arry["/images/a.jpg", "/images/b.jpg",
+        // "/images/c.jpg"]
+        /*
+         * ,imgPreLoad : function imgPreLoad( arry ) { if (!arry) return; var arr =
+         * new Array(); for(var i=0; i < arry.length; i++){ arr[i] = new Image();
+         * arr[i].src = arry[i]; } }
+         */
         ,imgPreLoad : function imgPreLoad( arry, callback ) {
             var count = arry.length;
             if(count === 0 && callback) {
