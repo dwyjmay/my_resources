@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--<meta http-equiv="X-Frame-Options" content="deny" />-->
+    <title>아이프레임 비율 지정</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+    <style>
+        .iframe-wrapper{position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; width:100%; }
+        .iframe-wrapper iframe,
+        .iframe-wrapper object,
+        .iframe-wrapper embed{
+            position: absolute; top:0; left:0; width:100%; height: 100%;
+        }
+
+        /*
+       https://avexdesigns.com/blog/responsive-youtube-embed
+       https://bobosszone.tistory.com/entry/%EC%9C%A0%ED%8A%9C%EB%B8%8C-iframe-height-%EC%9E%90%EB%8F%99-%EC%A1%B0%EC%A0%88
+       https://css-tricks.com/fluid-width-video/
+       */
+    </style>
+
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>iframe을 비율에 맞게 늘이기</h1>
+        <article class="iframe-wrapper">
+            <!--allow="clipboard-write;  web-share"-->
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/uAVlFXUOjeY" title="상처를 치유하고, 운명을 바꿀 시간🌙잘 때 들어요, 라푼젤 asmr" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></iframe>
+        </article>
+    </section>
+</main>
+</body>
+</html>
