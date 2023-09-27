@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="/static/css/font.css">
     <link rel="stylesheet" href="custom.css">
     <style>
+
+        /* default-select */
         .select-wrapper{
             width: 120px; height: 30px; border:1px solid #111; border-radius: 6px; background: #fff;
         }
@@ -25,7 +27,12 @@
         /* 화살표 없애기 for IE10, 11*/
         select::-ms-expand{display: none;}
         .select-wrapper.on select{background-image:url(../../static/images/ico_check_off.png)}
-        
+
+        /* reset-select*/
+        #reset-select{width: 200px; padding:4px; border:1px solid #111; border-radius: 4px;}
+        #reset-select + #control-btn{padding:4px; background:#eeeeee; color:#111; border-radius: 4px; transition: 0.2s background, 0.2s color;}
+        #reset-select + #control-btn.btn-active{background:#d0bdfd75; font-weight: 600; color:#fff;}
+
     </style>
 </head>
 <body>
@@ -33,7 +40,7 @@
     <section class="section">
         <h1>셀렉트 기본</h1>
         <div class="select-wrapper">
-            <select name="" id="">
+            <select name="" id="default-select">
                 <option value="1">첫번째 옵션</option>
                 <option value="2">두 번째 옵션은 이 정도</option>
                 <option value="3">세 번째 옵션은 조금더 길게 작성했어요.</option>
@@ -42,15 +49,29 @@
         </div>
     </section>
 
-    <select name="" id="custom-select" class="custom-select" style="min-width: 120px;">
-        <option value="1">첫번째 옵션</option>
-        <option value="2">두 번째 옵션은 이 정도</option>
-        <option value="3">세 번째 옵션은 조금더 길게 작성했어요.</option>
-        <option value="4">네 번째항목</option>
-    </select>
+    <section class="section">
+        <h1>셀렉트 커스텀</h1>
+        <select name="" id="custom-select" class="custom-select" style="min-width: 120px;">
+            <option value="1">첫번째 옵션</option>
+            <option value="2">두 번째 옵션은 이 정도</option>
+            <option value="3">세 번째 옵션은 조금더 길게 작성했어요.</option>
+            <option value="4">네 번째항목</option>
+        </select>
+    </section>
+
+    <section class="section">
+        <h1>선택 후 처음으로 돌리기</h1>
+        <select id="reset-select" class="reset-select" name="reset-select">
+            <option value="">쿠폰을 적용해주세요</option>
+            <option value="">킨더밀쉬 모음딜 10% 할인</option>
+            <option value="">킨더밀쉬 모음딜 10% 할인킨더밀쉬 모음딜 10% 할인</option>
+        </select>
+        <button type="button" onclick="" id="control-btn">쿠폰 적용하기</button>
+    </section>
 </main>
 <script>
     $(function(){
+    /*default-select*/
         $('.select-wrapper').on('click',function(e){
             if(!$(this).hasClass('on')){
                 $(this).addClass('on');
@@ -59,8 +80,7 @@
                 $(this).removeClass('on');
             }
         })
-
-
+    /*custom-select*/
         $(".custom-select").each(function() {
             let euiSelect = new ef.ui.Select($(this), {
                 html :
@@ -77,6 +97,29 @@
         });
         // ef.ui.UIManager.updateUi($(".selectBasic"))
 
+    /*reset-select*/
+        const $btnElement = $('#control-btn');
+        $('#reset-select').on('change',function(){
+            let optionIndex = $("option",this).index($("option:selected",this));
+            /*console.log($("option:selected",this).index());*/
+            console.log(optionIndex)
+            if(optionIndex === 0){
+                $btnElement.removeClass('btn-active').text('쿠폰 적용하기');
+            } else{
+                $btnElement.addClass('btn-active').text('적용 취소하기');
+            }
+        })
+        $('#control-btn').on('click',function(e){
+            var getText = $(this).text();
+            var $targetSelect = $(this).prev();
+            if (getText == "적용 취소하기") {
+                $(this).removeClass("btn-active");
+                $(this).text("쿠폰 적용하기");
+                $targetSelect.find('option').removeAttr("selected");
+                $targetSelect.find('option:eq(0)').attr("selected", "selected");
+            }
+            e.preventDefault();
+        })
     })
 </script>
 </body>

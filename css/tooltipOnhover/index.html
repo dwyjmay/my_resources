@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>셀렉트 박스</title>
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css">
+    <style>
+        .hoverBalloon{margin:40px; font-size: 0;}
+        .hoverBalloon li{position: relative; display: inline-block; }
+        .hoverBalloon li span{background: url(images/bg_balloon.gif) no-repeat ;}
+        .hoverBalloon li > span{display: none;  position: absolute; height:28px; left:0; bottom: 100%; background-position:right bottom;}
+        .hoverBalloon li span span{display:block; height:28px; padding:0 10px; font-size: 14px; white-space: nowrap; background-position:left top;}
+
+        .hoverBalloon2{margin:40px; font-size: 0;}
+        .hoverBalloon2 li{position: relative; display: inline-block; }
+        .hoverBalloon2 li span{display: none; position: absolute; height:28px; left:0; bottom: 100%; padding:0 10px; font-size: 14px; white-space: nowrap;
+            background: url(images/bg_balloon.gif) no-repeat left top, url(images/bg_balloon.gif) no-repeat right bottom;
+        }
+    </style>
+    <script>
+        $(function(){
+            $(".hoverBalloon li").each(function(){
+                $("span span", this).text($("img", this).attr("alt"));
+            }).mouseover(function(){
+                $(">span", this).show();
+            }).mouseleave(function(){
+                $(">span", this).hide();
+            });
+
+            $(".hoverBalloon2 li").each(function(){
+                $("span", this).text($("img", this).attr("alt"));
+            }).mouseover(function(){
+                $(">span", this).show();
+            }).mouseleave(function(){
+                $(">span", this).hide();
+            });
+
+        })
+    </script>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>hover하면 말풍선이 나옵니다~</h1>
+        <article class="explanation">
+            <ul class="hoverBalloon">
+                <li><img src="images/ico_service_s1.gif" alt="보너스카드">
+                    <span><span></span></span>
+                </li>
+                <li><img src="images/ico_service_s6.gif" alt="셀프주유소">
+                    <span><span></span></span>
+                </li>
+                <li><img src="images/ico_service_s22.gif" alt="스타오일캠페인 참여주유소">
+                    <span><span></span></span>
+                </li>
+                <li><img src="images/ico_service_s42.gif" alt="공공유류 협약 주유소">
+                    <span><span></span></span>
+                </li>
+            </ul>
+
+            <ul class="hoverBalloon2">
+                <li><img src="images/ico_service_s1.gif" alt="보너스카드">
+                    <span></span>
+                </li>
+                <li><img src="images/ico_service_s6.gif" alt="셀프주유소">
+                    <span></span>
+                </li>
+                <li><img src="images/ico_service_s22.gif" alt="스타오일캠페인 참여주유소">
+                    <span></span>
+                </li>
+                <li><img src="images/ico_service_s42.gif" alt="공공유류 협약 주유소">
+                    <span></span>
+                </li>
+            </ul>
+        </article>
+    </section>
+</main>
+</body>
+</html>
