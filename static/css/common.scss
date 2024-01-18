@@ -39,6 +39,52 @@ input{
     appearance: auto;
   }
 }
+
+.form-typeA{
+  .field-cell{
+    position: relative;
+    label{
+      position: absolute; top:14px;
+      color:#4f4f4f; font-size: 14px;
+      transition: 0.2s all;
+      &:has(~ .field input:focus-within),&:has(~input:focus-within){
+        top:0; font-size: 12px;
+      }
+      &:has(~ .field input:valid),&:has(~input:valid){
+        top:0; font-size: 12px;
+      }
+
+    }
+    .field{
+      display: flex; gap:6px; align-items: center;
+      padding-top:10px;
+      button{
+        flex-shrink: 0;
+        border-radius: 4px; padding:4px 8px; background:#151d3d;
+        font-weight: 700; font-size: 12px; color:#fff;
+      }
+      .wrap{
+        width: 100%;
+      }
+    }
+    .field-row{
+      width: 100%;
+      +.field-row{
+        margin-top:5px;
+      }
+    }
+
+    input{
+      width:100%;
+      border-radius: 0;border:0;border-bottom:1px solid #111;
+    }
+    + .field-cell{
+      margin-top:10px;
+    }
+
+
+  }
+}
 .check-type input[type=checkbox],.radio-type input[type=radio]{
   display: none;
   &:checked + label{color:#abcf83;}
@@ -76,7 +122,7 @@ input{
   }
 }
 
-table.tableTypeA{
+table.table-typeA{
   thead{
     tr{
       border-bottom:0;

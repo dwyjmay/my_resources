@@ -49,7 +49,7 @@
                 </li>
             </ul>
         </article>
-        <table class="tableTypeA" style="width: 1000px;">
+        <table class="table-typeA" style="width: 1000px;">
             <thead>
             <tr>
                 <th></th>

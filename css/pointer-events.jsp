@@ -21,7 +21,7 @@
     </section>
     <section class="section">
         <h1>요소를 숨기는 여러가지 방식</h1>
-        <table class="tableTypeA">
+        <table class="table-typeA">
             <colgroup>
                 <col width="100">
                 <col width="200">
