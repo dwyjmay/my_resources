@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rwdImageMaps</title>
+    <script src="../../static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/default.css">
+    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/font.css">
+
+    <!-- only -->
+    <script src="jquery.rwdImageMaps.min.js"></script>
+    <style>
+        map{cursor:pointer;}
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>반응형 map 영역 잡기</h1>
+        <h3>창 크기를 줄여도 그 너비에 맞게 map 영역이 새로 잡힌다.</h3>
+        <article class="explanation">
+            <div class="exp-typeC">텍스트 영역 클릭하면 먹힘</div>
+            <figure><img src="../../static/images/bellygom1020x500.jpg" alt="" usemap="#imgmap1"></figure>
+            <map id="imgmap1" name="imgmap1"><area shape="rect" alt="" title="" coords="348,41,661,213" href="" target="" onclick="alert('클릭!')" /></map>
+            <p class="exp-typeC"></p>
+        </article>
+    </section>
+</main>
+</body>
+<script>
+    $(function(){
+        $('img[usemap]').rwdImageMaps();
+    })
+</script>
+</html>

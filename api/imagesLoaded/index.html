@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>imagesLoaded</title>
+    <script src="../../static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/default.css">
+    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/font.css">
+
+    <!--only-->
+    <script src="imagesloaded.pkgd.js"></script>
+    <style>
+        map{cursor:pointer;}
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>이미지가 전부 로드된 후에 함수 적용시키기</h1>
+        <h3>콘솔 창 확인</h3>
+        <article class="explanation">
+            <figure><img src="../../static/images/bellygom1020x500.jpg" alt="" usemap="#imgmap1"></figure>
+            <map id="imgmap1" name="imgmap1"><area shape="rect" alt="" title="" coords="348,41,661,213" href="" target="" onclick="alert('클릭!')" /></map>
+        </article>
+    </section>
+</main>
+</body>
+<script>
+    $('#container').imagesLoaded()
+        .always( function( instance ) {
+            console.log('all images loaded');
+        })
+        .done( function( instance ) {
+            console.log('all images successfully loaded');
+        })
+        .fail( function() {
+            console.log('all images loaded, at least one is broken');
+        })
+        .progress( function( instance, image ) {
+            var result = image.isLoaded ? 'loaded' : 'broken';
+            console.log( 'image is ' + result + ' for ' + image.img.src );
+        });
+</script>
+</html>
