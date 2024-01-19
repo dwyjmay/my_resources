@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>텍스트 복사</title>
+    <script src="../static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/default.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/font.css">
+    <!-- only -->
+    <style>
+        #text2{
+            position:absolute;top: 0;left:0;width:1px;height:1px;margin: 0;padding:0;border: 0;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+         <h1>텍스트 복사하기</h1>
+        <article class="explanation">
+            <span class="exp-typeA">텍스트 복사 1</span>
+            <div>
+                <input type="text" id="text1" value="동해물과 백두산이">
+                <button type="button" onclick="copyText1();">복사</button>
+            </div>
+        </article>
+        <article class="explanation">
+            <span class="exp-typeA">텍스트 복사 2</span>
+            <div>
+                <input type="text" id="text2" value="마르고 닳도록">
+                <button type="button" onclick="copyText2();">복사</button>
+            </div>
+        </article>
+    </section>
+</main>
+<script>
+    function copyText1(){
+        const $copyElement = $('#text1');
+        $copyElement.css('display','block').select();
+        document.execCommand("Copy");
+        $copyElement.hide();
+        alert(`복사된 텍스트 : ${$copyElement.val()}`)
+    }
+    function copyText2(){
+        const $copyElement = document.getElementById(('text2'));
+        $copyElement.select();
+        document.execCommand("Copy");
+        alert(`복사되었습니다`)
+    }
+</script>
+</body>
+</html>
