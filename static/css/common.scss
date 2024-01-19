@@ -23,10 +23,10 @@ main{
     max-width: 60vw;
     padding:20px 10px; margin-bottom: 20px;
     line-height:1.6em; border: 1px dashed #4d4d4d; border-radius: 20px;
-    .exp-typeA{display:inline-block; padding: 4px 6px; background: #aaa; color:#fff; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
-    .exp-typeB{display:inline-block; padding: 4px 6px; background: #ffef7ba8; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
-    .exp-typeC{display:inline-block; padding: 4px 6px; background: #e4f4ff; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
-    .exp-typeD{display:inline-block; padding: 4px 6px; background: rgba(255,123,123,0.66); color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeA{display:inline-block; margin: 10px 0; padding: 4px 6px; background: #aaa; color:#fff; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeB{display:inline-block; margin: 10px 0; padding: 4px 6px; background: #ffef7ba8; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeC{display:inline-block; margin: 10px 0; padding: 4px 6px; background: #e4f4ff; color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
+    .exp-typeD{display:inline-block; margin: 10px 0; padding: 4px 6px; background: rgba(255,123,123,0.66); color:#111; font-weight: 700; border-radius: 10px; line-height: 1.2em;}
     + & {margin-top: 20px;}
     &:first-of-type{margin-top: 40px;}
   }

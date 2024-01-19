@@ -13,56 +13,24 @@
         <article class="explanation">
             <div class="form-typeA">
                 <div class="field-cell">
-                    <label for="">텍스트</label>
-                    <div class="field">
-                        <input type="text" required>
-                    </div>
-                </div>
-                <div class="field-cell">
-                    <label for="">주민등록번호</label>
-                    <div class="field">
-                        <input type="number" maxlength="6" oninput="maxLengthCheck(this)" required>
+                    <label for="info1">주민등록번호</label>
+                    <div class="field" id="info1">
+                        <input type="number" maxlength="6" oninput="maxLengthCheck(this)" required aria-label="앞자리 입력 ">
                         ~
-                        <input type="number" maxlength="7" oninput="maxLengthCheck(this)" required>
+                        <input type="number" maxlength="7" oninput="maxLengthCheck(this)" required aria-label="뒷자리 입력 ">
                     </div>
                 </div>
                 <div class="field-cell">
-                    <label for="">아이디 확인</label>
-                    <div class="field">
-                        <input type="text" required>
-                        <button type="button">중복 확인</button>
-                    </div>
-                </div>
-                <div class="field-cell">
-                    <label for="">주소</label>
-                    <div class="field ">
-                        <div class="field-row">
-                            <input type="text" required>
-                            <button type="button">우편번호</button>
-                        </div>
-                        <div class="field-row">
-                            <input type="text" required>
-                        </div>
-                        <div class="field-row">
-                            양식을 지켜주시기 바랍니다.
-                        </div>
-                    </div>
-                </div>
-                <div class="field-cell">
-                    <div class="field ">
-                        <div class="field-row">
-                            <label for="">성</label>
-                            <input type="text" required>
-                        </div>
-                        <div class="field-row">
-                            <label for="">이름</label>
-                            <input type="text" required>
-                        </div>
+                    <label for="info2">주민등록번호</label>
+                    <div class="field" id="info2">
+                        <input type="text" maxlength="6" required aria-label="앞자리 입력 ">
+                        ~
+                        <input type="text" maxlength="8" required aria-label="뒷자리 입력 ">
                     </div>
                 </div>
             </div>
             <span class="exp-typeD">
-                👉🏻input type ="text" 에서는 maxLength="6" 의 속성이 먹히지만 type="number"에서는 먹히지 않음!!
+                👉🏻input type ="text" 에서는 maxLength="6"만으로 최대길이 제한이 먹지만, type="number"에서는 먹히지 않음!!
             </span>
         </article>
     </section>

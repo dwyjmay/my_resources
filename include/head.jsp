@@ -9,7 +9,7 @@
 <script>
     $(function(){
         let mainTitle = '<c:out value="${mainTitle}" default="" />';
-        console.log(mainTitle)
+
         if (mainTitle!==''){
             document.title = mainTitle;
         }

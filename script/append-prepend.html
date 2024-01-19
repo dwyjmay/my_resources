@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>append와 prepend</title>
+    <script src="../static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/default.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/font.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>메소드 :: append()</h1>
+        <h3>선택한 요소의 내용 끝에 콘텐츠를 추가함</h3>
+        <article class="explanation">
+            <button type="button" class="exp-typeC" onclick="addField();">클릭</button>
+            <div class="form-typeA">
+                <div class="field-cell">
+                    <label for="input1">제목 <span>1</span></label>
+                    <div class="field">
+                        <input type="text" required id="input1">
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <section class="section">
+        <h1>메소드 :: prepend()</h1>
+        <h3>선택한 요소의 내용 앞에 콘텐츠를 추가함</h3>
+        <article class="explanation">
+            <button type="button" class="exp-typeC" onclick="addPrepend();">클릭</button>
+            <div class="wrap">
+                <div>요소2</div>
+            </div>
+        </article>
+    </section>
+</main>
+<script>
+    let i = 1;
+    const str = ``;
+    function addField(){
+        i++;
+        const str = ` <div class="field-cell">
+                        <label for="input${i}">제목<span>${i}</span></label>
+                        <div class="field">
+                            <input type="text" required id="input${i}">
+                        </div>
+                    </div>`;
+        $('.form-typeA').append(str);
+    }
+    function addPrepend(){
+        i++;
+        const str = `<div>요소 추가</div>`;
+        $('.wrap').prepend(str);
+    }
+</script>
+</body>
+</html>

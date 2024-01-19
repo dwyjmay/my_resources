@@ -4,29 +4,27 @@
 <html lang="en">
 <head>
     <c:import url="/include/head.jsp" />
-    <script>
-        $(function(){
-            //숫자만 입력
-            $("input:text[numberOnly]").on("keyup", function() {
-                $(this).val($(this).val().replace(/[^0-9]/g,""));
-            });
-        })
-    </script>
-    <style>
-        dl{display:flex; align-items: center;}
-        dt{margin-right:40px;}
-    </style>
 </head>
 <body>
-<div id="wrapper">
-    <dl>
-        <dt>입력칸</dt>
-        <dd>
-            <p class="ipt">
-                <input type="text" name="" id="" numberOnly>
-            </p>
-        </dd>
-    </dl>
-</div>
+<main>
+    <section class="section">
+        <article class="explanation">
+            <div class="form-typeA">
+                <div class="field-cell">
+                    <label for="input1">숫자만 입력</label>
+                    <div class="field">
+                        <input type="text" id="input1" numberOnly>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
+<script>
+    //숫자만 입력
+    $("input:text[numberOnly]").on("keyup", function() {
+        $(this).val($(this).val().replace(/[^0-9]/g,""));
+    });
+</script>
 </body>
 </html>
