@@ -1,0 +1,25 @@
+.preview-wrap{
+    position: relative;
+    padding:20px;
+}
+.preview-wrap+.preview-wrap{
+    margin-top:10px;
+}
+.preview-wrap > strong{font-weight: 700; font-size: 16px;}
+.view{
+
+}
+.code{
+    position: relative; display: flex; justify-content: flex-end; flex-flow: wrap; gap:10px;
+}
+.code textarea{
+    width: 100%; display: block; font-size: 12px; background: #09092a; color: #caff00;
+    min-height: 150px;
+}
+.code textarea::-webkit-scrollbar{width:4px; background: #ffffff;}
+.code textarea::-webkit-scrollbar-thumb{background: #c1c1c1; opacity: .2; border-radius: 5px;}
+.code textarea::-webkit-scrollbar-track{ background: none;}
+.copy:active { box-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+.copy{
+    padding: 10px 14px; background: #fff; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); border-radius: 5px;
+}

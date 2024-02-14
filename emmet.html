@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>emmet</title>
+	<!-- css -->
+	<link rel="stylesheet" href="static/css/default.css">
+	<link rel="stylesheet" href="static/css/common.css">
+	<link rel="stylesheet" href="static/css/font.css">
+
+	<!-- js -->
+	<script src="static/js/jquery-3.6.4.min.js"></script>
+
+	<!-- ony -->
+	<link rel="stylesheet" href="static/css/clipboard/style.css">
+	<script src="static/js/clipboard/clipboard.min.js"></script>
+	<script src="static/js/clipboard/script.js"></script>
+
+	<style>
+		.view{display: none;}
+	</style>
+</head>
+<body>
+<main>
+	<section class="section">
+		<h1>emmet</h1>
+		<article class="explanation">
+			<div class="preview-wrap">
+				<strong>div>p>input:t^^span</strong>
+				<div class="view">
+					<div>
+						<p><input type="text" name=""  value="인풋창"></p>
+					</div>
+					<span></span>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="preview-wrap">
+				<strong>div>(header>span+ul)+footer</strong>
+				<div class="view">
+					<div>
+						<header><span></span>
+							<ul></ul>
+						</header>
+						<footer></footer>
+					</div>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="preview-wrap">
+				<strong>h$[title=item$]{header$}*3</strong>
+				<div class="view">
+					<h1 title="item1">header1</h1>
+					<h2 title="item2">header2</h2>
+					<h3 title="item3">header3</h3>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="preview-wrap">
+				<strong>td[rowspan=2 colspan=3 title]</strong>
+
+				<div class="view">
+					<table>
+						<td rowspan="2" colspan="3" title=""></td>
+					</table>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="preview-wrap">
+				<strong>div[a='value1' b="value2"]</strong>
+
+				<div class="view">
+					<div a="value1" b="value2"></div>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+
+			<div class="exp-typeB">text는 중괄호{}</div>
+			<div class="preview-wrap">
+				<strong>a{click me}, p{Click }+a{here}+{ to continue}</strong>
+
+				<div class="view">
+					<a href="">click me</a>
+					<p>Click </p><a href="">here</a> to continue
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+
+			<div class="exp-typeB">a태그</div>
+			<div class="preview-wrap">
+				<strong>a:link    ,   a:mail</strong>
+				<div class="view">
+					<a href="http://">a:link</a>
+					<a href="mailto:">a:mail</a>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="exp-typeB">인풋</div>
+			<div class="preview-wrap">
+				<strong>input:h<br>
+					input:t<br>
+					input:url<br>
+					input:number<br>
+					input[name=test]
+				</strong>
+				<div class="view">
+					<input type="hidden" name="">
+					<input type="text" name="">
+					<input type="url" name="">
+					<input type="number" name="">
+					<input type="text" name="test">
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="exp-typeB">기타</div>
+			<div class="preview-wrap">
+				<strong>	bdo:r , bdo:l</strong>
+				<div class="view">
+					<bdo dir="rtl"></bdo>
+					<bdo dir="ltr"></bdo>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			
+			<div class="preview-wrap">
+				<strong>ul>li.item$$$*5</strong>
+
+				<div class="view">
+					<ul>
+						<li class="item001"></li>
+						<li class="item002"></li>
+						<li class="item003"></li>
+						<li class="item004"></li>
+						<li class="item005"></li>
+					</ul>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="preview-wrap">
+				<strong>ul>li.item$@3*5</strong>
+
+				<div class="view">
+					<ul>
+						<li class="item3"></li>
+						<li class="item4"></li>
+						<li class="item5"></li>
+						<li class="item6"></li>
+						<li class="item7"></li>
+					</ul>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+			<div class="preview-wrap">
+				<strong>ul+, dl+</strong>
+
+				<div class="view">
+					<ul>
+						<li></li>
+					</ul>
+					<dl>
+						<dt></dt>
+						<dd></dd>
+					</dl>
+				</div>
+				<div class="code">
+					<textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+				</div>
+			</div>
+
+			<div class="exp-typeD">참고 url</div>
+			<ul class="blt-list">
+				<li><a href="https://docs.emmet.io/cheat-sheet/" target="_blank" title="새 창 열기">https://docs.emmet.io/cheat-sheet/</a></li>
+				<li><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ojhwlxk&logNo=221075235020">https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ojhwlxk&logNo=221075235020</a></li>
+			</ul>
+		</article>
+	</section>
+</main>
+
+</body>
+</html>
