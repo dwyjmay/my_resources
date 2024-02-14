@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>문자열 찾기 by indexOf</title>
+    <script src="../../static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/default.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/font.css">
+    <!-- only -->
+    <style>
+        button{background:#151d3d; color:#fff; font-size: 14px; text-align: center; padding:4px; border-radius: 4px;}
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+         <h1>특정 문자열 있는지 비교</h1>
+        <article class="explanation">
+            <span class="exp-typeA">indexOf()사용</span>
+            <div>
+                검색된 문자열이 첫번째로 나타나는 위치의 index를 리턴한다.
+                string.indexOf('문자열',position)
+                <ul class="blt-list">
+                    <li>position (opt) / defulat : 0 / 문자열 찾기 시작할 위치 지정</li>
+                    <li>찾는 문자열이 없으면 <span class="highlight">-1</span> 리턴</li>
+                    <li>대소문자 구분함</li>
+                </ul>
+
+                <button type="button">클릭</button>
+            </div>
+        </article>
+    </section>
+</main>
+<script>
+    $(function(){
+        $('button').on('click',function(){
+            if(location.href.indexOf('script/string') !== -1) {
+                //-1이 아니라는건  문자열이 있다는것
+                history.back();
+            }else{
+                alert('현재 href가 문자열 조건을 만족하지 않아용...🥲')
+            }
+        })
+
+        console.log(location.href.split('script')[1])
+    })
+</script>
+</body>
+</html>

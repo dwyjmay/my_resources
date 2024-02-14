@@ -16,6 +16,7 @@
 		ul{ margin:0; padding:0}
 		body>div.list{padding:140px 0 10px; user-select: none; white-space: nowrap; overflow: auto; position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
 		body>div>div{height:100%;text-align:left; margin:0 10px;display:inline-block; vertical-align:top;}
+		body>div>div>ul{display: flex; flex-wrap: wrap; gap:20px;}
 		body>div>div>ul>li{display:inline-block; position:relative; width:270px; height:100%; background-color:#e2e4e6; white-space: nowrap; padding:8px; border-radius:4px; vertical-align: top; box-sizing:border-box; box-shadow:-1px 1px 3px rgba(0, 0, 0, 0.12);}
 		body>div>div>ul>li>a{display:inline-block;  position:relative; width:100%; color:#4d4d4d; font-weight:bold;  margin-bottom:5px;}
 		body>div>div>ul>li>.progress{padding:8px; background:#fff; border-radius:4px; margin-bottom:3px;box-shadow:1px 1px 1px #c1c1c1;}
@@ -163,7 +164,13 @@
 							<li><a href="script/append-prepend.html" class="level2"><span>append(), prepend()</span></a></li>
 						</ul>
 					</li>
-					<li><a href="script/text-copy.html" class="level2"><span>텍스트 복사</span></a></li>
+					<li><a href="javascript:">문자열</a>
+						<ul>
+							<li><a href="script/string/text-copy.html" class="level2"><span>텍스트 복사</span></a></li>
+							<li><a href="script/string/indexOf.html" class="level2"><span>indexOf()</span></a></li>
+						</ul>
+					</li>
+
 					<li><a href="script/textarea/index.jsp" class="level2"><span>textarea</span></a></li>
 					<li><a href="script/params/index.jsp" class="level2"><span>페이지간 파라미터 주고받기</span></a></li>
 					<li><a href="slot/index.jsp" class="level2"><span>슬롯머신🎰</span></a></li>
