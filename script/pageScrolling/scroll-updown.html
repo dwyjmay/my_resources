@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/default.css">
+    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <!-- js -->
+    <script src="../../static/js/jquery-3.6.4.min.js"></script>
+    <style>
+        body.scroll-down header{top:-50px;}
+        body.scroll-down .footer-fixed{bottom:-50px;}
+        header{
+            position: fixed; left: 0; top:0; width: 100%; height:50px;
+            text-align: center; font-weight: 700; font-size: 20px; line-height: 50px;
+            background:#fff;
+            box-shadow: 0 1px 4px 0 #dddddd;
+            transition: 0.2s top linear;
+        }
+        header.scroll-down{top:-50px;}
+        main{
+            margin-top:50px; padding:0; min-height: 200vh;
+        }
+        .footer-fixed{
+            position: fixed; left: 0; bottom:0; width: 100%; height:50px;
+            background:#fff;
+            box-shadow: 0 1px 4px 0 #dddddd;
+            transition: 0.2s bottom linear;
+        }
+        .footer-fixed ul{display: flex; height: 100%;}
+        .footer-fixed ul li{flex:1; height: 100%;}
+        .footer-fixed ul button{
+            display: flex; width: 100%; height: 100%;
+            justify-content: center; align-items: center;
+            text-align: center;
+        }
+
+        /*.locationArea {
+            position: fixed;
+            left: 0;
+            top: 56px;
+            width: 100%;
+            display: flex;
+            padding: 16px 20px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            transition: 0.8s;
+        }
+        .locationArea #btn_back {
+            width: 20px;
+            height: 20px;
+        }
+        .locationArea #btn_back {
+            position: relative;
+        }
+        .locationArea #btn_back:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg id='ic_forward_40' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect id='square_637' data-name='square 637' width='40' height='40' fill='none'/%3E%3Cpath id='path_57' data-name='path 57' d='M-19903.479-21989.621l12.566,12.564-12.566,12.572' transform='translate(19917.912 21997.053)' fill='none' stroke='%23111' stroke-width='4'/%3E%3C/svg%3E%0A");
+            transform: rotate(180deg);
+        }
+        .locationArea span {
+            margin-left: -20px;
+            flex: 1;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+        }*/
+    </style>
+</head>
+<body>
+
+<header> 상단고정영역</header>
+<main>
+    <!--<div class="locationArea">
+        <button type="button" class="ico_arrL" id="btn_back" onclick="history.back();"><span class="hide">뒤로가기</span></button>
+        <span>BEANPOLE MEN</span>
+    </div>-->
+    콘텐츠 시작 지점
+    <div class="footer-fixed">
+        <ul>
+            <li>
+                <button type="button">메뉴1</button>
+            </li>
+            <li>
+                <button type="button">메뉴2</button>
+            </li>
+            <li>
+                <button type="button">메뉴3</button>
+            </li>
+            <li>
+                <button type="button">메뉴4</button>
+            </li>
+        </ul>
+    </div>
+</main>
+<script>
+
+/*  페이지 스크롤 시 하단 메뉴 노출 설정 */
+let scrollDirection = '';
+let initialY = null;
+$(window).on('scroll',function(){
+    let currentScrollPoint = $(window).scrollTop();
+    if(currentScrollPoint===0) scrollDirection ='up';
+    headerControl();
+}).on('mousewheel',function(e){
+    e.originalEvent.wheelDelta >= 0 ? scrollDirection ='up' : scrollDirection ='down'
+}).on('touchstart',function(e){
+    initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+}).on('touchmove',function(e){
+    const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+    let diffY = initialY - currentY;
+    0 < diffY ? scrollDirection = 'down' : scrollDirection = 'up'
+
+    /* 터치 후 손을 떼지 않은 상태에서  스크롤했을 경우 , 기준점을 처음 터치한 initialY에 그대로 두지 않고 계속 업데이트 해준다. */
+    initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+
+    //(↓)터치후 손을 뗼떼까지의 동작에 대해서  위/아래 방향을 알려줌
+    /*if (initialY !== null) {
+        const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+        let diffY = initialY - currentY;
+        0 < diffY ? locSwipe = 'down' : locSwipe = 'up'
+        initialY = null;
+    }*/
+})
+
+function headerControl(){
+    if(scrollDirection ==='down'){ //스크롤 내려감
+        $('body').addClass('scroll-down');
+    } else{
+        $('body').removeClass('scroll-down');
+    }
+    //console.log(scrollDirection)
+}
+
+
+/* gnb header 따로 서브메뉴(로케이션 표시) 따로 있는 경우*/
+/*
+function headerControl(){
+    let scTop = $(window).scrollTop();
+    let header = document.querySelector('header');
+    let loc = document.getElementsByClassName('locationArea');
+    if(!loc.length){ // 로케이션 x
+        if(scTop>0){
+            header.classList.add('fixed');
+        } else{
+            header.classList.remove('fixed');
+        }
+    }else{ // 로케이션 o
+        //console.log(header.clientHeight, scTop, locSwipe);
+        if(locSwipe==='up'){
+            header.classList.remove('scDown');
+        }else{
+            if(scTop > 0){
+                if(!header.classList.contains('scDown'))
+                    header.classList.add('scDown');
+            }
+        }
+    }
+}*/
+
+</script>
+</body>
+</html>
