@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 플라잇 < 기내서비스 < 공항/기내| JINAIR 진에어</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../static/css/default.css">
+    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <link rel="stylesheet" href="css/youtube.css">
+
+    <!-- js -->
+    <script src="../../static/js/jquery-3.6.4.min.js"></script>
+
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="container"><div class="fit-contents">
+        <div class="contents-wrapper airport-service">
+            <p class="explain">진에어 객실 승무원을 지니(Jini)라고 불러주세요! 고객이 원하는 것은 어디서든 최선을 다하여 서비스 하겠습니다.</p>
+            <section class="gallery">
+                <h3><span class="highlight">객실승무원 영상 GALLERY</span></h3>
+                <p>더 많은 영상을 보고 싶으시다면?</p>
+                <a href="https://www.youtube.com/@JinAir_lj" target="_blank" title="새창" class="btn sizeG lineB blank">진에어 YOUTUBE 공식채널 바로가기</a>
+
+                <div class="youtube-list">
+                    <div class="wrap">
+                        <div class="youtube-content">
+                            <button type="button" class="thumb"><img src="images/youtube-thumb01.png" alt=""></button>
+                            <div class="youtube-frame" data-url="KH_m-jCKKZQ"></div>
+                        </div>
+                        <strong>객실승무원 브리핑의 모든 것</strong>
+                    </div>
+                    <div class="wrap">
+                        <div class="youtube-content">
+                            <button type="button" class="thumb"><img src="images/youtube-thumb02.png" alt=""></button>
+                            <div class="youtube-frame" data-url="Wn5r6dUo0FM"></div>
+                        </div>
+                        <strong>신입승무원 태호의 방콕로그</strong>
+                    </div>
+                    <div class="wrap">
+                        <div class="youtube-content">
+                            <button type="button" class="thumb"><img src="images/youtube-thumb03.png" alt=""></button>
+                            <div class="youtube-frame" data-url="Ehz2IWAPRfg"></div>
+                        </div>
+                        <strong>보고나면 나트랑 가고 싶어지는 영상</strong>
+                    </div>
+                    <div class="wrap">
+                        <div class="youtube-content">
+                            <button type="button" class="thumb"><img src="images/youtube-thumb04.png" alt=""></button>
+                            <div class="youtube-frame" data-url="dD1GrI1Zv0w"></div>
+                        </div>
+                        <strong>기내에서 올하트 받은 그 무대</strong>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div></div>
+</div>
+<script>
+
+    let idAry = [], urlAry = [], objAry = [];
+
+    const $youtubeFrame = $('.youtube-frame');
+    $youtubeFrame.each(function(i){
+        $(this).attr('id',"player"+i)
+        idAry.push("player"+i);
+        urlAry.push($(this).data("url"));
+    })
+
+    var tag = document.createElement('script');
+    tag.src = "http://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+        for(let i = 0; i < $youtubeFrame.length; i++){
+            let player;
+            let playerId = idAry[i];
+            player = new YT.Player(playerId, {
+                height: '100%',
+                width: '100%',
+                rel:0,
+                videoId: urlAry[i],
+                playerVars:{
+                    /*'controls':0*/
+                },
+                events: {
+                    'onReady': function(e){
+                        //$('.youtube-swiper').css('opacity',1)
+                        let videoId = e.target.g.id;
+
+                        $(`#${videoId}`).prev().on('click',function(){
+                            let youtubeIdx =$(this).parents('.wrap').index();
+                            $(this).addClass('play');
+                            objAry[youtubeIdx].playVideo();
+                            $(objAry[youtubeIdx].g).addClass('play');
+
+                            for(let i = 0; i< objAry.length; i++){
+                                if(i!==youtubeIdx){
+                                    objAry[i].pauseVideo();
+                                    $(objAry[i].g).prev().removeClass('play')
+                                    $(objAry[i].g).removeClass('play')
+                                    objAry[i].seekTo(0)
+                                    objAry[i].pauseVideo();
+                                }
+                            }
+                        })
+                    },
+                    'onStateChange':function(e){
+                        onPlayerStateChange(e);
+                    }
+                }
+            });
+            objAry.push(player);
+        }
+    }
+
+    function onPlayerStateChange(event) {
+        //if(event.data == YT.PlayerState.PLAYING){
+        if(event.data == YT.PlayerState.PAUSED){
+            //console.log('영상 멈춤');
+        } else if (event.data == YT.PlayerState.ENDED){
+            //console.log('영상 끝');
+            $(event.target.g).removeClass('play');
+            $(event.target.g).prev().removeClass('play')
+        }
+    }
+
+    /*function youtubeAllstop(){
+        for (var youtube in objAry){
+            objAry[youtube].pauseVideo();
+            $('.youtube-swiper').find('.play').removeClass('play')
+            objAry[youtube].seekTo(0)
+        }
+    }*/
+</script>
+</body>
+</html>

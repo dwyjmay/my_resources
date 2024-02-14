@@ -1,0 +1,30 @@
+@import '../../../static/css/mixin';
+.youtube-list{
+  position: relative; margin-top:20px;
+  .wrap{
+    .youtube-content{
+      position: relative;
+      .thumb{
+        position:absolute;
+        width: 100%; height:calc((100vw - 54px) * 0.56);
+        border-radius: 15px; overflow: hidden;
+        z-index: 1;
+        @include content(before,absolute){
+          width: 42px; height: 42px; border-radius: 50%;
+          /*background:rgba(0,0,0,0.3) ico_bubbleArrow(fff,fff) no-repeat 50% 40%;*/
+          left: 50%; top:50%; transform: translate(-50%,-50%) rotate(90deg);
+        }
+        img{width: 100%; height: 100%;}
+        &.play{display: none;}
+      }
+      .youtube-frame{
+        position: relative;
+        width: 100%; height:calc((100vw - 54px) * 0.56);
+        border-radius: 15px; overflow: hidden;
+        left: 0; top:0; opacity: 0;
+        &.play{opacity: 1;}
+      }
+    }
+    +.wrap{margin-top:15px;}
+  }
+}
