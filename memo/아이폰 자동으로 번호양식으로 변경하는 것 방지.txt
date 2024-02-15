@@ -1,0 +1,2 @@
+아이폰 전화번호로 인식하는 것 없애기
+<meta name="format-detection" content="telephone=no">

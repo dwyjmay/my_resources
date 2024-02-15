@@ -1,0 +1,1341 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>엠즈푸드</title>
+    <link rel="stylesheet" href="static/m/css/reset.css">
+    <link rel="stylesheet" href="static/m/css/layout.css">
+    <link rel="stylesheet" href="static/m/css/common.css">
+    <link rel="stylesheet" href="static/m/css/mypage/recipe.css">
+
+    <script src="static/m/js/jquery-3.7.0.min.js"></script>
+    <script src="static/m/js/ui.js"></script>
+    <script src="static/m/js/efusioni.js"></script>
+</head>
+<body>
+<div id="wrapper" class="my-recipe-form-page view-mode">
+    <header id="header" class="">
+        <div class="header-contents">
+            <div id="header-fixed" class="fit-contents">
+                <div class="logo"><a href="/index"><img src="static/m/images/common/logo.svg" alt=""></a></div>
+                <aside class="util">
+                    <ul id="util-menu">
+                        <li id="btn-search"><button type="button" onclick="searchOpen();"><i class="ico_search"></i><span class="hideDesc">검색</span></button></li>
+                    </ul>
+                </aside>
+            </div>
+
+            <nav id="gnb" class="fit-contents">
+                <ul>
+                    <li>
+                        <button type="button" onclick="handleHeaderMenuHover(this, '#recipe-nav');">레시피</button>
+                        <div id="recipe-nav" class="sub-nav">
+                            <div class="fit-contents">
+                                <a href="/recipe/list?cateCode=10001">음료</a><a href="/recipe/list?cateCode=10002">베이커리</a>
+                            </div>
+                        </div><!-- //sub-nav -->
+                        <span class="bg_gradient"></span>
+                    </li>
+                    <li>
+                        <button type="button" onclick="handleHeaderMenuHover(this, '#catalog-nav');">카탈로그 상품</button>
+                        <div id="catalog-nav" class="sub-nav">
+                            <div class="fit-contents">
+                                <a href="/product/list?cateCode=10001">베이커리</a><a href="/product/list?cateCode=10002">베이킹 재료</a><a href="/product/list?cateCode=10007">카페 재료</a><a href="/product/list?cateCode=10008">카페 베이커리 용품</a>
+                            </div>
+                        </div><!-- //sub-nav -->
+                        <span class="bg_gradient"></span>
+                    </li>
+                    <li><a href="/contents/event/list">이벤트</a></li>
+                    <li><a href="/contents/notice/list">공지사항</a></li>
+                </ul>
+                <span class="bg_gradient"></span>
+                <em class="bar"></em>
+            </nav>
+
+        </div>
+
+        <div id="menu-fixed">
+            <ul>
+                <li class="on"><button type="button" onclick="showCategoryWrap();"><i></i><span>카테고리</span></button></li>
+                <li><a href="/index"><i></i><span>홈</span></a></li>
+                <li><a href="/my-page/index"><i></i><span>MY</span></a></li>
+                <li><a href="/my-page/recipe/favorite-list"><i></i><span>나만의 레시피</span></a></li>
+            </ul>
+        </div>
+
+
+        <div id="menu-fixed-categoryWrap">
+            <div class="title-area">
+                <h4>카테고리</h4>
+                <button type="button" onclick="hideCategoryWrap();"><span class="hideDesc">닫기</span></button>
+            </div>
+            <article>
+                <ul>
+                    <li class="on"><button type="button" onclick="showCategoryList(this);">레시피</button></li>
+                    <li class=""><button type="button" onclick="showCategoryList(this);">카탈로그 상품</button></li>
+                </ul>
+                <div id="category-list">
+
+                    <section class="active">
+                        <div class="list-depth01">
+                            <ul>
+                                <li>
+                                    <button type="button" onclick="">음료</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">베이커리</button>
+                                </li>
+                            </ul>
+                            <em class="highlight" style="top: 0px;"></em>
+                        </div>
+                        <div class="list-depth02">
+                            <div>
+                                <a href="/recipe/list?cateCode=10001"><strong>음료</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10003">에이드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10004">주스</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10005">티블렌드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10006">라떼(Espresso)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10007">라떼(Non-Espresso)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10008">블렌디드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10009">아이스크림</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10010">빙수</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10011">베이스</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/recipe/list?cateCode=10002"><strong>베이커리</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10012">베이커리&amp;디저트</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10013">샌드위치</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10014">피자</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10015">파스타/리조또</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10016">샐러드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10017">스프</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10018">기타</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="">
+                        <div class="list-depth01">
+                            <ul>
+                                <li>
+                                    <button type="button" onclick="">베이커리</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">베이킹 재료</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">카페 재료</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">카페 베이커리 용품</button>
+                                </li>
+                            </ul>
+                            <em class="highlight" style="top: 0px;"></em>
+                        </div>
+                        <div class="list-depth02">
+                            <div>
+                                <a href="/product/list?cateCode=10001"><strong>베이커리</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10003">구움 과자류</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10004">마카롱</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10009">케이크</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10010">타르트</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10011">쿠키</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10012">페스츄리</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10013">베이글</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10014">소프트빵</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10015">샌드위치</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10016">하드빵</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10017">생지류</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/product/list?cateCode=10002"><strong>베이킹 재료</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10006">가루/프리믹스/분말</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10005">설탕/소금</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10018">유제품/유지류</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10019">초콜릿/코코아</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10020">견과류/과일</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10021">앙금/잼/퓨레/시럽/소스</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10022">육가공</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10023">필링/첨가제/향신료</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10024">데코레이션</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10025">베이킹용품</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10026">기타</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/product/list?cateCode=10007"><strong>카페 재료</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10027">TEA/액상차</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10028">시럽/소스/잼</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10029">스무디/농축액</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10030">냉동과일/토핑</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10031">음료수/탄산수</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10032">파우더</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10033">원두</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10034">유제품/유지류</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10035">빙수/아이스크림</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/product/list?cateCode=10008"><strong>카페 베이커리 용품</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10036">일회용품</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10037">종이컵/리드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10038">PET컵/리드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10039">홀더/캐리어</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10040">위생용품</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10041">카페용품</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div> <!-- //category-list-->
+            </article>
+        </div>
+    </header>
+    <main id="container">
+        <a class="btn colorA sizeE" id="writeMode">수정하기</a>
+        <div id="tab-fixed-area" class="scroll-sub-menu fixed">
+            <ul>
+                <li><a href="#tab-default" class="">기본 정보(필수)</a></li>
+                <li><a href="#tab-ingredients" class="">재료 정보(필수)</a></li>
+                <li><a href="#tab-make" class="">만드는 방법(필수)</a></li>
+                <li><a href="#tab-uses" class="on">활용팁</a></li>
+                <li><a href="#tab-application" class="">응용팁</a></li>
+                <li><a href="#tab-recommend">추천 레시피</a></li>
+                <li><a href="#tab-reference">참고 레시피</a></li>
+            </ul>
+        </div>
+        <form id="writeForm" novalidate="novalidate">
+            <section id="tab-default" class="section"><div class="fit-contents">
+                <h2>기본 정보(필수)</h2>
+                <div class="guide-box">
+                    <strong class="title">등록 안내</strong>
+                    <ol>
+                        <li>
+                            <span>1</span>
+                            레시피명, 레시피 소개, 카테고리, 해시태그, 이미지, 확대 이미지는 필수 입력 항목입니다.
+                        </li>
+                        <li>
+                            <span>2</span>
+                            카테고리가 여러 개 설정될 경우 가장 위에 있는 카테고리가 대표 카테고리로 지정됩니다.
+                        </li>
+                        <li>
+                            <span>3</span>
+                            카테고리는 1개 이상 반드시 설정해 주셔야 합니다.
+                        </li>
+                    </ol>
+                </div>
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li class="col2">
+                            <div>
+                                <strong>레시피 코드</strong>
+                                <span>10322</span>
+                            </div>
+                            <div>
+                                <strong>찜수</strong>
+                                <span>1</span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="title">레시피명<span class="spot">*</span></label>
+                            <div>
+                                <input type="text" id="title" maxlength="50" name="title" value="아이폰 등록" disabled="">
+                                <p class="information-text">레시피명은 최대 50자까지 입력 가능합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="contents">레시피 소개<span class="spot">*</span></label>
+                            <div>
+                                <textarea id="contents" style="height:160px;" name="contents" disabled="">ㄹ</textarea>
+                            </div>
+                        </li>
+                        <li class="category-area">
+                            <label>카테고리<span class="spot">*</span></label>
+                            <div class="select-wrap" id="categoryArea">
+                                <select id="category1" onchange="setCategory(this);" class="default-select" disabled="">
+                                    <option value="">선택</option>
+                                    <option value="10001">음료</option>
+                                    <option value="10002">베이커리</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn sizeD colorE ico-plus" onclick="addCategory();" disabled="">추가</button>
+                            <div class="selected-category" id="categories">
+                                <strong id="repArea">대표 카테고리</strong>
+                                <div class="category">
+                                    음료
+                                    <input type="hidden" name="cateCode" value="10001" disabled="">
+                                    <button type="button" class="del" onclick="removeItem(this,'category');" disabled="" style="display: none;">삭제</button>
+                                </div>
+                                <div class="category">
+                                    음료 &gt; 에이드 &gt; 레몬에이드
+                                    <input type="hidden" name="cateCode" value="10019" disabled="">
+                                    <button type="button" class="del" onclick="removeItem(this,'category');" disabled="" style="display: none;">삭제</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="costPrice">레시피 원가<span class="spot">*</span></label>
+                            <div>
+                                <div class="input-wrap fixed">
+                                    <input type="text" id="costPrice" numberonly="" name="costPrice" value="5990" disabled=""><span class="fixed-txt">원</span>
+                                </div>
+                                <p class="information-text">메뉴를 만들기 위해 필요한 대략적인 비용을 넣어주세요.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="hashTag">해시태그<span class="spot">*</span></label>
+                            <div>
+                                <input type="text" id="hashTag" name="hashTag" value="레시피" disabled="">
+                                <p class="information-text">해시태그는 쉼표(,)로 구분해 주세요.(예시 : 에이드,라떼,샌드위치)</p>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>이미지</strong>
+                            <div class="input-file">
+                                <label for="imageFileInput" class="btn sizeD colorD disabled">파일 선택</label>
+                                <input type="file" id="imageFileInput" name="imageFileInput" onchange="uploadMultiImageFile('imageFile')" disabled="">
+                            </div>
+                            <ul class="information-text">
+                                <li>업로드 권장 이미지 사이즈는 612x679 px<br>용량 : 5Mbyte 미만 / JPG, JPEG, GIF 파일 입니다.</li>
+                                <li>이미지 최대 4개까지 등록가능하며, 첫번째 이미지가 대표이미지로 노출됩니다.</li>
+                            </ul>
+                            <div class="thumb-list" id="imageFileArea">
+                                <div class="item">
+                                    <img src="static/m/images/common/default-thumb.jpg" alt="" onerror="this.src='/images/common/default-thumb.jpg'">
+                                    <input type="hidden" name="imageFile" value="/assets/recipe/202311/85020737-1353-4228-97c9-03002c79a0ad.png" disabled="">
+                                    <button type="button" class="btn-del" onclick="removeItem(this, 'image')" disabled="">삭제</button>
+                                </div>
+                                <div class="item">
+                                    <img src="static/m/images/common/default-thumb.jpg" alt="" onerror="this.src='/images/common/default-thumb.jpg'">
+                                    <input type="hidden" name="imageFile" value="/assets/recipe/202311/b3144e60-dfff-4db7-b8a3-14e311e451fd.png" disabled="">
+                                    <button type="button" class="btn-del" onclick="removeItem(this, 'image')" disabled="">삭제</button>
+                                </div>
+                                <div class="item">
+                                    <img src="static/m/images/common/default-thumb.jpg" alt="" onerror="this.src='/images/common/default-thumb.jpg'">
+                                    <input type="hidden" name="imageFile" value="/assets/recipe/202311/8a82e42d-fb27-496e-b8e7-28140b552551.png" disabled="">
+                                    <button type="button" class="btn-del" onclick="removeItem(this, 'image')" disabled="">삭제</button>
+                                </div>
+                                <div class="item">
+                                    <img src="static/m/images/common/default-thumb.jpg" alt="" onerror="this.src='/images/common/default-thumb.jpg'">
+                                    <input type="hidden" name="imageFile" value="/assets/recipe/202311/58725268-3908-4c82-86d0-d32def561b19.png" disabled="">
+                                    <button type="button" class="btn-del" onclick="removeItem(this, 'image')" disabled="">삭제</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <section id="tab-ingredients" class="section"><div class="fit-contents">
+                <h2>재료 정보(필수)</h2>
+                <div class="guide-box">
+                    <strong class="title">등록 안내</strong>
+                    <ol>
+                        <li>
+                            <span>1</span>
+                            기준 용량과 재료 등록은 반드시 등록해야 하는 필수 항목 입니다.
+                        </li>
+                        <li>
+                            <span>2</span>
+                            각 항목의 주의 사항에 따라 콘텐츠를 입력해 주세요.
+                        </li>
+                    </ol>
+                </div>
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li>
+                            <label for="ingreTitle">레시피 재료 타이틀</label>
+                            <div>
+                                <input type="text" id="ingreTitle" name="ingreTitle" value="레시피 재료" disabled="">
+                                <ul class="information-text">
+                                    <li>“레시피 재료” 항목을 대체하여 표시할 타이틀을 입력해 주세요. (예시 : 테이스팅 노트, 상세 재료)</li>
+                                    <li>입력하지 않은 경우 “레시피 재료”가 타이틀로 표시됩니다.</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="recipeCapacity">기준 용량<span class="spot">*</span></label>
+                            <div class="input-group">
+                                <input type="text" id="recipeCapacity" name="recipeCapacity" value="ㅛ" disabled="">
+                                <select class="default-select unit" name="recipeCapacityType" disabled="">
+                                    <option value="">단위선택</option>
+                                    <option value="01">g</option>
+                                    <option value="02">kg</option>
+                                    <option value="03" selected="selected">ea</option>
+                                    <option value="04">장</option>
+                                    <option value="05">인분</option>
+                                    <option value="06">개</option>
+                                    <option value="07">T</option>
+                                    <option value="08">대</option>
+                                </select>
+                            </div>
+                            <p class="information-text">기준 용량은 숫자로 입력해 주시고 단위를 선택해 주세요.</p>
+                        </li>
+                        <li>
+                            <strong>재료 등록<span class="spot">*</span></strong>
+                            <div>
+                                <button type="button" onclick="productSearch()" class="btn sizeD colorD disabled" disabled="">상품 선택</button>
+                                <div class="input-group">
+                                    <input type="text" id="ingreItemTitleInput" disabled="">
+                                    <input type="hidden" id="ingreItemCodeInput" disabled="">
+                                    <input type="hidden" id="prodNameInput" disabled="">
+                                    <button type="button" class="btn sizeD colorF ico-plus" onclick="addIngre()" disabled="">추가</button>
+                                </div>
+                                <ul class="information-text">
+                                    <li>상품 선택을 눌러 레시피에 사용된 상품을 선택 하실 수 있습니다.</li>
+                                    <li>재료는 개수 제한 없이 등록하실 수 있습니다.</li>
+                                    <li>레시피에 표시할 재표명을 수정하고자 하는 경우 입력된 재료명을 수정해주세요.</li>
+                                    <li>상품 선택에서 선택 할 수 없는 재료는 재료명에 바로 기입을 해주세요.</li>
+                                    <li>기입 완료 후 추가 버튼을 눌러 하단 &lt;재료 리스트&gt;에 항목을 추가해 주세요.</li>
+                                </ul>
+                            </div>
+                            <div class="inner-list" id="ingreListArea">
+                                <div class="inner-list-header">
+                                    <strong>재료 리스트</strong>
+                                    <ul class="information-text">
+                                        <li>전시순위 화살표를 이용해 콘텐츠 순서가 변경 가능합니다.</li>
+                                        <li>전시순위 변경, 삭제 후 최종적으로 저장/수정 버튼을 눌러서 저장을 해야 변경 내용이 반영됩니다.</li>
+                                    </ul>
+                                </div>
+                                <ul class="list-wrap" id="ingreArea">
+                                    <li class="ingreItem">
+                                        <dl>
+                                            <dt><b>재료명(표시명)</b></dt>
+                                            <dd class="itemTitle">ㅗㅗㅗㅗ</dd>
+                                            <dt><b>상품명/상품코드</b></dt>
+                                            <dd></dd>
+                                        </dl>
+                                        <div>
+                                            <b>용량</b>
+                                            <div class="input-group">
+                                                <input type="text" name="ingreCapacity" value="ㅎ" disabled="">
+                                                <select name="ingreCapacityType" class="unit default-select" disabled="">
+                                                    <option value="">단위선택</option>
+                                                    <option value="01" selected="selected">g</option>
+                                                    <option value="02">kg</option>
+                                                    <option value="03">ea</option>
+                                                    <option value="04">장</option>
+                                                    <option value="05">인분</option>
+                                                    <option value="06">개</option>
+                                                    <option value="07">T</option>
+                                                    <option value="08">대</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="flex-container ">
+                                            <div class="change-seq">
+                                                <b>전시순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <input type="hidden" name="itemTitle" value="ㅗㅗㅗㅗ" disabled="">
+                                            <input type="hidden" name="itemCode" value="" disabled="">
+                                            <button type="button" class="btn colorC sizeB" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                    <li class="ingreItem">
+                                        <dl>
+                                            <dt><b>재료명(표시명)</b></dt>
+                                            <dd class="itemTitle">수기등록1024</dd>
+                                            <dt><b>상품명/상품코드</b></dt>
+                                            <dd>수기등록1024 / M500013</dd>
+                                        </dl>
+                                        <div>
+                                            <b>용량</b>
+                                            <div class="input-group">
+                                                <input type="text" name="ingreCapacity" value="4" disabled="">
+                                                <select name="ingreCapacityType" class="unit default-select" disabled="">
+                                                    <option value="">단위선택</option>
+                                                    <option value="01">g</option>
+                                                    <option value="02">kg</option>
+                                                    <option value="03">ea</option>
+                                                    <option value="04" selected="selected">장</option>
+                                                    <option value="05">인분</option>
+                                                    <option value="06">개</option>
+                                                    <option value="07">T</option>
+                                                    <option value="08">대</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="flex-container ">
+                                            <div class="change-seq">
+                                                <b>전시순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <input type="hidden" name="itemTitle" value="수기등록1024" disabled="">
+                                            <input type="hidden" name="itemCode" value="M500013" disabled="">
+                                            <button type="button" class="btn colorC sizeB" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+            <section id="tab-make" class="section"><div class="fit-contents">
+                <h2>만드는 방법(필수)</h2>
+                <div class="guide-box">
+                    <strong class="title">등록 안내</strong>
+                    <ol>
+                        <li>
+                            <span>1</span>
+                            레시피 제작 방법은 텍스트 또는 텍스트와 이미지 구성 둘 중 하나로 등록 가능하며 반드시 등록해야 하는 필수 항목 입니다.
+                        </li>
+                        <li>
+                            <span>2</span>
+                            만드는 단계별로 별도로 등록해 주셔야 하며 최종 저장 후에 레시피가 완성됩니다.
+                        </li>
+                        <li>
+                            <span>3</span>
+                            만드는 방법은 개수 제한 없이 등록할 수 있습니다.
+                        </li>
+                    </ol>
+                </div>
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li>
+                            <label for="howtoContentInput">내용<span class="spot">*</span></label>
+                            <div>
+                                <textarea id="howtoContentInput" placeholder="만드는 방법을 입력해 주세요." style="height:180px;" disabled=""></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>이미지</strong>
+                            <div class="input-group">
+                                <div class="input-file">
+                                    <label for="howtoImageInput" class="btn sizeD colorD disabled">파일 선택</label>
+                                    <input type="file" id="howtoImageInput" name="howtoImageInput" accept=".jpg,.png,.gif" onchange="uploadImageFile('howtoImage')" disabled="">
+                                    <input type="hidden" id="howtoImageSrc" disabled="">
+                                </div>
+                                <button type="button" class="btn sizeD colorF ico-plus" onclick="addHowto()" disabled="">추가</button>
+                            </div>
+                            <ul class="information-text">
+                                <li>내용을 쉽게 이해할 수 있는 이미지가 있는 경우 내용에 맞는 이미지를 등록할 수 있습니다. </li>
+                                <li>이미지와 함께 등록하는 경우 파일 선택 버튼을 눌러 이미지를 선택해 주세요. </li>
+                                <li>이미지는 필수 항목이 아니므로 원치 않는 경우 등록하지 않으셔도 됩니다.</li>
+                                <li>업로드 권장 이미지 사이즈는 가로 600 px / 용량 : 5Mbyte 미만 / JPG, JPEG, GIF 파일 입니다. </li>
+                                <li>내용과 이미지 입력 후 추가 버튼을 눌러 하단의 &lt;만드는 방법 리스트&gt;에 항목을 추가해 주세요. </li>
+                                <li>추가를 누르지 않은 경우 등록한 정보가 반영되지 않습니다. </li>
+                            </ul>
+                            <div class="preview-thumb" id="howtoImagePreview"></div>
+                        </li>
+                        <li id="howtoListArea">
+                            <strong>등록<span class="spot">*</span></strong>
+                            <div class="inner-list">
+                                <div class="inner-list-header">
+                                    <strong>만드는 방법 리스트</strong>
+                                    <ul class="information-text">
+                                        <li>전시순위 화살표를 이용해 콘텐츠 순서가 변경 가능합니다.  </li>
+                                        <li>전시순위 변경, 삭제 후 최종적으로 저장/수정 버튼을 눌러서 저장을 해야 변경 내용이 반영됩니다.</li>
+                                    </ul>
+                                </div>
+                                <ul class="list-wrap" id="howtoArea">
+                                    <li class="howtoItem">
+                                        <span class="count">1</span>
+                                        <div class="title">
+                                            <p>ㅎ</p>
+                                            <input type="hidden" name="howtoContent" value="ㅎ" disabled="">
+                                            <input type="hidden" name="howtoImageFile" value="" disabled="">
+                                            <div class="preview-thumb">
+                                                <img src="static/m/images/common/default-thumb.jpg" alt="" onerror="this.src='/images/common/default-thumb.jpg'">
+                                            </div>
+                                        </div>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this, 'howto', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                    <li class="howtoItem">
+                                        <span class="count">2</span>
+                                        <div class="title">
+                                            <p>ㅛ</p>
+                                            <input type="hidden" name="howtoContent" value="ㅛ" disabled="">
+                                            <input type="hidden" name="howtoImageFile" value="/assets/recipe/202311/03013fa5-4125-4cfb-ad3c-8e078366680d.png" disabled="">
+                                            <div class="preview-thumb">
+                                                <img src="static/m/images/common/default-thumb.jpg" alt="" onerror="this.src='/images/common/default-thumb.jpg'">
+                                            </div>
+                                        </div>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this, 'howto', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <section id="tab-uses" class="section"><div class="fit-contents">
+                <h2>활용팁</h2>
+                <div class="guide-box">
+                    <strong class="title">등록 안내</strong>
+                    <ol>
+                        <li>
+                            <span>1</span>
+                            활용팁은 필수 항목이 아니므로 등록하지 않아도 레시피 등록이 가능합니다.
+                        </li>
+                        <li>
+                            <span>2</span>
+                            활용팁 등록을 원하시는 경우 내용과 이미지를 반드시 모두 입력해 주세요. 내용만 또는 이미지만은 등록되지 않습니다.
+                        </li>
+                        <li>
+                            <span>3</span>
+                            활용팁은 개수 제한 없이 등록할 수 있습니다.
+                        </li>
+                    </ol>
+                </div>
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li>
+                            <label for="utilTipContentInput">내용<span class="spot">*</span></label>
+                            <div>
+                                <textarea id="utilTipContentInput" placeholder="활용팁을 입력해 주세요." style="height:160px;" disabled=""></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>이미지</strong>
+                            <div class="input-group">
+                                <div class="input-file">
+                                    <label for="utilTipImageInput" class="btn sizeD colorD disabled">파일
+                                        선택</label>
+                                    <input type="file" id="utilTipImageInput" name="utilTipImageInput" accept=".jpg,.png,.gif" onchange="uploadImageFile('utilTipImage')" disabled="">
+                                    <input type="hidden" id="utilTipImageSrc" disabled="">
+                                </div>
+                                <button type="button" class="btn sizeD colorF ico-plus" onclick="addUtilTip();" disabled="">추가</button>
+                            </div>
+                            <ul class="information-text">
+                                <li>파일 선택 버튼을 눌러 이미지를 선택해 주세요.</li>
+                                <li>활용팁의 이미지는 필수 항목으로 반드시 파일을 선택해 주세요.</li>
+                                <li>업로드 권장 이미지 사이즈는 600x268 px / 용량 : 5Mbyte 미만 / JPG, JPEG, GIF 파일 입니다.
+                                </li>
+                                <li>내용과 이미지 입력 후 추가 버튼을 눌러 하단의 &lt;활용팁 리스트&gt;에 항목을 추가해 주세요.</li>
+                                <li>추가를 누르지 않은 경우 등록한 정보가 반영되지 않습니다.</li>
+                            </ul>
+                            <div class="preview-thumb" id="utilTipImagePreview"></div>
+                        </li>
+                        <li>
+                            <div class="inner-list" id="utilTipListArea">
+                                <strong>등록<span class="spot">*</span></strong>
+                                <div class="inner-list-header">
+                                    <strong>활용팁 리스트</strong>
+                                    <ul class="information-text">
+                                        <li>전시순위 화살표를 이용해 콘텐츠 순서가 변경 가능합니다.</li>
+                                        <li>전시순위 변경, 삭제 후 최종적으로 저장/수정 버튼을 눌러서 저장을 해야 변경 내용이 반영됩니다.</li>
+                                    </ul>
+                                </div>
+                                <ul class="list-wrap" id="utilTipArea">
+                                    <li class="utilTipItem">
+                                        <span class="count">1</span>
+                                        <input type="hidden" name="utilTipContent" value="ㅛ" disabled="">
+                                        <input type="hidden" name="utilTipImageFile" value="/assets/recipe/202311/a4225362-142e-4fa4-8e0b-8220a26f5479.png" disabled="">
+                                        <div class="title">
+                                            <p>ㅛ</p>
+                                            <div class="preview-thumb">
+                                                <img src="static/m/images/common/default-thumb.jpg" alt="" onerror="this.src='/images/common/default-thumb.jpg'">
+                                            </div>
+                                        </div>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this,'utilTip', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <section id="tab-application" class="section"><div class="fit-contents">
+                <h2>응용팁</h2>
+                <div class="guide-box">
+                    <strong class="title">등록 안내</strong>
+                    <ol>
+                        <li>
+                            <span>1</span>
+                            응용팁은 필수 항목이 아니므로 등록하지 않아도 레시피 등록이 가능합니다.
+                        </li>
+                        <li>
+                            <span>2</span>
+                            응용팁 등록을 원하시는 경우 내용과 이미지 혹은 영상(유튜브)을 반드시 모두 입력해 주세요. 내용만 또는 이미지, 영상만은 등록되지 않습니다.
+                        </li>
+                        <li>
+                            <span>3</span>
+                            이미지 또는 동영상(유튜브) 중 선택하여 콘텐츠 등록이 가능합니다.
+                        </li>
+                        <li>
+                            <span>4</span>
+                            응용팁은 개수 제한 없이 등록할 수 있습니다.
+                        </li>
+                    </ol>
+                </div>
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li>
+                            <label for="adaptTipContentInput">내용<span class="spot">*</span></label>
+                            <div>
+                                <textarea id="adaptTipContentInput" placeholder="응용팁을 입력해 주세요." style="height:180px;" disabled=""></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>콘텐츠 선택<span class="spot">*</span></strong>
+                            <div class="input-group">
+                                <div class="radio-group disabled">
+                                    <input type="radio" name="adaptTipContentTypeInput" id="form-uses-radio-image" value="I" checked="" disabled="">
+                                    <label for="form-uses-radio-image">이미지</label>
+                                </div>
+                                <div class="radio-group disabled">
+                                    <input name="adaptTipContentTypeInput" type="radio" id="form-uses-radio-youtube" value="M" disabled="">
+                                    <label for="form-uses-radio-youtube">영상(유튜브)</label>
+                                </div>
+                            </div>
+                            <div id="form-uses-radio-image-content" class="form-uses-radio-section">
+                                <div class="input-group">
+                                    <div class="input-file">
+                                        <label for="adaptTipImageInput" class="btn sizeD colorD disabled">파일 선택</label>
+                                        <input type="file" id="adaptTipImageInput" name="adaptTipImageInput" accept=".jpg,.png,.gif" onchange="uploadImageFile('adaptTipImage')" disabled="">
+                                        <input type="hidden" id="adaptTipImageSrc" disabled="">
+                                    </div>
+                                    <button type="button" class="btn sizeD colorF ico-plus" onclick="addAdaptTip('I');" disabled="">추가</button>
+                                </div>
+                                <ul class="information-text">
+                                    <li>이미지와 함께 등록하는 경우 파일 선택 버튼을 눌러 이미지를 선택해 주세요.</li>
+                                    <li>응용의 이미지는 필수 항목으로 반드시 파일을 선택해 주세요.</li>
+                                    <li>업로드 권장 이미지 사이즈는 660x330 px / 용량 : 5Mbyte 미만 / JPG, JPEG, GIF 파일 입니다.</li>
+                                    <li>내용과 이미지 입력 후 추가 버튼을 눌러 하단의 &lt;응용팁 리스트&gt;에 항목을 추가해 주세요.</li>
+                                    <li>추가를 누르지 않은 경우 등록한 정보가 반영되지 않습니다.</li>
+                                </ul>
+                                <div class="preview-thumb" id="adaptTipImagePreview"></div>
+                            </div>
+                            <div id="form-uses-radio-youtube-content" class="form-uses-radio-section" style="display: none;">
+                                <div class="input-group">
+                                    <input type="text" id="adaptTipMovieInput" disabled="">
+                                    <button type="button" class="btn sizeD colorF ico-plus" onclick="addAdaptTip('M');" disabled="">추가</button>
+                                </div>
+                                <ul class="information-text">
+                                    <li>https://www.youtube.com/watch?v=<b>_KprytXKoas</b></li>
+                                    <li>유튜브 URL 중 v=의 뒷부분 파란색으로 표시한 부분의 코드를 입력해 주세요</li>
+                                    <li>유튜브 코드를 입력하시면 하단에 영상 미리보기가 표시됩니다.</li>
+                                    <li>내용과 이미지 입력 후 추가 버튼을 눌러 하단의 &lt;응용팁 리스트&gt;에 항목을 추가해 주세요.</li>
+                                    <li>추가를 누르지 않은 경우 등록한 정보가 반영되지 않습니다.</li>
+                                </ul>
+                                <div class="preview-thumb" id="adaptTipMoviePreview"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="inner-list" id="adaptTipListArea">
+                                <strong>등록<span class="spot">*</span></strong>
+                                <div class="inner-list-header">
+                                    <strong>응용팁 리스트</strong>
+                                    <ul class="information-text">
+                                        <li>전시순위 화살표를 이용해 콘텐츠 순서가 변경 가능합니다.</li>
+                                        <li>전시순위 변경, 삭제 후 최종적으로 저장/수정 버튼을 눌러서 저장을 해야 변경 내용이 반영됩니다.</li>
+                                    </ul>
+                                </div>
+                                <ul class="list-wrap" id="adaptTipArea">
+                                    <li class="adaptTipItem">
+                                        <span class="count">1</span>
+                                        <div class="title">
+                                            <p>ㅛ</p>
+                                            <input type="hidden" name="adaptTipContent" value="ㅛ" disabled="">
+                                            <input type="hidden" name="adaptTipContentType" value="M" disabled="">
+                                            <div class="preview-thumb">
+                                                <!--<iframe type="text/html" frameborder="0" src="https://www.youtube.com/embed/_KprytXKoas"></iframe>-->
+                                                <input type="hidden" name="adaptMovieUrl" value="_KprytXKoas" disabled="">
+
+                                            </div>
+                                        </div>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this,'adaptTip', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                    <li class="adaptTipItem">
+                                        <span class="count">2</span>
+                                        <div class="title">
+                                            <p>ㅎ</p>
+                                            <input type="hidden" name="adaptTipContent" value="ㅎ" disabled="">
+                                            <input type="hidden" name="adaptTipContentType" value="I" disabled="">
+                                            <div class="preview-thumb">
+
+                                                <img src="/assets/recipe/202311/f7158f7e-818c-4087-bb8b-9dfc74827a56.png" alt="">
+                                                <input type="hidden" name="adaptTipImageFile" value="/assets/recipe/202311/f7158f7e-818c-4087-bb8b-9dfc74827a56.png" disabled="">
+
+
+                                            </div>
+                                        </div>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this,'adaptTip', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <section id="tab-recommend" class="section"><div class="fit-contents">
+                <h2>추천 레시피</h2>
+                <div class="guide-box">
+                    <strong class="title">등록 안내</strong>
+                    <ol>
+                        <li>
+                            <span>1</span>
+                            레시피 상세 페이지에 표시될 추천 레시피를 설정할 수 있습니다. 레시피 추가 버튼을 눌러 원하는 레시피를 선택해 주세요.
+                        </li>
+                        <li>
+                            <span>2</span>
+                            전시순위 화살표를 이용해 콘텐츠 순서 변경 가능합니다.
+                        </li>
+                        <li>
+                            <span>3</span>
+                            추천 레시피는 개수 제한 없이 등록할 수 있습니다.
+                        </li>
+                        <li>
+                            <span>4</span>
+                            내용 변경 후 저장 버튼을 눌러 저장을 해야 변경 내용이 최종 반영 됩니다.
+                        </li>
+                    </ol>
+                </div>
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li>
+                            <strong>등록</strong>
+                            <button type="button" class="btn sizeD colorD disabled" onclick="recipeSearch('rec', 'checkbox');" disabled="">레시피 선택</button>
+                            <div class="inner-list" id="recRecipeListArea">
+                                <ul class="list-wrap" id="recRecipeArea">
+                                    <li class="recRecipeItem">
+                                        <dl>
+                                            <dt>
+                                                <b>재료명(표시명)</b>
+                                            </dt>
+                                            <dd>오렌지 에이드</dd>
+                                        </dl>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                                <input type="hidden" name="recRecipeSeq" value="100068" disabled="">
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this, 'recRecipe', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                    <li class="recRecipeItem">
+                                        <dl>
+                                            <dt>
+                                                <b>재료명(표시명)</b>
+                                            </dt>
+                                            <dd>에이드</dd>
+                                        </dl>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                                <input type="hidden" name="recRecipeSeq" value="100069" disabled="">
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this, 'recRecipe', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                    <li class="recRecipeItem">
+                                        <dl>
+                                            <dt>
+                                                <b>재료명(표시명)</b>
+                                            </dt>
+                                            <dd>대파그릭요거트베이글</dd>
+                                        </dl>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <b>전시 순위</b>
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                                <input type="hidden" name="recRecipeSeq" value="100067" disabled="">
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this, 'recRecipe', 4)" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+            <section id="tab-reference" class="section"><div class="fit-contents">
+                <h2>참고 레시피</h2>
+                <div class="guide-box">
+                    <strong class="title">등록 안내</strong>
+                    <ol>
+                        <li>
+                            <span>1</span>
+                            작성 중인 레시피 등록 시 참고한 레시피가 있을 경우 레시피를 선택해 주세요.
+                        </li>
+                        <li>
+                            <span>2</span>
+                            참고 레시피는 1개만 선택 가능하며 프론트에 표시됩니다.
+                        </li>
+                    </ol>
+                </div>
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li>
+                            <strong>등록</strong>
+                            <button type="button" class="btn sizeD colorD disabled" onclick="recipeSearch('ref', 'radio');" disabled="">레시피 선택</button>
+                            <div class="inner-list" id="refRecipeListArea">
+                                <ul class="list-wrap" id="refRecipeArea">
+                                    <li class="refRecipeItem">
+                                        <input type="hiddne" name="referenceRecipeSeq" value="100069" disabled="">
+                                        <dl>
+                                            <dt><b>재료명(표시명)</b></dt>
+                                            <dd>에이드</dd>
+                                        </dl>
+                                        <dl class="col">
+                                            <dt><b>레시피 코드</b></dt>
+                                            <dd>100069</dd>
+                                        </dl>
+                                        <dl class="col">
+                                            <dt><b>등록처</b></dt>
+                                            <dd></dd>
+                                        </dl>
+                                        <div class="flex-container">
+                                            <div class="change-seq">
+                                                <button type="button" class="btn-down" onclick="below(this)" disabled="">down</button>
+                                                <button type="button" class="btn-up" onclick="upper(this)" disabled="">up</button>
+                                            </div>
+                                            <button type="button" class="btn colorC sizeB" onclick="removeItem(this, 'refRecipe')" disabled="">삭제</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <section class="setting section"><div class="fit-contents">
+                <div class="form-typeA-wrapper">
+                    <ul class="form-typeA">
+                        <li>
+                            <strong>게시 설정</strong>
+                            <div class="input-group">
+                                <div class="radio-group disabled">
+                                    <input type="radio" name="postingYn" id="form-setting-show" value="Y" checked="checked" disabled="">
+                                    <label for="form-setting-show">게시</label>
+                                </div>
+                                <div class="radio-group disabled">
+                                    <input name="postingYn" type="radio" id="form-setting-hide" value="N" disabled="">
+                                    <label for="form-setting-hide">미게시</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>승인 상태</strong>
+                            <div>승인 완료</div>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <div id="bottom-fixed" class="fixed" style="visibility: hidden; height: 0px;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-list" onclick="goList();" disabled="">목록</button>
+
+                    <button type="button" class="btn colorA btn-modify" onclick="proc()" disabled="" style="display: none;">수정</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
+<script>
+    let offsetList = [];
+    let offsetMenuList = [];
+    let offsetMenuListfix = [];
+    let offsetBottomBtn='';
+    const $bottomBtnParent = $('#bottom-fixed');
+    const windowWidth = $(window).width();
+    $(function(){
+        $("input:text[numberOnly]").on("keyup", function() {
+            $(this).val($(this).val().replace(/[^0-9\.]/g,""));
+        });
+
+        if($("#wrapper").hasClass('view-mode')){
+            $("input").add("textarea").add("select").prop("disabled", true);
+            $("button").not('#btn-back, #btn-page-top, #btn-search button').prop("disabled", true);
+            $(".btn.sizeD.colorD").add(".radio-group").addClass("disabled");
+            $(".btn-save").add(".btn-modify").add(".del").prop("disabled", true);
+            $(".btn-save").add(".btn-modify").add(".del").hide();
+            $('#bottom-fixed').css({'visibility':'hidden','height':0});
+        } else{
+            offsetBottomBtn = $bottomBtnParent.offset();
+        }
+
+        $("#writeMode").on("click", function(){
+            $("#wrapper").removeClass("view-mode");
+            $("input").add("textarea").add("select").add("button").prop("disabled", false);
+            $(".btn.sizeD.colorD").add(".radio-group").removeClass("disabled");
+            $(".btn-save").add(".btn-modify").add(".del").prop("disabled", false);
+            $(".btn-save").add(".btn-modify").add(".del").show();
+            $('#bottom-fixed').css('visibility','visible');
+            $(this).remove();
+            offsetBottomBtn = $bottomBtnParent.offset();
+        });
+
+        $("input[type=radio][name=adaptTipContentTypeInput]").on("change", function(){
+            const $targetId = $('#' + $(this).attr("id") + '-content');
+            if($targetId.is(":hidden")) {
+                $(".form-uses-radio-section").hide();
+                $targetId.show();
+            }
+        });
+
+        for(let i = 0 ; i <$('#tab-fixed-area li').length; i++){
+            offsetMenuListfix[i]=$('#tab-fixed-area li').eq(i).position().left;
+        }
+
+        const $tabFixParent = $("#tab-fixed-area");
+        const $tabFix = $tabFixParent.find('ul');
+        const offsetParent = $tabFixParent.offset();
+        const tabGap = 54;
+
+        setOffsetList();
+
+        $("#tab-fixed-area li a").on("click", function(e){
+            let targetId = $(this).attr("href");
+            const index = $(this).parent().index();
+            $("html, body").stop().animate({
+                scrollTop : offsetList[index] - 299
+            },200);
+
+            e.preventDefault();
+        })
+        let moveLeft = 0;
+        $('img').on('load',function(){
+            offsetBottomBtn = $bottomBtnParent.offset();
+        })
+        $(window).on("scroll", function () {
+            let scrollTop = $(this).scrollTop();
+            if( scrollTop > offsetParent.top - tabGap) {
+                $tabFixParent.addClass("fixed");
+            } else{
+                $tabFixParent.removeClass("fixed");
+            }
+
+            if(offsetBottomBtn !== '') {
+                if (scrollTop < offsetBottomBtn.top - $(window).height() + 54) {
+                    $bottomBtnParent.addClass('fixed')
+                } else {
+                    $bottomBtnParent.removeClass('fixed')
+                }
+            }
+            setOffsetList();
+            for(let i = 0; i < offsetList.length; i++) {
+                // console.log(scrollTop, offsetList[i]);
+                if(scrollTop > offsetList[i] - 300) {
+                    $tabFix.find('li a').removeClass("on");
+                    $tabFix.find('li').eq(i).find('a').addClass("on");
+                }
+            }
+
+            for(let i = 0; i <$('#tab-fixed-area li').length ; i++ ){
+                offsetMenuList[i]=$('#tab-fixed-area li').eq(i).offset().left;
+            }
+
+            let onIndex = $('#tab-fixed-area li a.on').parent().index()
+            if(offsetMenuList[onIndex] < 0 && moveLeft != offsetMenuListfix[onIndex]){
+                $tabFix.stop().animate({
+                    scrollLeft : offsetMenuListfix[onIndex]
+                },300);
+                moveLeft = offsetMenuListfix[onIndex];
+            } else if (offsetMenuList[onIndex] > windowWidth-50  && moveLeft != offsetMenuListfix[onIndex]){
+                $tabFix.stop().animate({
+                    scrollLeft : offsetMenuListfix[onIndex]
+                },300)
+                moveLeft = offsetMenuListfix[onIndex];
+            }
+        });
+
+        $("#adaptTipMovieInput").on("focusout", function(){
+            const sourceSrc = "https://www.youtube.com/embed/" + $(this).val();
+            if (sourceSrc != ""){
+                if ( sourceSrc.isValidUrl()){
+                    const iframeSrc	=	"<iframe width='100%' height='100%' src='"+sourceSrc+"' frameborder='0' allowfullscreen></iframe>";
+                    $("#adaptTipMoviePreview").empty().html(iframeSrc);
+                } else {
+                    alert("영상 소스 URL이 올바르지 않습니다.다시 입력해주세요.");
+                }
+            }
+        });
+    })
+
+    String.prototype.isValidUrl = function() {
+        const format = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        return (this.search(format) > -1);
+    };
+
+    function setOffsetList(){
+        $('#tab-fixed-area ul li').each(function(index){
+            let $target = $($(this).find("a").attr("href"));
+            let targetOffset = $target.offset();
+            offsetList[index] = targetOffset.top;
+        })
+    }
+</script>
+<script>
+    /* gnb - category */
+    function handleHeaderMenuHover(obj, target, parents) {
+        const $subNav = $(target);
+        const $obj = $(obj);
+
+        if($subNav.length > 0){
+            if(!$subNav.hasClass('open')){
+                const $subOpenNav = $('.sub-nav.open');
+                if($subOpenNav.length > 0) {
+                    $subOpenNav.removeClass('open').hide();
+                    $subOpenNav.prev().removeClass('active')
+                }
+                uiUx.afterFunction(
+                    () => $subNav.show(),
+                    () => $subNav.addClass('open')
+                )
+                $obj.addClass('active')
+                $obj.position().left
+                $('.bar').css({'width':$obj.width(),'left':`${$obj.position().left}px`,'opacity':1})
+
+            } else{
+                uiUx.afterFunction(
+                    () => {
+                        $subNav.removeClass('open')
+                        $('.bar').css({'opacity':0})
+                    },
+                    () => $subNav.hide()
+                )
+                $obj.removeClass('active')
+            }
+        }
+    }
+
+    function showCategoryWrap(){
+        wrapFix('on')
+        const $categoryWrap = $('#menu-fixed-categoryWrap');
+        $categoryWrap.addClass('active');
+        $categoryWrap.find('#category-list section').eq(0).addClass('active');
+        let scrollEffect = categoryScrollEffect();
+        setWindow(scrollEffect.scrollPointArr);
+    }
+
+    function hideCategoryWrap(){
+        wrapFix('off')
+        const $categoryWrap = $('#menu-fixed-categoryWrap');
+        $categoryWrap.removeClass('active')
+        $categoryWrap.find('#category-list section').removeClass('active');
+    }
+    function showCategoryList(obj){
+        let listIndex = $(obj).parent().index();
+        const $targetList = $('#category-list').find('section').eq(listIndex);
+
+        $(obj).parent().addClass('on')
+        $(obj).parent().siblings().removeClass('on')
+
+        $targetList.addClass('active')
+        $targetList.siblings().find('.highlight').css('top',0);
+        $targetList.siblings().find('.list-depth02').scrollTop(0);
+        $targetList.siblings().removeClass('active');
+        let scrollEffect = categoryScrollEffect();
+        setWindow(scrollEffect.scrollPointArr);
+    }
+
+    function setWindow(arr){
+        let $currentList = $('#category-list section.active');
+        $currentList.find('button').on('click',function(){
+            let $targetTitle = $(this).parent();
+            let targetIndex = $targetTitle.index();
+
+            $currentList.find('.list-depth02').animate({
+                scrollTop:arr[targetIndex]
+            },400)
+        })
+    }
+    function categoryScrollEffect(){
+        let $targetList = $('#category-list section.active').find('.list-depth02');
+        let $targetHighlight = $targetList.prev().find('.highlight');
+
+        let totalScrollHeight = $targetList.prop('scrollHeight')-$('#category-list').outerHeight();
+        if($targetList.find('div').last().innerHeight() > $('#category-list').outerHeight()){ // y스크롤 영역보다  마지막 분류의 길이가 더 길 경우
+            totalScrollHeight = $targetList.prop('scrollHeight') - $targetList.find('div').last().innerHeight();
+        }
+
+        let groupLen = $targetList.find('div').length;
+        const standardBtnHeight = $targetList.prev().find('button').innerHeight();
+
+        let scrollPoint = [];
+        let highlightPoint = [];
+        for (let i = 0; i < groupLen; i++) {
+            scrollPoint.push((i===groupLen-1) ? totalScrollHeight : $targetList.find('div').eq(i).position().top - (standardBtnHeight * i))
+            highlightPoint.push($targetList.prev().find('li').eq(i).position().top)
+        }
+
+        $targetList.scroll(function(){
+            let currentListScrollPos = $(this).scrollTop();
+            for(let i = 0 ; i< groupLen; i++){
+                if (i === groupLen-1){
+                    if(currentListScrollPos >= scrollPoint[i]){
+                        $targetHighlight.css('top',highlightPoint[i]);
+                    }
+                } else{
+                    if(currentListScrollPos >= scrollPoint[i] && currentListScrollPos < scrollPoint[i+1]){
+                        $targetHighlight.css('top',highlightPoint[i]);
+                    }
+                }
+            }
+        })
+        return {scrollPointArr : scrollPoint}
+    }
+
+    function searchOpen(){
+        uiUx.popupLayer.open('/ajax/layer/search','','full')
+    }
+</script>
+</body>
+</html>

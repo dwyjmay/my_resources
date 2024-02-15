@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+    <link rel="stylesheet" type="text/css" href="/css/font.css">
+    <link rel="stylesheet" type="text/css" href="/css/contents.css">
+    <script type="text/javascript" src="/js/jquery-3.6.4.min.js"></script>
+    <style>
+        a{text-decoration: none;}
+        .section1{}
+        .section1 img + a{color:red;} /* 인접 형제 선택자 :   앞요소의 바로 다음에 위치하는 형제 요소만 선택 */
+        .section1 img ~ a{color:deeppink;} /* 형제 선택자 :   앞요소 다음에 위치하는 형제 요소 선택 */
+        
+        .section2{}
+        .section2 a[title]{ color:red;}  /* 특성 선택자 :  요소가 title 속성을 가지는 요소 */
+        .section2 a[href="https://www.google.com/"]{font-size: 30px;} /* href 값이  'https://www.google.com/' 와 동일한 요소*/
+        .section2 a[href*="https"]{font-weight: bold;} /* href 값이  'https' 를 포함하는 요소 */
+        .section2 a[href$=".com/"]{font-style: italic;} /* href 값이  '.com' 으로 끝나는 요소 */
+        /*
+            [attr=value] 정확히 일치하는 요소
+            [attr^=value] 접두사가 value인 요소
+            [attr$=value] 접미사가 value인 요소
+            [attr*=value] 접미사로 value 포함하는 요소
+        */
+        .section3 span{font-style: italic;}
+        .section3 span:nth-child(3){color:red;}  /* 부모 엘리먼트의 모든 자식 요소 중 3번째 요소 */
+        .section3 span:nth-of-type(3){color:deepskyblue;} /* 부모 엘리먼트의 특정 자식 요소 중 3번째 요소*/
+        .section3 b:nth-child(5){color:crimson;} /* 부모 엘리먼트의 특정 자식 요소 중 5번째 요소*/
+        .section3 span:nth-last-child(3){font-size: 20px;} /*부모 엘리먼트의 모든 자식 요소 중 뒤에서 3번재 요소 */
+        .section3 span:nth-last-of-type(3){font-size: 60px;} /*부모 엘리먼트의 특정 자식 요소 중 뒤에서 3번재 요소 */
+        /*nth-child(-n+3) : 부모 엘리먼트의 모든 자식 요소 중 (-n+3)번째 요소*/
+
+        
+    </style>
+</head>
+<body>
+
+<div id="wrapper">
+        
+        <!--<ul class="section1">
+            <li>
+                <img src="../../images/bell2.jpg" alt="">
+                <a href="" title="새창으로열기">하이퍼링크</a>
+            </li>
+            <li>
+                <img src="../../images/bell2.jpg" alt="">
+                <a href="" title="새창으로열기">하이퍼링크</a>
+            </li>
+            <li>
+               <a href="" title="새창으로열기">하이퍼링크</a>
+                <img src="../../images/bell2.jpg" alt="">
+            </li>
+            <li>
+               <a href="" title="새창으로열기">하이퍼링크</a>
+                <img src="../../images/bell2.jpg" alt="">
+                <a href="" title="새창으로열기">하이퍼링크</a>
+                <a href="" title="새창으로열기">하이퍼링크</a>
+            </li>
+        </ul>-->
+        
+        <!-- <ul class="section2">
+            <li>
+                <img src="../../images/bell2.jpg" alt="">
+                <a href="https://www.google.com/" title="">하이퍼링크</a>
+            </li>
+            <li>
+                <img src="../../images/bell2.jpg" alt="">
+                <a href="https://www.naver.com/">하이퍼링크</a>
+            </li>
+            <li>
+               <a href="https://www.google.com/" title="새창으로열기">하이퍼링크</a>
+                <img src="../../images/bell2.jpg" alt="">
+            </li>
+            <li>
+                <img src="../../images/bell2.jpg" alt="">
+                <a href="" title="">하이퍼링크</a>
+                <a href="" title="새창으로열기">하이퍼링크</a>
+            </li>
+        </ul>-->
+        
+        <div class="section3">
+            <span>이것은</span>
+            <span>css를</span>
+            <p>공부하는</p>
+            <span>것일깡</span>
+            <b>집에가고싶</b>
+            <strong>다.</strong>
+            
+        </div>
+        
+</div>
+</body>
+
+</html>

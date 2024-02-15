@@ -1,0 +1,104 @@
+flex
+
+container 에 적용하는 속성
+display  : flex container를 정의 (display : flex; | display : inline-flex)
+items가 아니라 container 의 block요소 inline요소를 설정 (내부 아이템에는 영향을 주지 않음)
+
+** 주축과 교차축
+row 는 items를 수평축으로 표시하므로 주축=수평, 교차축=수직
+column은 items를 수직축으로 표시하므로 주축=수직, 교차축=수평
+
+**시작점(flex-start)과 끝점(flex-end)
+주축이나 교차축의 시작점과 긑점 
+
+flex-flow( flex-direction | flex-wrap )  
+	1)flex-direction: flex items 의 주 축을 설정 (default : row)
+		row: items를 수평축(→)으로 표시
+		row-reverse: items를 row의 반대 축(←)으로 표시
+		column: items를 수직축(↓)으로 표시
+		column-reverse: items를 column의 반대축(↑)으로 표시
+
+
+	2)flex-wrap : flex items의 여러 줄 묶음(줄 바꿈) 설정 (default : nowrap)
+		nowrap: 모든 items를 여러 줄로 묶지 않음 (한 줄에표시
+		wrap: items를 여러 줄로 묶음
+		wrap-reverse: items를 wrap의 역방향으로 여러 줄로 묶음
+
+
+	3)flex-flow: flex-direction과 flex-wrap의 단축 속성
+
+justify-content : 주 축의 정렬방법 설정
+	flex-start : items를 시작점으로 정렬 (기본값)
+	flex-end : items를 끝점으로 정렬
+	center : items를 가운데 정렬
+	space-between : 시작item은 시작점, 마지막item은 끝점, 나머지는 고르게 정렬
+	space-around : items를 균등한 여백을 포함하여 정렬
+
+align-content : 교차축의 정렬방법 설정(2줄 이상) => flex-wrap 속성을 통해 여러줄이고 여백이 있을 경우만 사용가능 => 1줄은 align-items
+
+	stretch : container의 교차축을 채우기위해 items를 늘림
+	flex-start : items를 시작점으로 정렬
+	flex-end : items를 끝점으로 정렬
+	center : items를 가운데 정렬
+	space-between :시작item은 시작점, 마지막item은 끝점, 나머지는 고르게 정렬
+	space-around : itmes를 균등한 여백으로 정렬
+
+	
+align-items : 교차 축에서 items의 정렬방법 설정(1줄)
+	(2줄이상일 경우에는 align-content가 우선이므로 align-items를 사용하기 위해서는 align-content속성을 기본값으로 설정해야 함)
+	stretch : container의 교차축을 채우기 위해 아이템을 늘림
+	flex-start : items를 각 줄의 시작점으로 정렬
+	flex-end : items를 각 줄의끝점으로 정렬
+	center : items를 가운데 정렬
+	baseline : items를 문자 기준선에 정렬
+
+
+
+items에 적용하는 속성
+
+
+order : flex item의 순서를 설정
+	item에 숫자를 지정하고 숫자가 클수록 순서가 뒤로 밀림 (음수 허용)
+	order:-1     order: 0
+
+flex ( flex-grow | flex-shrink | flex-basis ) (3개)의 단축속성
+1)flex-grow : flex-item의 증가너비 비율 설정 (default : 0)
+2)flex-shring : flex-item의 감소 너비 비율 설정(default : 1)
+3)flex-basis : flex-item의 공간배부전 기본 너비 설정 (default : auto)
+
+flex-gorw를 제외한 개별 속성은 flex: 에서 생략가능하지만 
+flex : 1의 경우 flex  1 1 auto가 아니라  1 1 0 이다.
+
+모든 items의 총 증가너비(flex-gorw)에서 각 item의 증가 너비의 비율만큼 너비를가짐
+ex ) item 총 3개 각 증가너비 1,2,1 => 첫번째 아이템은 총너비의 25% 
+				두번째 아이템은 총너비의 50%
+				세번째 아이템은 총너비의 25%
+
+flex-shrink 어려움 ..
+
+
+align-self : 교차축에서 item의 정렬방법을 설정
+
+
+
+***display:flex 이용하여 
+items 의 너비를  컨텐츠의 너비로  설정하는 방법
+#wrap[role="brand"] .smartallKids .section8 .inSection1 .cont ul{display: flex; flex-flow: column; justify-content: center; align-items: center;}
+	#wrap[role="brand"] .smartallKids .section8 .inSection1 .cont ul li{position:relative; padding-left: 14px;padding-bottom: 10px; font-size: 26px; line-height: 38px;}
+	#wrap[role="brand"] .smartallKids .section8 .inSection1 .cont ul li:before{content: "";display: block; position: absolute; width: 4px; height: 4px; top: 13px; left: 0; background: #222; border-radius: 50%;}
+
+
+
+****-------------------****
+     flex-direction:row;
+     flex-wrap: wrap;
+     flex-flow: row nowrap;
+     justify-content: space-between;
+     align-items:  center;
+     align-content:  ???
+
+          justify-content: space-between; 중심축에서 아이템을 어떻게 배치할 것인가
+    align-items:  center; 반대축에서 아이템을 어떻게 배치할 것인가
+align-content: wrap 으로 해놓고   각각의 덩어리들을 중심축에대해서 어떻게 배치할 것인가
+(.container{flex-wrap: wrap; align-content:flex-end})
+

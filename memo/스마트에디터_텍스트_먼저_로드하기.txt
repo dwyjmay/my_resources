@@ -1,0 +1,6 @@
+fOnAppLoad : function(){
+	oEditors.getById["contents"].exec("PASTE_HTML", ["사진을 첨부하고 싶으시면 에디터 우측에 있는 '사진' 버튼을 클릭해주세요."]);
+
+		},
+
+		fCreator: "createSEditor2"

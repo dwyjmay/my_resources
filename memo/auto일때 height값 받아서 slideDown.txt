@@ -1,0 +1,21 @@
+<script>
+    $(".lnbWrap > ul > li").mouseover(function () {
+
+        if(!$(this).hasClass('on')){
+            if($(this).children().hasClass('subLnb')){
+                var el=$(this),
+                    curHeight=el.height(),
+                    autoHeight=el.css('height','auto').height();
+                el.height(curHeight).stop().animate({height:autoHeight},500);
+            }
+        }
+    }).mouseout(function(){
+        if(!$(this).hasClass('on')){
+            if($(this).children().hasClass('subLnb')){
+                $(this).stop().animate({height:'50px'},500);
+                
+            }
+        }
+    })
+
+</script>

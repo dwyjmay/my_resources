@@ -1,0 +1,526 @@
+@charset "UTF-8";
+/* ===== Usage =====
+div {
+  You can pass width && height
+  @include box(200px, 300px);
+  or just pass width and the height
+     will default to the width value
+  @include box(200px);
+}
+*/
+/* ===== Usage =====
+.vertical-centered-element {
+  @include flex-center-vert;
+}
+
+.horizontally-centered-element {
+  flex-direction: column;
+  @include flex-center-vert;
+}
+*/
+/* font-size, line-height, letter-spacing
+
+ ===== Usage =====
+p {
+  @include font-size(12, 18, 1.2);
+  // returns
+  font-size: 12px;
+  line-height: 1.5; // 18 / 12
+  letter-spacing: 0.1em;
+}
+*/
+/*
+  $object: before or after
+    default : before
+  $position : relative or absolute or fixed
+    default : relative
+*/
+/* 화살표 아래 */
+#mypage-myrecipe .recipe-list .list-none {
+  padding-bottom: 20px;
+}
+
+.my-recipe-list-page #container {
+  padding-top: 20px;
+}
+.my-recipe-list-page ol > li {
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+}
+.my-recipe-list-page ol > li a .date {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  font-size: 12px;
+  color: #a7a7a7;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+.my-recipe-list-page ol > li a > div {
+  display: flex;
+  justify-content: space-between;
+}
+.my-recipe-list-page ol > li a > div ul {
+  display: flex;
+  flex-flow: column;
+  gap: 20px 0;
+  width: 70%;
+  padding-right: 20px;
+}
+.my-recipe-list-page ol > li a > div ul .title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+}
+.my-recipe-list-page ol > li a > div ul dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+}
+.my-recipe-list-page ol > li a > div ul dl dt {
+  width: 40%;
+  font-size: 14px;
+  color: #888;
+}
+.my-recipe-list-page ol > li a > div ul dl dd {
+  width: 60%;
+  font-size: 14px;
+  color: #111;
+}
+.my-recipe-list-page ol > li a > div ul dl dd.state01 {
+  color: #1db7e8;
+}
+.my-recipe-list-page ol > li a > div .thumb {
+  width: 30%;
+  align-self: flex-start;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 0.8965517241;
+}
+.my-recipe-list-page ol > li a > div .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@supports not (aspect-ratio: 0.8965517241) {
+  .my-recipe-list-page ol > li a > div .thumb::before {
+    content: "";
+    float: left;
+    padding-top: calc((116 / 104) * 100%);
+  }
+  .my-recipe-list-page ol > li a > div .thumb::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+.my-recipe-list-page ol > li.list-none {
+  padding: 240px 0 80px;
+  text-align: center;
+  border-bottom: 0;
+}
+
+.my-recipe-form-page #container {
+  padding-bottom: 100px !important;
+}
+.my-recipe-form-page #writeMode {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  width: auto;
+  padding-right: 42px;
+  background: #ff9900 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15.583 15.677'%3E%3Cg id='그룹_42051' data-name='그룹 42051' transform='translate(-2.2 -2.079)'%3E%3Cline id='선_2046' data-name='선 2046' x2='13.982' transform='translate(3 16.955)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Cpath id='패스_786' data-name='패스 786' d='M4.277,11.129l7.768-7.768a1.648,1.648,0,0,1,2.33,2.33L6.607,13.46,3.5,14.237Z' transform='translate(-0.112 0)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E%0A") no-repeat calc(100% - 20px) center/14px auto;
+  z-index: 1;
+}
+.my-recipe-form-page section.section h2 {
+  padding: 20px 0 14px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.my-recipe-form-page section.section + .section {
+  border-top: 10px solid #f9f9f9;
+}
+.my-recipe-form-page .form-typeA .category-area .selected-category {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+.my-recipe-form-page .form-typeA .category-area .selected-category strong {
+  margin: 24px 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1db7e8;
+}
+.my-recipe-form-page .form-typeA .category-area .selected-category .category {
+  position: relative;
+  padding: 12px 34px 12px 20px;
+  border-radius: 10px;
+  background: #f5f5f5;
+  border: 2px solid #f5f5f5;
+}
+.my-recipe-form-page .form-typeA .category-area .selected-category .category:first-of-type {
+  border-color: #1db7e8;
+}
+.my-recipe-form-page .form-typeA .category-area .selected-category .category + .category {
+  margin-top: 10px;
+}
+.my-recipe-form-page .form-typeA .category-area .selected-category .category .del {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: #aaa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 15.998'%3E%3Cpath id='ic_delete_14' d='M7,7,0,14,7,7,0,0,7,7l7-7L7,7l7,7Z' transform='translate(1 1)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3C/svg%3E%0A") no-repeat center/6px 6px;
+  border-radius: 50%;
+  text-indent: -9999px;
+}
+.my-recipe-form-page .form-typeA .inner-list {
+  margin-top: 28px;
+}
+.my-recipe-form-page .form-typeA .inner-list .inner-list-header {
+  padding: 30px 24px;
+  border: 1px solid #ddd;
+  border-radius: 20px 20px 0 0;
+}
+.my-recipe-form-page .form-typeA .inner-list .inner-list-header + .list-wrap {
+  border-radius: 0 0 20px 20px;
+  border-top: none;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap li {
+  padding: 32px 24px;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap li + li {
+  border-top: 1px solid #ddd;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap b {
+  font-size: 16px;
+  color: #888;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap dl {
+  margin-bottom: 24px;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap dl dt {
+  margin-bottom: 4px;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap dl dt + dd {
+  margin-bottom: 16px;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap dl + div {
+  padding-top: 0;
+}
+.my-recipe-form-page .form-typeA .inner-list .list-wrap .count {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+  line-height: 20px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+  background: #aaa;
+  border-radius: 50%;
+}
+.my-recipe-form-page .form-typeA .flex-container {
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.my-recipe-form-page .form-typeA .flex-container .change-seq {
+  flex: 1;
+}
+.my-recipe-form-page .form-typeA .flex-container .change-seq ~ .btn {
+  width: 56px;
+}
+.my-recipe-form-page #tab-fixed-area.fixed ul {
+  position: fixed;
+  width: 100%;
+  overflow-y: auto;
+  top: 54px;
+  left: 0;
+  z-index: 1;
+  background: #fff;
+}
+.my-recipe-form-page #tab-fixed-area ul li a.on {
+  position: relative;
+}
+.my-recipe-form-page #tab-fixed-area ul li a.on:after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #FF9900;
+}
+.my-recipe-form-page #bottom-fixed .btn-group {
+  width: 100%;
+  margin-top: 0;
+  padding: 16px 20px;
+  height: 86px;
+  background: #fff;
+}
+.my-recipe-form-page #bottom-fixed .btn-group .btn-list {
+  width: 82px;
+}
+.my-recipe-form-page #bottom-fixed.fixed .btn-group {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#tab-default .col2 div:last-of-type:after {
+  display: none;
+}
+#tab-default .categories {
+  position: relative;
+  padding-left: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+#tab-default .categories strong {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 42px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1db7e8;
+}
+#tab-default .categories .category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 12px 0 20px;
+  background: #f5f5f5;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111;
+  border-radius: 10px;
+}
+#tab-default .categories .category span {
+  width: 10px;
+  height: 10px;
+  text-indent: -3000em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5.207' height='9.414' viewBox='0 0 5.207 9.414'%3E%3Cpath id='패스_601' data-name='패스 601' d='M1,1,5,5,1,9' transform='translate(-0.293 -0.293)' fill='none' stroke='%23aaa' stroke-linecap='round' stroke-linejoin='round' stroke-width='1'/%3E%3C/svg%3E%0A") no-repeat 50% 50%;
+}
+#tab-default .categories .category button {
+  margin-left: 12px;
+  width: 24px;
+  height: 24px;
+  background: ico_del() no-repeat 50% 50%;
+  text-indent: -3000em;
+}
+#tab-default .categories .category:first-of-type {
+  border: 1px solid #1db7e8;
+}
+#tab-default .thumb-list {
+  margin-top: 16px;
+}
+#tab-default .thumb-list div {
+  position: relative;
+  width: 70%;
+  aspect-ratio: 0.9012345679;
+}
+@supports not (aspect-ratio: 0.9012345679) {
+  #tab-default .thumb-list div::before {
+    content: "";
+    float: left;
+    padding-top: calc((81 / 73) * 100%);
+  }
+  #tab-default .thumb-list div::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+#tab-default .thumb-list div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 0.9012345679;
+  border-radius: 30px;
+  transition: 0.2s all 0s ease-in-out;
+  vertical-align: top;
+}
+@supports not (aspect-ratio: 0.9012345679) {
+  #tab-default .thumb-list div img::before {
+    content: "";
+    float: left;
+    padding-top: calc((81 / 73) * 100%);
+  }
+  #tab-default .thumb-list div img::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+#tab-default .thumb-list div button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -30px 0 0 -30px;
+  width: 60px;
+  height: 60px;
+  background: rgba(17, 17, 17, 0.5) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 15.998'%3E%3Cpath id='ic_delete_14' d='M7,7,0,14,7,7,0,0,7,7l7-7L7,7l7,7Z' transform='translate(1 1)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3C/svg%3E%0A") no-repeat 50% 50%/20px;
+  text-indent: -3000em;
+  border-radius: 50%;
+}
+#tab-default .thumb-list div + div {
+  margin-top: 16px;
+}
+
+#tab-make .preview-thumb {
+  margin-top: 24px;
+}
+#tab-make .preview-thumb img {
+  border-radius: 30px;
+}
+#tab-make .inner-list .preview-thumb {
+  margin-top: 16px;
+}
+#tab-make .inner-list .preview-thumb img {
+  border-radius: 16px;
+  aspect-ratio: 1.7777777778;
+  object-position: center;
+  object-fit: cover;
+}
+@supports not (aspect-ratio: 1.7777777778) {
+  #tab-make .inner-list .preview-thumb img::before {
+    content: "";
+    float: left;
+    padding-top: calc((9 / 16) * 100%);
+  }
+  #tab-make .inner-list .preview-thumb img::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+#tab-uses .preview-thumb {
+  margin-top: 24px;
+}
+#tab-uses .preview-thumb img {
+  border-radius: 30px;
+}
+#tab-uses .inner-list .preview-thumb {
+  margin-top: 16px;
+}
+#tab-uses .inner-list .preview-thumb img {
+  border-radius: 16px;
+  aspect-ratio: 1.7777777778;
+  object-position: center;
+  object-fit: cover;
+}
+@supports not (aspect-ratio: 1.7777777778) {
+  #tab-uses .inner-list .preview-thumb img::before {
+    content: "";
+    float: left;
+    padding-top: calc((9 / 16) * 100%);
+  }
+  #tab-uses .inner-list .preview-thumb img::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+#tab-application .form-uses-radio-section {
+  margin-top: 20px;
+}
+#tab-application .form-uses-radio-section .preview-thumb {
+  margin-top: 24px;
+}
+#tab-application .form-uses-radio-section .preview-thumb iframe {
+  width: 100%;
+  border-radius: 16px;
+  aspect-ratio: 1.7777777778;
+}
+@supports not (aspect-ratio: 1.7777777778) {
+  #tab-application .form-uses-radio-section .preview-thumb iframe::before {
+    content: "";
+    float: left;
+    padding-top: calc((9 / 16) * 100%);
+  }
+  #tab-application .form-uses-radio-section .preview-thumb iframe::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+#tab-application .form-uses-radio-section .preview-thumb img {
+  width: 100%;
+  border-radius: 16px;
+}
+#tab-application .inner-list .preview-thumb {
+  margin-top: 16px;
+}
+#tab-application .inner-list .preview-thumb img {
+  width: 100%;
+  border-radius: 16px;
+  aspect-ratio: 1.7777777778;
+  object-position: center;
+  object-fit: cover;
+}
+@supports not (aspect-ratio: 1.7777777778) {
+  #tab-application .inner-list .preview-thumb img::before {
+    content: "";
+    float: left;
+    padding-top: calc((9 / 16) * 100%);
+  }
+  #tab-application .inner-list .preview-thumb img::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+#tab-application .inner-list .preview-thumb iframe {
+  width: 100%;
+  height: calc((100vw - 40px - 48px) * 0.5588);
+}
+
+#tab-reference dl {
+  display: inline-flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  justify-content: space-between;
+}
+#tab-reference dl:first-of-type {
+  width: 100%;
+}
+#tab-reference dl.col {
+  margin-right: 40px;
+}
+
+.view-mode .ico-plus,
+.view-mode .btn-del {
+  display: none !important;
+}
+
+/*# sourceMappingURL=recipe.css.map */

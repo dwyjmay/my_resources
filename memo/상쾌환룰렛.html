@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+    <link rel="stylesheet" type="text/css" href="/css/font.css">
+    <link rel="stylesheet" type="text/css" href="/css/contents.css">
+    <script type="text/javascript" src="/js/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<div id="wrapper">
+
+</div>
+
+<script>
+    var v;
+    var authenticated = false;
+    var roulettePlay = false;
+    var repeat;
+
+    // 개인정보 입력 완료시
+    function completeApply(){
+        rotate();
+    }
+
+    // 룰렛 실행
+    function rotate(){
+        var D_target = $("#rouletteBoard");
+        var roulNum = 6; //판갯수
+        ef.proc($("#applyForm"), function(data){
+
+            /*
+            data.win
+            1 = 상쾌환 스틱형 Red 10개입
+            2 = 상쾌환 스틱형 Yellow 10개입
+            3 = 스타벅스 카페라떼 - 20
+            4 = 오늘 응모 기회가 모두 소진되었습니다
+            other = 다시 도전해보세요! 1일 최대 3회까지 응모 가능합니다.
+            */
+
+            if (data.win == 4) {
+                result(data.win, data.num);
+            }
+            else if (data.win < 0) {
+                alert("이미 당첨되셨습니다.");
+                window.location.reload();
+            }
+            else {
+                var degNum = 360 / parseInt(roulNum) * parseInt(data.num - 1);
+                degNum = (360 * 25) - degNum;
+                D_target.css("transform", "rotate("+ degNum +"deg)");
+                setTimeout(function(){
+                    result(data.win, data.num);
+                },4000);
+            }
+        });
+    }
+    // 당첨자 여부 가져오기
+    function result(win, num){
+        var params = {
+            win : win,
+            num : num,
+            eventNumber : '72'
+        }
+        $.post('result', params, function(data){
+            console.log(win)
+            console.log(num)
+            layerOpen(data);
+        });
+    }
+
+    var vCheck;
+    // 당첨자 확인 가져오기
+    function showCheckForm(){
+        $.post('check', function(data){
+            layerOpen(data);
+
+            vCheck = new ef.utils.Validator($("#checkForm"));
+            vCheck.add("name", {
+                "empty" : "이름을 입력해 주세요.",
+                "max" : 10
+            });
+            vCheck.add("phone2", {
+                "empty" : "휴대폰 번호를 입력해 주세요.",
+                "max" : 4,
+                "format" : "numeric"
+            });
+            vCheck.add("phone3", {
+                "empty" : "휴대폰 번호를 입력해 주세요.",
+                "max" : 4,
+                "format" : "numeric"
+            });
+
+            $("#checkForm input[name=name]").focus();
+        });
+    }
+    //당첨자 확인 레이어에서  확인 버튼 클릭시
+    function check(){
+        if (vCheck.validate()) {
+            $("#checkForm input[name=eventSeq]").val("72");
+            ef.proc($("#checkForm"), function(result){
+                switch (result.win) {
+                    case -1 :
+                        alert("상쾌환데이 룰렛이벤트 참여 이력이 없습니다.");
+                        break;
+                    case 0 :
+                        alert("아쉽게도 상쾌환데이 룰렛이벤트에 미당첨되셨습니다.\n다시 한번 룰렛이벤트에 도전해 보세요.\n감사합니다.");
+                        break;
+                    default :
+                        alert("상쾌환데이 룰렛이벤트에 당첨되셨습니다.\n당첨된 경품은 지정된 경품 발송일에 일괄 발송됩니다.\n[경품 : " + result.prize + "]\n감사합니다.");
+                        break;
+                }
+                layerClose();
+            });
+        }
+    }
+    // 레이어 열기 공통
+    function layerOpen(data){
+        $("#wrapper").after('<div id="blockArea">'+ data +'</div>');
+        $("#blockArea").fadeIn();
+        wrapFix('on');
+    }
+
+    // 레이어 닫기 공통
+    function layerClose(){
+        $("#blockArea").fadeOut(function(){
+            $(this).remove();
+            wrapFix('off');
+        })
+    }
+
+
+</script>
+</body>
+
+</html>

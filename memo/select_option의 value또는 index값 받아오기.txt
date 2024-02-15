@@ -1,0 +1,12 @@
+select
+선택한 option의 value값 가져오기
+var optVal = $("#셀렉트 option:selected").val();
+
+선택한 optino의 index값 가져오기
+var optInd = $("#셀렉트 option").index($('#셀렉트 option:selected'))
+
+
+<select id="셀렉트">
+	<option value="test1"></option>
+	<option value="test2"></option>
+</select>

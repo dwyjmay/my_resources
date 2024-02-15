@@ -1,0 +1,36 @@
+$(function(){
+	if (getCookie('popupgift') != 'no') {
+		$(".layerPop").show();
+	}
+});	
+
+function setCookie( name, value, expiredays ) {
+	var todayDate = new Date();
+	todayDate.setDate( todayDate.getDate() + expiredays );
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+function getCookie(name)
+{
+	var nameOfCookie = name + "=";
+	var x = 0;
+	while (x <= document.cookie.length)
+	{
+		var y = (x+nameOfCookie.length);
+		if (document.cookie.substring(x, y) == nameOfCookie) {
+			if ((endOfCookie=document.cookie.indexOf( ";", y )) == -1) endOfCookie = document.cookie.length;
+			return unescape(document.cookie.substring(y, endOfCookie ));
+		}
+		x = document.cookie.indexOf(" ", x) + 1;
+		if (x == 0) break;
+	}
+	return "";
+}
+
+//
+
+ <div class="layerPop" style="display:none;width:350px">
+		<h1 class="desc">안내팝업</h1>
+		<p class="btn"><a href="#" onclick="$(this).parents('.layerPop').hide(); return false"><img src="/2013/images/point/btn_close.png" alt="팝업닫기"></a></p>
+		<h2><img src="/2013/images/popup/20141222.jpg" alt="롯데시네마 상품권 제휴 종료 안내  현재 진행중인 롯데시네마 상품권 제휴 서비스가 2014년 12월부로 종료됩니다. 그 동안 롯데시네마를 이용해주시던 고객님께 진심으로 감사 드리며, 앞으로 더 나은 서비스를  제공하는 에쓰-오일이 되겠습니다. 감사합니다."></h2>
+		<p class="foot"><a href="#" onclick="setCookie('popupgift','no',1); $(this).parents('.layerPop').hide(); return false">오늘 하루 이창 열지 않음 X</a></p>
+	</div>

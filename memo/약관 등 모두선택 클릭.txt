@@ -1,0 +1,32 @@
+
+
+
+/*checkType*/
+.checkTypeA input {display:none;}
+.checkTypeA label {cursor:pointer;}
+.checkTypeA label:before {content:''; display:inline-block; margin-right:8px; width:22px; height:22px; border:1px solid #bfbfbf; border-radius:3px;  vertical-align:middle;}
+.checkTypeA input:checked + label {color:#f15d43 !important;}
+.checkTypeA input:checked + label:before {background:#f15d43 url('/images/common/checkTypeA.jpg') no-repeat center/ auto; border:1px solid #f15d43;}
+
+
+
+ 		$('#allAgree').on('change', function(){
+ 			if(this.checked == false){
+ 				$('.agreeBox input[type="checkbox"]').each(function(){
+ 					this.checked = false;
+ 				});
+ 			}else {
+ 				$('.agreeBox input[type="checkbox"]').each(function(){
+ 					this.checked = true;
+ 				});
+ 			}
+ 		});
+
+
+$('.agreeBox input[type="checkbox"]').on('change', function(){
+ 			if($('.agreeBox input[type="checkbox"]:checked').length < $('.agreeBox input[type="checkbox"]').length){
+ 				$('#allAgree')[0].checked = false;
+ 			}else {
+ 				$('#allAgree')[0].checked = true; 			
+ 			}
+ 		}); 

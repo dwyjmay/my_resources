@@ -1,0 +1,115 @@
+@function ico_hamburger($color:707070){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Cg id='icon_category_26' transform='translate(9543 8005)'%3E%3Crect id='square_18712' data-name='square 18712' width='26' height='26' transform='translate(-9543 -8005)' fill='%23fff' opacity='0.47'/%3E%3Cg id='group_42748' data-name='group 42748' transform='translate(0 -0.4)'%3E%3Crect id='square_20020' data-name='square 20020' width='18' height='1.6' rx='0.8' transform='translate(-9539 -7985.8)' fill='#{$color}'/%3E%3Crect id='square_20019' data-name='square 20019' width='14' height='1.6' rx='0.8' transform='translate(-9539 -7992.4)' fill='#{$color}'/%3E%3Crect id='square_20018' data-name='square 20018' width='18' height='1.6' rx='0.8' transform='translate(-9539 -7999)' fill='#{$color}'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_home($color:707070){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23.258 20.603'%3E%3Cg id='Icon_Home' transform='translate(21046.627 17061.598)'%3E%3Cg id='group_42482' data-name='group 42482'%3E%3Cpath id='패스_36927' data-name='패스 36927' d='M1,10.592v7.046a1.008,1.008,0,0,0,1.055.954H4.618s10.324,0,10.327,0A1.008,1.008,0,0,0,16,17.638V10.592' transform='translate(-21043.5 -17060.387)' fill='%23fff' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Cpath id='패스_76031' data-name='패스 76031' d='M-21050.969-17057.484l10.5-9,10.5,9' transform='translate(5.471 5.688)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_person($color:707070){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Cg id='icon_my_26' transform='translate(0 0.467)'%3E%3Crect id='square_18713' data-name='square 18713' width='26' height='26' transform='translate(0 -0.467)' fill='#{$color}' opacity='0'/%3E%3Cg id='group_42486' data-name='group 42486' transform='translate(2 2.5)'%3E%3Ccircle id='oval_2263' data-name='oval 2263' cx='3.5' cy='3.5' r='3.5' transform='translate(7.5 -0.467)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Cpath id='square_19933' data-name='square 19933' d='M6,0h7a6,6,0,0,1,6,6v4a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V6A6,6,0,0,1,6,0Z' transform='translate(1.5 10.533)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_person2($color){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8.519 9.904'%3E%3Cg id='group_40955' data-name='group 40955' transform='translate(-1416.616 808.26)'%3E%3Ccircle id='oval_20' data-name='oval 20' cx='2.009' cy='2.009' r='2.009' transform='translate(1418.866 -808.26)' fill='#{$color}'/%3E%3Cpath id='패스_252' data-name='패스 252' d='M262.617,3765.429a4.016,4.016,0,0,1,4.018-4.019h.483a4.016,4.016,0,0,1,4.018,4.019,1.006,1.006,0,0,1-1,1h-6.509A1.006,1.006,0,0,1,262.617,3765.429Z' transform='translate(1153.999 -4564.789)' fill='#{$color}'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_bookmark($color:707070){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Cg id='icon_recipe_26' transform='translate(0 0.467)'%3E%3Crect id='square_18713' data-name='square 18713' width='26' height='26' transform='translate(0 -0.467)' fill='#{$color}' opacity='0'/%3E%3Cpath id='패스_72' data-name='패스 72' d='M541.188,3374.857a.75.75,0,0,1-1.188-.611v-15a3.249,3.249,0,0,1,3.25-3.25h7.5a3.248,3.248,0,0,1,3.251,3.25v15a.75.75,0,0,1-1.188.611l-5.1-3.671a1.222,1.222,0,0,0-1.424,0Z' transform='translate(-534 -3353.467)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_search($color){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg id='icon_category_26' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect id='square_18712' data-name='square 18712' width='26' height='26' fill='none'/%3E%3Cg id='group_42480' data-name='group 42480' transform='translate(-1095.418 -896.547)'%3E%3Cpath id='패스_16' data-name='패스 16' d='M1115.158,908.547a7.733,7.733,0,1,1-7.734-7.734,7.733,7.733,0,0,1,7.734,7.734Z' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-width='1.6'/%3E%3Cpath id='패스_17' data-name='패스 17' d='M1117.142,918.28l-2.153-2.036' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_arrow($color,$width:1){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3.531 6.064'%3E%3Cpath id='패스_601' data-name='패스 601' d='M2.324,0,0,2.325,2.324,4.649' transform='translate(3.031 5.357) rotate(180)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='#{$width}'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_arrow2($color){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8.414 14.828'%3E%3Cpath id='패스_76039' data-name='패스 76039' d='M244.25,558.589l6,6-6,6' transform='translate(-242.836 -557.175)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+/* 화살표 아래 */
+@function ico_arrow3($color){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.414 5.207'%3E%3Cpath id='패스_601' data-name='패스 601' d='M1,1,5,5,1,9' transform='translate(9.707 -0.293) rotate(90)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+
+@function ico_arrow4($color:111) {
+  $color: '%23'+$color;
+  $icon:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg id='ic_arrow_20' transform='translate(-240 -569)'%3E%3Cpath id='패스_76039' data-name='패스 76039' d='M244.25,558.589l6,6-6,6' transform='translate(3.25 14.411)' fill='none' stroke='%23111' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3Crect id='사각형_19990' data-name='사각형 19990' width='20' height='20' transform='translate(240 569)' fill='none'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+
+@function ico_close($color, $width:2){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 15.998'%3E%3Cpath id='ic_delete_14' d='M7,7,0,14,7,7,0,0,7,7l7-7L7,7l7,7Z' transform='translate(1 1)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='#{$width}'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+
+@function ico_location_arrow($color:444) {
+  $color: '%23'+$color;
+  $icon:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5.207' height='9.414' viewBox='0 0 5.207 9.414'%3E%3Cpath id='패스_601' data-name='패스 601' d='M1,1,5,5,1,9' transform='translate(-0.293 -0.293)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_member($color:1DB7E8) {
+  $color: '%23'+$color;
+  $icon:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10.768 12.52'%3E%3Ccircle id='타원_20' data-name='타원 20' cx='2.54' cy='2.54' r='2.54' transform='translate(2.844)' fill='#{$color}'/%3E%3Cpath id='패스_252' data-name='패스 252' d='M262.617,3766.49a5.077,5.077,0,0,1,5.079-5.08h.61a5.077,5.077,0,0,1,5.079,5.08,1.271,1.271,0,0,1-1.27,1.27h-8.228A1.271,1.271,0,0,1,262.617,3766.49Z' transform='translate(-262.617 -3755.24)' fill='#{$color}'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_play($color:fff) {
+  $color: '%23'+$color;
+  $icon:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 31.253 37.643'%3E%3Cpath id='패스_713' data-name='패스 713' d='M1276.732,3933.159a2.791,2.791,0,0,1,0,4.681l-26.175,16.115a2.542,2.542,0,0,1-3.807-2.341v-32.229a2.542,2.542,0,0,1,3.807-2.341Z' transform='translate(-1246.75 -3916.679)' fill='#{$color}'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+
+@function ico_scrap($color:f9f9f9, $fill:none){
+  $color: '%23'+$color;
+  @if $fill != none {
+    $fill: '%23'+$fill;
+  }
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.814 16.047'%3E%3Cpath id='패스_72' data-name='패스 72' d='M541,3370.923a.636.636,0,0,1-1-.483v-11.867a2.66,2.66,0,0,1,2.743-2.572h6.328a2.66,2.66,0,0,1,2.743,2.572v11.867a.636.636,0,0,1-1,.483l-4.3-2.905a1.087,1.087,0,0,0-1.2,0Z' transform='translate(-539.5 -3355.5)' fill='#{$fill}' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1'/%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+
+@function ico_arrow_top($color:ffffff){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18.263' height='27.6' viewBox='0 0 18.263 27.6'%3E%3Cg transform='translate(-1982.869 -996.2)'%3E%3Cpath d='M1637,1023V997' transform='translate(355)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-width='1.6'/%3E%3Cpath d='M1629,1005l8-8,8,8' transform='translate(355)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+
+@function ico_plus($color:fff){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13.602 13.6'%3E%3Cg transform='translate(-1614.852 -150.202)'%3E%3Cpath d='M-19490.348,8411h12' transform='translate(21106 -8253.998)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-width='1.6'/%3E%3Cpath d='M0,0H12' transform='translate(1621.652 151.002) rotate(90)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_file($color:fff){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16.839 15.983'%3E%3Cg transform='translate(0.7 0.7)'%3E%3Cpath d='M8.716,4h2.573L13,5.716h4.289A1.716,1.716,0,0,1,19.01,7.431v6a1.716,1.716,0,0,1-1.716,1.716H8.716A1.716,1.716,0,0,1,7,13.436V5.716A1.716,1.716,0,0,1,8.716,4' transform='translate(-3.57 -4)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.4'/%3E%3Cpath d='M15.01,15.72v1.716a1.716,1.716,0,0,1-1.716,1.716H4.716A1.716,1.716,0,0,1,3,17.436V9.716A1.716,1.716,0,0,1,4.716,8H6.431' transform='translate(-3 -4.569)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.4'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_write($color:fff){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15.583 15.677'%3E%3Cg id='그룹_42051' data-name='그룹 42051' transform='translate(-2.2 -2.079)'%3E%3Cline id='선_2046' data-name='선 2046' x2='13.982' transform='translate(3 16.955)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Cpath id='패스_786' data-name='패스 786' d='M4.277,11.129l7.768-7.768a1.648,1.648,0,0,1,2.33,2.33L6.607,13.46,3.5,14.237Z' transform='translate(-0.112 0)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_reset($color:111,$width:2){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16.004 16.015'%3E%3Cg id='그룹_42196' data-name='그룹 42196' transform='translate(1.005 1.013)'%3E%3Cpath id='패스_796' data-name='패스 796' d='M17,12.043A7.007,7.007,0,1,1,16.877,7.6' transform='translate(-3.268 -2.999)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3Cpath id='패스_797' data-name='패스 797' d='M7,4V8H3' transform='translate(6.999 -2.999)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='#{$width}'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}
+@function ico_attach($color:111){
+  $color: '%23'+$color;
+  $icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15.6 15.6'%3E%3Cg id='그룹_42221' data-name='그룹 42221' transform='translate(-2.481 -2.481)'%3E%3Cpath id='패스_799' data-name='패스 799' d='M9,14.13,14.13,9' transform='translate(-1.283 -1.283)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Cpath id='패스_800' data-name='패스 800' d='M11,5.71l.4-.458A4.275,4.275,0,1,1,17.441,11.3l-.457.4' transform='translate(-1.412 -0.719)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3Cpath id='패스_801' data-name='패스 801' d='M11.694,16.984l-.339.457a4.333,4.333,0,0,1-6.093,0,4.251,4.251,0,0,1,0-6.045L5.71,11' transform='translate(-0.719 -1.412)' fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E%0A";
+  @return url($icon)
+}

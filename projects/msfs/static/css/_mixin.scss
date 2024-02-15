@@ -1,0 +1,180 @@
+$defaultColor:#111;
+$primaryColor:#FF9900;
+$pointInTextColor:#fff;
+$pointColorLocal:#444;
+$pointColorDev:#2dae61;
+$pointColorProd:#f86852;
+$commonFontColor:#000;
+$commonLinkColor:#2d8ab5;
+
+$maxWidth: 1400px;
+$maxWidthIncludeEmpty: 1440px;
+
+$mobileMaxWidth: 780px;
+
+
+@mixin radius($radius:30px){
+  border-radius: $radius;
+}
+
+// box
+/* ===== Usage =====
+div {
+  You can pass width && height
+  @include box(200px, 300px);
+  or just pass width and the height
+     will default to the width value
+  @include box(200px);
+}
+*/
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// flexbox
+/* ===== Usage =====
+.vertical-centered-element {
+  @include flex-center-vert;
+}
+
+.horizontally-centered-element {
+  flex-direction: column;
+  @include flex-center-vert;
+}
+*/
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+/* font-size, line-height, letter-spacing
+
+ ===== Usage =====
+p {
+  @include font-size(12, 18, 1.2);
+  // returns
+  font-size: 12px;
+  line-height: 1.5; // 18 / 12
+  letter-spacing: 0.1em;
+}
+*/
+@mixin font-size($font-size, $line-height: normal, $letter-spacing: normal) {
+  font-size: $font-size * 1px;
+  // font-size: $font-size * 0.1rem;
+  // example using rem values and 62.5% font-size so 1rem = 10px
+
+  @if $line-height==normal {
+    line-height: normal;
+  } @else {
+    line-height: $line-height / $font-size;
+  }
+
+  @if $letter-spacing==normal {
+    letter-spacing: normal;
+  } @else {
+    letter-spacing: #{$letter-spacing / $font-size}em;
+  }
+}
+
+
+@mixin content($obj){
+  &{
+    position:relative;
+    &:#{$obj}{content:''; position:absolute; @content;}
+  }
+}
+
+@mixin clearFix{
+  &:after{content:''; display:block; clear:both;}
+}
+
+/*
+  $object: before or after
+    default : before
+  $position : relative or absolute or fixed
+    default : relative
+*/
+@mixin content($object:before, $position:relative){//obj:after,before, $standard:부모테그에 relative 를 할지말지 y시 relative생성
+  &{
+    position:$position;
+    &:#{$object}{content:''; position:absolute; @content;}
+  }
+}
+
+@mixin ellipsis($line:1) {
+  width:100%;  overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: $line; -webkit-box-orient: vertical;
+  @if $line == 1 {
+    display: block;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+  }
+  @content;
+}
+
+@mixin center($position){
+  @if($position == x){
+    left: 50%; transform: translateX(-50%);
+  }@else if($position == y){
+    top: 50%; transform: translateY(-50%);
+  }@else{
+    left: 50%; top:50%; transform: translate(-50%,-50%);
+  }
+}
+
+@mixin aspect($width, $height) {
+  aspect-ratio: $width / $height;
+  @supports not (aspect-ratio: $width / $height) {
+    &::before {
+      content: '';
+      float: left;
+      padding-top: calc((#{$height} / #{$width}) * 100%);
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+@mixin transition($object:all, $time:0.2s, $easing:ease-in-out, $delay:0s){
+  transition:$time $object $delay $easing;
+}
+
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index(quote($string), $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}

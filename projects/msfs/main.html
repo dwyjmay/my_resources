@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>엠즈푸드</title>
+    <link rel="stylesheet" href="static/m/css/reset.css">
+    <link rel="stylesheet" href="static/m/css/layout.css">
+    <link rel="stylesheet" href="static/m/css/common.css">
+    <link rel="stylesheet" href="static/m/css/main.css">
+    <script src="static/m/js/jquery-3.7.0.min.js"></script>
+    <script src="static/m/js/ui.js"></script>
+    <script src="static/m/js/efusioni.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header id="header" class="">
+        <div class="header-contents">
+            <div id="header-fixed" class="fit-contents">
+                <div class="logo"><a href="/index"><img src="static/m/images/common/logo.svg" alt=""></a></div>
+                <aside class="util">
+                    <ul id="util-menu">
+                        <li id="btn-search"><button type="button" onclick="searchOpen();"><i class="ico_search"></i><span class="hideDesc">검색</span></button></li>
+                    </ul>
+                </aside>
+            </div>
+
+            <nav id="gnb" class="fit-contents">
+                <ul>
+                    <li>
+                        <button type="button" onclick="handleHeaderMenuHover(this, '#recipe-nav');">레시피</button>
+                        <div id="recipe-nav" class="sub-nav">
+                            <div class="fit-contents">
+                                <a href="/recipe/list?cateCode=10001">음료</a><a href="/recipe/list?cateCode=10002">베이커리</a>
+                            </div>
+                        </div><!-- //sub-nav -->
+                        <span class="bg_gradient"></span>
+                    </li>
+                    <li>
+                        <button type="button" onclick="handleHeaderMenuHover(this, '#catalog-nav');">카탈로그 상품</button>
+                        <div id="catalog-nav" class="sub-nav">
+                            <div class="fit-contents">
+                                <a href="/product/list?cateCode=10001">베이커리</a><a href="/product/list?cateCode=10002">베이킹 재료</a><a href="/product/list?cateCode=10007">카페 재료</a><a href="/product/list?cateCode=10008">카페 베이커리 용품</a>
+                            </div>
+                        </div><!-- //sub-nav -->
+                        <span class="bg_gradient"></span>
+                    </li>
+                    <li><a href="/contents/event/list">이벤트</a></li>
+                    <li><a href="/contents/notice/list">공지사항</a></li>
+                </ul>
+                <span class="bg_gradient"></span>
+                <em class="bar"></em>
+            </nav>
+
+        </div>
+
+        <div id="menu-fixed">
+            <ul>
+                <li class="on"><button type="button" onclick="showCategoryWrap();"><i></i><span>카테고리</span></button></li>
+                <li><a href="/index"><i></i><span>홈</span></a></li>
+                <li><a href="/my-page/index"><i></i><span>MY</span></a></li>
+                <li><a href="/my-page/recipe/favorite-list"><i></i><span>나만의 레시피</span></a></li>
+            </ul>
+        </div>
+
+
+        <div id="menu-fixed-categoryWrap">
+            <div class="title-area">
+                <h4>카테고리</h4>
+                <button type="button" onclick="hideCategoryWrap();"><span class="hideDesc">닫기</span></button>
+            </div>
+            <article>
+                <ul>
+                    <li class="on"><button type="button" onclick="showCategoryList(this);">레시피</button></li>
+                    <li class=""><button type="button" onclick="showCategoryList(this);">카탈로그 상품</button></li>
+                </ul>
+                <div id="category-list">
+
+                    <section class="active">
+                        <div class="list-depth01">
+                            <ul>
+                                <li>
+                                    <button type="button" onclick="">음료</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">베이커리</button>
+                                </li>
+                            </ul>
+                            <em class="highlight" style="top: 0px;"></em>
+                        </div>
+                        <div class="list-depth02">
+                            <div>
+                                <a href="/recipe/list?cateCode=10001"><strong>음료</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10003">에이드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10004">주스</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10005">티블렌드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10006">라떼(Espresso)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10007">라떼(Non-Espresso)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10008">블렌디드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10009">아이스크림</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10010">빙수</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10011">베이스</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/recipe/list?cateCode=10002"><strong>베이커리</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10012">베이커리&amp;디저트</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10013">샌드위치</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10014">피자</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10015">파스타/리조또</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10016">샐러드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10017">스프</a>
+                                    </li>
+                                    <li>
+                                        <a href="/recipe/list?cateCode=10018">기타</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="">
+                        <div class="list-depth01">
+                            <ul>
+                                <li>
+                                    <button type="button" onclick="">베이커리</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">베이킹 재료</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">카페 재료</button>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="">카페 베이커리 용품</button>
+                                </li>
+                            </ul>
+                            <em class="highlight" style="top: 0px;"></em>
+                        </div>
+                        <div class="list-depth02">
+                            <div>
+                                <a href="/product/list?cateCode=10001"><strong>베이커리</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10003">구움 과자류</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10004">마카롱</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10009">케이크</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10010">타르트</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10011">쿠키</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10012">페스츄리</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10013">베이글</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10014">소프트빵</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10015">샌드위치</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10016">하드빵</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10017">생지류</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/product/list?cateCode=10002"><strong>베이킹 재료</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10006">가루/프리믹스/분말</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10005">설탕/소금</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10018">유제품/유지류</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10019">초콜릿/코코아</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10020">견과류/과일</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10021">앙금/잼/퓨레/시럽/소스</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10022">육가공</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10023">필링/첨가제/향신료</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10024">데코레이션</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10025">베이킹용품</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10026">기타</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/product/list?cateCode=10007"><strong>카페 재료</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10027">TEA/액상차</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10028">시럽/소스/잼</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10029">스무디/농축액</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10030">냉동과일/토핑</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10031">음료수/탄산수</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10032">파우더</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10033">원두</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10034">유제품/유지류</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10035">빙수/아이스크림</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="/product/list?cateCode=10008"><strong>카페 베이커리 용품</strong></a>
+                                <ul>
+                                    <li>
+                                        <a href="/product/list?cateCode=10036">일회용품</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10037">종이컵/리드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10038">PET컵/리드</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10039">홀더/캐리어</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10040">위생용품</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product/list?cateCode=10041">카페용품</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div> <!-- //category-list-->
+            </article>
+        </div>
+    </header>
+</div>
+<script>
+
+    function handleHeaderMenuHover(obj, target, parents) {
+        const $subNav = $(target);
+        const $obj = $(obj);
+
+        if($subNav.length > 0){
+            if(!$subNav.hasClass('open')){
+                const $subOpenNav = $('.sub-nav.open');
+                if($subOpenNav.length > 0) {
+                    $subOpenNav.removeClass('open').hide();
+                    $subOpenNav.prev().removeClass('active')
+                }
+                uiUx.afterFunction(
+                    () => $subNav.show(),
+                    () => $subNav.addClass('open')
+                )
+                $obj.addClass('active')
+                $obj.position().left
+                $('.bar').css({'width':$obj.width(),'left':`${$obj.position().left}px`,'opacity':1})
+
+            } else{
+                uiUx.afterFunction(
+                    () => {
+                        $subNav.removeClass('open')
+                        $('.bar').css({'opacity':0})
+                    },
+                    () => $subNav.hide()
+                )
+                $obj.removeClass('active')
+            }
+        }
+    }
+
+    function showCategoryWrap(){
+        wrapFix('on')
+        const $categoryWrap = $('#menu-fixed-categoryWrap');
+        $categoryWrap.addClass('active');
+        $categoryWrap.find('#category-list section').eq(0).addClass('active');
+        let scrollEffect = categoryScrollEffect();
+        setWindow(scrollEffect.scrollPointArr);
+    }
+
+    function hideCategoryWrap(){
+        wrapFix('off')
+        const $categoryWrap = $('#menu-fixed-categoryWrap');
+        $categoryWrap.removeClass('active')
+        $categoryWrap.find('#category-list section').removeClass('active');
+    }
+    function showCategoryList(obj){
+        let listIndex = $(obj).parent().index();
+        const $targetList = $('#category-list').find('section').eq(listIndex);
+
+        $(obj).parent().addClass('on')
+        $(obj).parent().siblings().removeClass('on')
+
+        $targetList.addClass('active')
+        $targetList.siblings().find('.highlight').css('top',0);
+        $targetList.siblings().find('.list-depth02').scrollTop(0);
+        $targetList.siblings().removeClass('active');
+        let scrollEffect = categoryScrollEffect();
+        setWindow(scrollEffect.scrollPointArr);
+    }
+
+    function setWindow(arr){
+        let $currentList = $('#category-list section.active');
+        $currentList.find('button').on('click',function(){
+            let $targetTitle = $(this).parent();
+            let targetIndex = $targetTitle.index();
+
+            $currentList.find('.list-depth02').animate({
+                scrollTop:arr[targetIndex]
+            },400)
+        })
+    }
+    function categoryScrollEffect(){
+        let $targetList = $('#category-list section.active').find('.list-depth02');
+        let $targetHighlight = $targetList.prev().find('.highlight');
+
+        let totalScrollHeight = $targetList.prop('scrollHeight')-$('#category-list').outerHeight();
+        if($targetList.find('div').last().innerHeight() > $('#category-list').outerHeight()){ // y스크롤 영역보다  마지막 분류의 길이가 더 길 경우
+            totalScrollHeight = $targetList.prop('scrollHeight') - $targetList.find('div').last().innerHeight();
+        }
+
+        let groupLen = $targetList.find('div').length;
+        const standardBtnHeight = $targetList.prev().find('button').innerHeight();
+
+        let scrollPoint = [];
+        let highlightPoint = [];
+        for (let i = 0; i < groupLen; i++) {
+            scrollPoint.push((i===groupLen-1) ? totalScrollHeight : $targetList.find('div').eq(i).position().top - (standardBtnHeight * i))
+            highlightPoint.push($targetList.prev().find('li').eq(i).position().top)
+        }
+
+        $targetList.scroll(function(){
+            let currentListScrollPos = $(this).scrollTop();
+            for(let i = 0 ; i< groupLen; i++){
+                if (i === groupLen-1){
+                    if(currentListScrollPos >= scrollPoint[i]){
+                        $targetHighlight.css('top',highlightPoint[i]);
+                    }
+                } else{
+                    if(currentListScrollPos >= scrollPoint[i] && currentListScrollPos < scrollPoint[i+1]){
+                        $targetHighlight.css('top',highlightPoint[i]);
+                    }
+                }
+            }
+        })
+        return {scrollPointArr : scrollPoint}
+    }
+
+    function searchOpen(){
+        uiUx.popupLayer.open('/ajax/layer/search','','full')
+    }
+
+</script>
+</body>
+</html>

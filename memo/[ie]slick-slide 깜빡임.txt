@@ -1,0 +1,4 @@
+[참고]https://github.com/kenwheeler/slick/issues/1158
+.slick-slider .slick-track, .slick-slider .slick-list { transform: none; }
+
+
