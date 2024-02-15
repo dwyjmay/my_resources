@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scrollTrigger_pin</title>
+    <script src="../../static/js/gsap.min.js"></script>
+    <script src="../../static/js/ScrollTrigger.min.js"></script>
+    <style>
+        body{margin:0;
+            background-image:
+                    linear-gradient(90deg, #cdcccc 0px, #cdcccc 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(#cdcccc 0px, #cdcccc 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(#e0e0e0 0px, #e0e0e0 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(90deg, #e0e0e0 0px, #e0e0e0 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(transparent 0px, transparent 5px, #f6f6f6 5px, #f6f6f6 95px, transparent 95px, transparent 100px),
+                    linear-gradient(90deg, #e0e0e0 0px, #e0e0e0 1px, transparent 1px, transparent 99px, #e0e0e0 99px, #e0e0e0 100px),
+                    linear-gradient(90deg, transparent 0px, transparent 5px, #f6f6f6 5px, #f6f6f6 95px, transparent 95px, transparent 100px),
+                    linear-gradient(transparent 0px, transparent 1px, #f6f6f6 1px, #f6f6f6 99px, transparent 99px, transparent 100px),
+                    linear-gradient(#cdcccc, #cdcccc);
+            background-size:100px 100%, 100% 100px, 100% 10px, 10px 100%, 100% 100px, 100px 100%, 100px 100%, 100px 100px, 100px 100px;}
+
+        h1{text-align: center; margin-bottom:100px;}
+        main{max-width: 35%; margin:80px auto;}
+        p{font-size: 1.5rem; line-height: 1.7;}
+        span{
+            background-image : linear-gradient(yellow,yellow);
+            background-size:0 100%;
+            background-repeat: no-repeat;    /*no-repeat을 설정해주지 않으면 background size의 너비를 50%로 설저해도 반복되기 때문에 100%처럼보인다.*/
+            transition : background-size 1s ease-in;
+        }
+
+        .active{
+            background-size : 100% 100%;
+        }
+
+    </style>
+</head>
+<body>
+<main>
+    <h1>THE CODE CREATIVE : Image Alt Text</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel enim ex. Morbi sit amet nisi vitae dui euismod varius. Cras rhoncus nunc in arcu vulputate, sit amet convallis libero aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ex magna, condimentum at ligula vitae, ornare luctus diam. Praesent a convallis metus. Suspendisse sed ligula suscipit, condimentum massa eget, elementum nunc. In molestie nisl non dolor eleifend facilisis. Phasellus in felis condimentum, dapibus metus laoreet, tempor ligula. Integer sit amet nulla mi. Praesent ligula ante, pretium quis euismod nec, elementum in sapien. Maecenas commodo convallis ipsum. Nullam sapien leo, aliquam varius dolor quis, consequat accumsan metus. Maecenas sit amet tincidunt ex.</p>
+    <p>Nullam ac mauris eu nulla mattis sagittis nec non felis. Mauris lobortis vestibulum diam, nec vehicula magna consectetur eu. Aenean imperdiet feugiat lectus ut tincidunt. Pellentesque iaculis malesuada ullamcorper. Aenean id hendrerit lorem. Fusce aliquet semper arcu, sit amet ultrices lectus tempor elementum. Cras mollis laoreet posuere. Morbi non fringilla tellus, id feugiat ipsum. Nullam placerat pharetra arcu, ut volutpat leo dignissim dapibus. Quisque diam diam, vehicula sed risus sed, molestie euismod nunc. In id tincidunt quam, et vulputate libero. Nunc tempus erat eget dui sollicitudin scelerisque. Integer tortor lorem, finibus sit amet tempor eu, ultrices et eros.</p>
+    <p>Sed rhoncus tincidunt fringilla. <span>Nunc orci nulla, congue at justo nec, aliquam faucibus ex.</span> Nunc mauris ligula, auctor non leo et, accumsan vehicula libero. Integer eu imperdiet diam, vitae consequat risus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec consectetur orci eu diam faucibus commodo. Aliquam scelerisque metus eu dolor suscipit, in interdum turpis euismod.</p>
+    <p>Aenean porttitor mauris massa, eget blandit ante venenatis et. Sed malesuada rhoncus purus sit amet tempus. Aliquam dictum, sem at luctus dapibus, lacus augue imperdiet purus, eget tempus orci est sed elit. Cras ut dolor interdum, lobortis dolor sed, feugiat neque. Vivamus lacinia porttitor diam sed efficitur. Praesent fermentum ullamcorper tempor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin euismod nunc ligula, a euismod sapien tempor vel. Sed varius mauris id nisl porta, id pretium diam auctor.</p>
+    <p>Orci varius natoque penatibus et magnis dis parturient montes, <span>nascetur ridiculus mus</span>. Aliquam erat volutpat. Fusce purus nunc, ultricies vel mollis sit amet, sollicitudin sit amet felis. Ut id iaculis augue. Nunc nibh felis, egestas eu venenatis vel, sagittis a urna. Nam ultricies magna sit amet ornare gravida. Vivamus ac nisl id dolor porta ullamcorper id ornare quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque non sem turpis. Aenean odio augue, bibendum in venenatis vel, tempus et elit. Vivamus a consectetur est. In sed felis convallis, ultricies tortor in, tincidunt dolor.</p>
+</main>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // gsap.to("span",{
+    //     scrollTrigger:{
+    //         start : "top center",
+    //         markers : true
+    //     }
+    // })
+    //
+    gsap.utils.toArray("span").forEach((span)=>{
+        ScrollTrigger.create({
+            trigger: span,
+            start : "top center",
+            //toggleClass:"active",
+            onEnter:()=>span.classList.add("active"),
+            markers:true
+        })
+    })
+
+
+</script>
+</body>
+</html>

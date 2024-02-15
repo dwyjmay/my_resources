@@ -1,0 +1,11 @@
+.part2 .alertBox{display:none; background-color: skyblue; padding:20px; color: #fff; border-radius: 5px;}
+.part2  .alertBox a{float: right;}
+
+.part4 #popBox{display:none; padding:20px; border-radius: 10px; color:#fff; text-align: center; background:#f0aa01;}
+.part4 #popBox button{float: right;}
+
+.part5 #popBox{display:none; padding:20px; border-radius: 10px; color:#fff; text-align: center; background:#f0aa01;}
+.part5 #popBox #close{float: right;}
+
+.part6 .list-group{display: none;}
+.part6 .show{display: block;}

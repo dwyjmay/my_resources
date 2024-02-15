@@ -1,0 +1,56 @@
+///////////////////////////////////////////////////////////////
+//////////////Document Object Model : DOM 용어 개념정리//////////
+///////////////////////////////////////////////////////////////
+
+1. 자바스크립트와 html은 다른 언어
+→ 자바스크립트가 html을 조작하기 위해서, HTML을 자바스크립트가 해석할 수 있는 문법으로 변환해야 함.
+(array, object 자료형에 담기 :: 실제로 브라우저는 html을 열 때, object와 비슷한 자료형에 담아줌)
+
+ex)
+<div style="color:red">안녕하세요</div>
+
+var document = {
+div1 : {
+	style : {color :' red ' }
+	innerHTML : '안녕하세요'
+	}
+}
+↑이런 식으로 저장 -> 원하는 자료를 출력하고 조작하기 위하여.  (document.div1.innerHTHML = '안녕')
+↑위 변수를 document object라고 함.  + model이 붙어 DOM
+
+:: 자바스크립트가 HTML에 대한 정보들(id, class, name, style, innerHTML 등)을 object 자료로 정리한것이 DOM
+
+
+2. 브라우저는 html 문서를 위에서부터 읽으면서 DOM을 생성함
+
+<script>document.getElementById('test').innerHTML = '안녕'</script>
+<p id="test">임시글자</p>
+
+↑ p#test 요소가 DOM에 생성되기 전이므로  script 실행이 안 됨.
+방법1. 이 코드는 html을 전부 읽고나서 실행해주세요 라는 코드를 짠다. (자바스크립트의 위치를 내가 정할 수 없을 경우에 유용하게 쓰임)
+
+$(document).ready(function(){	//실행할 코드 })
+혹은
+document.addEventListner('DOMContentLoaded',function(){ //실행할 코드 })
+
+
+
+///////////////////////////////////////////////////////////////
+////////////////load 이벤트 리스너///////////////////////////////
+///////////////////////////////////////////////////////////////
+load 이벤트리스너를 사용하면 DOM의 생성 뿐만 아니라 이미지,CSS, JS 파일이 로드가 됐는지도 체크 가능하다.
+
+셀렉터로찾은이미지.addEventListener('load',function(){
+//이미지 로드되면 실행할 코드
+// 이게 외부 자바스크립트 파일이라면..  그 파일보다 이미지가 더 먼저 로드되는 경우에는 이벤트 발생체크를 못함 ..!
+})
+
+*window에 붙여도 된다.
+$(windonw).on('load',function(){
+document 안의 이미지, js 파일 포함 전부 로드 되었을 경우 실행
+})
+
+window.addEventListener('load',function(){
+})
+//ready()는 dom생성만 체크하고,  load는 모든 파일과 이미지의 로드상태를 체크함
+

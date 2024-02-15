@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../static/js/jquery-3.6.4.min.js"></script>
+    <script>
+        $(function() {
+            $('.control a').on("click", function() {
+                $(this).parent().hide();
+                document.querySelector('video').play()
+            });
+        })
+    </script>
+    <style>
+        img{max-width: 100%;}
+        .rel {position: relative;}
+        .videoCont{width:50%;}
+
+        .videoCont video {
+            width: 100%;
+        }
+
+        .videoCont video + .control {
+            position: absolute;
+            display: block;
+            width: 100%;
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .videoCont video+.control a {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            transition: 0.5s all;
+        }
+
+        .videoCont video + .control a:hover {
+            transform: translate(-50%, -50%) rotate(5deg);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="rel videoCont">
+        <video controls playsinline preload="metadata" poster="./videoThum1.png">
+            <source src="testVideo.mp4">
+        </video>
+        <span class="control">
+            <img src="./videoThum1.png" alt="">
+            <a href="javascript:;"><img src="videoPlay.png" alt="play"></a>
+        </span>
+    </div>
+</body></html>

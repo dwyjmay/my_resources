@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>빈폴</title>
+    <script type="text/javascript" src="../../../static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="../../../api/slick-slider/css/slick-theme.css">
+    <link rel="stylesheet" href="../../../api/slick-slider/css/slick.css">
+    <script src="../../../api/slick-slider/js/slick.min.js"></script>
+    <script src="../../../api/swiper/js/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../../../api/swiper/css/swiper-bundle.min.css" />
+    <!--scrollTrigger-->
+    <script src="../../../static/js/gsap.min.js"></script>
+    <script src="../../../static/js/ScrollTrigger.min.js"></script>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body{overflow-x: hidden;}
+        .layerSlide .slideSection{aspect-ratio: 1/1.5; position: relative; opacity: 1!important;}
+
+        .layerSlide  .slideSection > div {
+            position: absolute; height:100%; top:0; width: 0;
+            color:red; font-size: 4rem; text-align: center; /*overflow: hidden;*/
+        }
+        .layerSlide  .slideSection.beforeSlide{ z-index: 990!important; }
+        .layerSlide  .slideSection.beforeSlide > div:before{content: ''; display: block; position: absolute; width: 100%; height: 100%; background:rgba(0,0,0,0.3); left: 0; top:0; z-index: 1000; transition: .5s background ease-out;}
+        .layerSlide  .slideSection.afterSlide > div:before{content: ''; display: block; position: absolute; width: 100%; height: 100%; background:rgba(0,0,0,0.3); left: 0; top:0; z-index: 1000; transition: .5s background ease-out;}
+        .layerSlide  .slideSection.slick-active > div:before{content: ''; display: block; position: absolute; width: 100%; height: 0; background:rgba(0,0,0,0); left: 0; top:0; z-index: 1000; transition: .5s background ease-out;}
+
+        .layerSlide  .slideSection.beforeSlide > div {width:0;  transition:1s width ease-out, 1s transform ease-out;}
+        .layerSlide  .slideSection.afterSlide > div {width:0; right:0; left:auto; transition:1s width ease-out, 1s transform ease-out;}
+        .layerSlide  .slideSection.slick-active > div{width: 100%; transition:1s width ease-out, 1s transform ease-out; left:auto; right: 0;}
+        .layerSlide  .slideSection .slideContent{width: 100vw; height: 100%; background-repeat: no-repeat;  position: absolute; overflow: hidden;}
+        .layerSlide  .slideSection video{width: 100%; height:100%; object-fit: fill;}
+
+        .layerSlide  .slideSection div .slideContent{transition: 1s all ease-out; margin-left:0; margin-right:0;}
+        .layerSlide  .slideSection.beforeSlide .slideContent{left:0; right:auto;}
+        .layerSlide  .slideSection.beforeSlide > div  .slideContent{margin-left:-30px;}
+        .layerSlide  .slideSection.slick-active .slideContent{right:0;}
+        .layerSlide .slick-dots > li{display: inline-block;}
+
+        .backwardD .slideSection.afterSlide .slideContent {left:auto; right:0;}
+        .backwardD .slideSection.slick-active > div{left : 0; right:auto;}
+        .backwardD .slideSection.slick-active .slideContent {left:0;right:auto;}
+        .backwardD .slideSection.afterSlide > div .slideContent{margin-right:-30px;}
+
+        /*슬라이드 after를 확대까지한다면 */
+        .layerSlide  .slideSection.afterSlide > div {transform: scale(1.05);}
+        .layerSlide  .slideSection.beforeSlide > div {transform: scale(1.05);}
+        .layerSlide  .slideSection.slick-active > div{transform: scale(1);}
+
+
+        #section2{background: #fff; position: relative; z-index: 1;}
+        #section2 h1{display:flex; width: 200vw; margin-left:-50vw; padding:60px 10px 0; justify-content: space-between; flex-flow: column;}
+        .mySwiper {width: 100%; aspect-ratio: 1/1.3; padding:0 10px; margin-bottom: 60px;}
+        .swiper-slide {position: relative; width:80%; height: calc((100vw - 20px) * 0.8 * 1.5);}
+        /*  너비 : 다음 슬라이드가 일부 보이게 하기 위해 설정
+            높이 : ((100vw - 20px ) * 0.8 = 너비)   * 1.5( = 이미지 비율)
+            height: calc((100vw - 20px) * 0.8 * 1.44 + 41px);
+        */
+        .swiper-slide .slideContent{height:100%; display: flex; justify-content:flex-start; flex-flow: column; overflow: hidden;}
+        .swiper-slide .slideContent > div{position:relative; width: 100%; height:60%; left:100%; background-size: 110%; background-repeat: no-repeat;  transition: 0.5s ease-out, 0.8s 0.2s ease-out background-size;
+            /* 지워도 되는 부분 → */ font-size: 4rem; color:#fff; text-align: center;
+        }
+        .swiper-slide .slideContent > div:before{content:''; position: absolute; display: block; width: 100%; height:100%; background:#053905; left:0; top:0; transition: 1s ease-out;}
+        .mySwiper :is(.swiper-slide-active, .swiper-slide-prev) .slideContent > div {height:100%;}
+
+        /* paging type progress*/
+        .swiper-pagination{ transition : 0.5s width, 0.5s opacity;}
+        .swiper-horizontal > .swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal, .swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite, .swiper-vertical > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+            height: 2px; opacity: 0; width: 0; top:auto; bottom:0;
+        }
+        .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{background:#222;}
+
+        /* 슬라이드 영역 viewport 노출 후 */
+        .slideStart .swiper-slide .slideContent > div{left:0; background-size: 100%;}
+        .slideStart .slideContent > div:before{width: 0;}
+        .slideStart :is(.swiper-horizontal > .swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal, .swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite, .swiper-vertical > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite) {
+            opacity: 1; width: 100%;
+        }
+
+        #section2 h1 span:last-child{align-self: flex-end;}
+        .curTitle {position: relative; bottom: 10%; left:0; width: 100%; height: 1.2em; overflow: hidden; display: flex; justify-content: space-between; padding-right: 20%;}
+        .curTitle.effect :is(b,span){position:relative; animation : slideEffect 0.2s ease-out forwards ,slideEffect2 0.2s 0.2s ease-out forwards ; top:auto; left:0;}
+
+        @keyframes slideEffect {
+            0% {top: 0;}
+            100% {top:-100%;}
+        }
+        @keyframes slideEffect2 {
+            0% {top: 100%;}
+            100% {top:0;}
+        }
+    </style>
+</head>
+<body>
+<div class="layerSlide forwardD">
+    <div class="slideSection">
+        <div>
+            <div class="slideContent" style="background-image:url(https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80);">0</div>
+        </div>
+    </div>
+    <div class="slideSection">
+        <div>
+            <div class="slideContent">
+                <video controls playsinline preload="metadata" poster="../../../video/videoThum1.png">
+                    <source src="../../../video/testVideo.mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+    <div class="slideSection">
+        <div>
+            <div class="slideContent" style="background-image:url(https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80);">
+                1
+            </div>
+        </div>
+    </div>
+    <div class="slideSection">
+        <div>
+            <div class="slideContent" style="background-image:url(https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80);">
+                2
+            </div>
+        </div>
+    </div>
+    <div class="slideSection">
+        <div>
+            <div class="slideContent" style="background-image:url(https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);">
+                3
+            </div>
+        </div>
+    </div>
+    <div class="slideSection">
+        <div>
+            <div class="slideContent" style="background-image: url(https://plus.unsplash.com/premium_photo-1669680784119-1f2ac0260295?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);">
+                4
+            </div>
+        </div>
+    </div>
+    <div class="slideSection">
+        <div>
+            <div class="slideContent" style="background-image: url(https://images.unsplash.com/photo-1558326567-98ae2405596b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=759&q=80);">
+                5
+            </div>
+        </div>
+    </div>
+</div>
+<section id="section2">
+    <h1>
+        <span>2023 Spring</span>
+        <span style="font-weight: 900">LOOKBOOK</span>
+    </h1>
+    <!-- Slider main container -->
+    <div class="swiper mySwiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="slideContent">
+                    <div style="background-image:url(https://plus.unsplash.com/premium_photo-1675186049409-f9f8f60ebb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);">
+                        1
+                    </div>
+                    <p class="textArea hideDesc">
+                        <b>빨간원피스와 털달린 구두 컬렉션</b>
+                        <span>23 S/S</span>
+                    </p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slideContent">
+                    <div style="background-image:url(https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80);">
+                        2
+                    </div>
+                    <p class="textArea hideDesc">
+                        <b>노란색 트레이닝과 뾰족구두 컬렉션</b>
+                        <span>23 S/S</span>
+                    </p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slideContent">
+                    <div style="background-image:url(https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);">
+                        3
+                    </div>
+                    <p class="textArea hideDesc">
+                        <b>색안경과 꽃 컬렉션</b>
+                        <span>23 S/S</span>
+                    </p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slideContent">
+                    <div style="background-image:url(https://plus.unsplash.com/premium_photo-1671718111927-4b40f0ca9240?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80);">
+                        4
+                    </div>
+                    <p class="textArea hideDesc">
+                        <b>긴 치마와 멋진구두 컬렉션</b>
+                        <span>23 S/S</span>
+                    </p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slideContent">
+                    <div style="background-image: url(https://images.unsplash.com/flagged/photo-1559502867-c406bd78ff24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80)">
+                        5
+                    </div>
+                    <p class="textArea hideDesc">
+                        <b>니트 컬렉션</b>
+                        <span>23 S/S</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="curTitle"><b></b><span></span></div>
+    </div>
+    <!-- // mySwiper -->
+</section>
+<!-- // section2 -->
+<section id="section3">
+    <h1 id="title"></h1>
+
+</section>
+
+<div style="display:flex; height: 100vh; background-color:#e78898; text-align: center; justify-content: center; align-items: center; color:#fff; font-size: 2em;">하단영역</div>
+<script>
+
+    /* 상단 레이어 슬라이드 이미지 크기 설정 */
+    function initSlideSize(){
+        let setImgW = $(window).width();
+        let setImgH = $(window).width()*1.5;
+        $('.layerSlide  .slideSection .slideContent').css({'background-size': setImgW+'px '+setImgH+'px'});
+    }
+    $(window).resize(function(){
+        initSlideSize();
+    })
+
+    /* 상단 레이어 슬라이드 설정 */
+    $('.layerSlide').
+    on('init',function(event, slick){
+        slick.$slides.last().addClass('beforeSlide');
+        slick.$slides.eq(slick.currentSlide+1).addClass('afterSlide')
+        initSlideSize();
+    }).slick({
+        dots: false,
+        prevArrow: false,
+        nextArrow: false,
+        infinite: true,
+        speed: 1000,
+        fade:true,
+        slidesToShow: 1,
+    }).on('beforeChange',function(event, slick, currentSlide, nextSlide){
+        slick.$slides.removeClass('beforeSlide').removeClass('afterSlide');
+
+        let setPrevSlide = currentSlide;
+        let setNextSlide = nextSlide+1;
+        if(setNextSlide>=slick.$slides.length)setNextSlide=0;
+        $('.layerSlide').removeClass('backwardD').addClass('forwardD');
+
+        if((currentSlide - nextSlide ==1 ) || nextSlide - currentSlide == slick.$slides.length-1) { //역방향
+            console.log('역방향');
+            setPrevSlide = nextSlide-1;
+            setNextSlide = currentSlide;
+            if(setPrevSlide<0)setPrevSlide=slick.$slides.length-1;
+            $('.layerSlide').removeClass('forwardD').addClass('backwardD');
+        }
+
+        //console.log(`setPrevSlide is ${setPrevSlide}, setNextSlide is ${setNextSlide}`)
+        slick.$slides.eq(setPrevSlide).addClass('beforeSlide');
+        slick.$slides.eq(setNextSlide).addClass('afterSlide');
+    })
+
+    /* 룩북 슬라이드 설정 */
+    let target = document.querySelector('.curTitle'); //슬라이드 제목 텍스트영역
+    let cur_title1 = document.querySelectorAll('.swiper-slide')[0].querySelector('.textArea b').innerText;
+    let cur_title2 = document.querySelectorAll('.swiper-slide')[0].querySelector('.textArea span').innerText;
+    const swiper = new Swiper('.mySwiper', {
+        loop: true,
+        speed:1000, //슬라이드 넘기는 속도
+        slidesPerView:'auto',
+        spaceBetween:20, // 슬라이드 영역 간 여백
+        pagination: {
+            el: '.swiper-pagination',
+            type:'progressbar'
+        },
+        on:{
+            init:function(){
+                target.children[0].innerHTML = cur_title1;
+                target.children[1].innerHTML = cur_title2;
+            },
+            slideChangeTransitionStart : function(){
+                cur_title1 = document.querySelectorAll('.swiper-slide')[this.previousIndex].querySelector('.textArea b').innerText;
+                cur_title2 = document.querySelectorAll('.swiper-slide')[this.previousIndex].querySelector('.textArea span').innerText;
+                target.children[0].innerHTML = cur_title1;
+                target.children[1].innerHTML = cur_title2;
+            },
+            slideChangeTransitionEnd : function(){
+                cur_title1 = document.querySelector('.swiper-slide-active').querySelector('.textArea b').innerText;
+                cur_title2 = document.querySelector('.swiper-slide-active').querySelector('.textArea span').innerText;
+
+                target.classList.remove("effect");
+                void target.offsetWidth;
+                target.classList.add("effect");
+
+                setTimeout(()=>{
+                    target.children[0].innerHTML = cur_title1;
+                    target.children[1].innerHTML = cur_title2;
+                },200)
+            }
+        },
+    });
+
+    const tl = gsap.timeline({
+        scrollTrigger:{
+            trigger:'#section2',
+            start:'top top',
+            onEnter:()=> document.querySelector('.mySwiper').classList.add('slideStart')
+        }
+    })
+    tl.to("#section2 h1",{width:'100vw', marginLeft : '0',duration:2})
+
+
+    gsap.to("#section2",{
+        scrollTrigger :{
+            trigger : ".layerSlide",
+            start : "top top",
+            end : "bottom top",
+            pin:'.layerSlide',
+            pinSpacing:false,
+            scrub:1,
+            markers:{
+                startColor:"darkblue",
+                endColor:"brown",
+                fontSize:"1.2rem",
+                indent:50
+            }
+        }
+    })
+</script>
+</body>
+</html>

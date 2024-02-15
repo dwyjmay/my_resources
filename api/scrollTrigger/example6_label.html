@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scrollTrigger_label</title>
+    <script src="../../static/js/gsap.min.js"></script>
+    <script src="../../static/js/ScrollTrigger.min.js"></script>
+    <style>
+        body{margin:0;
+            background-image:
+                    linear-gradient(90deg, #cdcccc 0px, #cdcccc 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(#cdcccc 0px, #cdcccc 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(#e0e0e0 0px, #e0e0e0 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(90deg, #e0e0e0 0px, #e0e0e0 1px, transparent 1px, transparent 99px,  transparent 100px),
+                    linear-gradient(transparent 0px, transparent 5px, #f6f6f6 5px, #f6f6f6 95px, transparent 95px, transparent 100px),
+                    linear-gradient(90deg, #e0e0e0 0px, #e0e0e0 1px, transparent 1px, transparent 99px, #e0e0e0 99px, #e0e0e0 100px),
+                    linear-gradient(90deg, transparent 0px, transparent 5px, #f6f6f6 5px, #f6f6f6 95px, transparent 95px, transparent 100px),
+                    linear-gradient(transparent 0px, transparent 1px, #f6f6f6 1px, #f6f6f6 99px, transparent 99px, transparent 100px),
+                    linear-gradient(#cdcccc, #cdcccc);
+            background-size:100px 100%, 100% 100px, 100% 10px, 10px 100%, 100% 100px, 100px 100%, 100px 100%, 100px 100px, 100px 100px;}
+        .box{width: 100px; height:100px; background-color:steelblue;}
+
+        .fullscreen{
+            height: 100vh;}
+    </style>
+</head>
+<body>
+<div class="fullscreen"></div>
+<div class="box"></div>
+<div class="fullscreen"></div>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const t2 = gsap.timeline();
+    t2.to(".box", {x:500,duration:5})
+        .to(".box",{y:500,duration:3})
+        //.add("rotate")   //타임라인 안에서 레이블을 지정하는 방법1
+        // .addLabel("rotate")//타임라인 안에서 레이블을 지정하는 방법2
+        .to(".box",{rotate : 90, repeat : 2,ease:"elastic"})
+
+    t2.addLabel("rotate",6) // 6초가 흐른 후의 동작부터 시작      // 이렇게 타임라인 밖에서 레이블을 지정할 수 있음
+    t2.play("rotate");
+
+    // ScrollTrigger.create({
+    //     animation:t2,
+    //     trigger:".box",
+    //     start:"top center",
+    //     markers:true
+    // })
+</script>
+</body>
+</html>

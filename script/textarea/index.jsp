@@ -75,6 +75,13 @@
                 $(this).val($(this).val().replace(/[^0-9]/g,""));
             });
         })
+
+        function checkSize(textArea,size){
+            console.log($(textArea).val().length)
+            if( $(textArea).val().length > size){
+                $(textArea).val($(textArea).val().substring(0, size));
+            }
+        }
     </script>
 </head>
 <body>
@@ -89,6 +96,10 @@
                 </p>
                 <textarea class="contact_txt" id="content" name="content" cols="105" rows="10" title="내용 입력" onkeyup="updateChar(qnaForm.content, 80, textlimit);"></textarea>
             </form>
+        </article>
+        <h1>약식</h1>
+        <article class="explanation">
+            <textarea name="" id="" cols="30" rows="10" onkeydown="checkSize(this,50)"></textarea>
         </article>
     </section>
     <section class="section" id="placeholder-section">

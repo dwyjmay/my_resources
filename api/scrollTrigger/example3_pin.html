@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scrollTrigger_pin</title>
+    <script src="../../static/js/gsap.min.js"></script>
+    <script src="../../static/js/ScrollTrigger.min.js"></script>
+    <style>
+        body{margin:0;}
+        .div1, .div2{
+            height: 100vh;}
+        .div1{
+            background: pink;
+        }
+        .div2{
+            background:#a6c9e2;
+        }
+        .square{
+            width: 80vw; height: 20vh;
+            background-color:darkblue;
+        }
+        .square2{
+            width: 150px; height: 20vh;
+            background-color:green;
+        }
+
+    </style>
+</head>
+<body>
+<div class="div1"></div>
+<div class="div2">
+    <div class="square"></div>
+    <div class="square2"></div>
+</div>
+<div class="div1"></div>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".square",{
+        /*x:500,
+        duration:8,*/
+        scrollTrigger:{
+            trigger:".square2",
+            start:"top 80%",
+            end : "top 30%",
+            toggleActions: "restart pause resume complete", //default is 'play none none none'
+            pin:'.square',
+            /*
+                pin : true  => trigger요소가 고정된다
+                pin : '.selector' => 지정한 엘리먼트가 고정된다
+                pinSpacing : true => 고정되는 엘리먼트 아래에 padding을 줘서 스크롤이 끝난 후에야 다음 엘리먼트가 이어서 보이도록 해준다.
+                pinSpacing : "margin" => padding대신 margin을 줌
+            */
+            pinSpacing :true,
+            scrub:1,
+
+            markers:{
+                startColor:"darkblue",
+                endColor:"brown",
+                fontSize:"1.2rem",
+                indent:200
+            }
+        }
+    })
+</script>
+</body>
+</html>

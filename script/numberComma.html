@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/default.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/font.css">
+    <script type="text/javascript" src="../static/js/jquery-3.6.4.min.js"></script>
+    <script>
+        $(function(){
+            var num=$("#num").text();
+            var point, len, str;
+            len=num.length; //자리수 ->5
+            point=len % 3; //3자리씩 끊고 나머지   -> 5 % 3 =2
+            str=num.substring(0,point); //str   -> 15
+
+            while(point < len){
+                if(str != "")     str += ",";   // -> 15,
+                str += num.substring(point,point+3);   //num.subString(2,5) 15,687
+                point +=3;
+            }
+
+            $("#num").text(str);
+        })
+    </script>
+</head>
+<body>
+<div id="num">15684656547</div>
+</body>
+</html>

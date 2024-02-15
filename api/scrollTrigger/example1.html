@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../static/js/gsap.min.js"></script>
+    <script src="../../static/js/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="example1">
+<!--<div class="box box1"></div>
+<div class="box box2">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+         width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+         preserveAspectRatio="xMidYMid meet">
+
+        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+           fill="#000000" stroke="none">
+            <path d="M4875 4850 c-77 -32 -255 -93 -395 -134 -290 -86 -1126 -364 -1550
+-516 -157 -56 -391 -137 -520 -180 -129 -43 -356 -126 -505 -185 -236 -93
+-907 -326 -1500 -520 -348 -114 -405 -144 -405 -214 0 -50 43 -94 240 -244
+258 -196 364 -266 553 -367 176 -94 262 -162 296 -234 39 -84 80 -355 121
+-791 11 -121 38 -364 60 -540 22 -176 44 -385 49 -464 14 -202 43 -256 129
+-249 34 3 44 12 117 104 161 202 395 514 525 699 110 157 302 418 329 447 4 4
+56 -22 116 -58 61 -37 184 -107 275 -157 91 -50 192 -107 226 -128 108 -68
+170 -92 226 -87 27 3 62 14 76 25 65 47 174 241 305 538 41 94 113 251 160
+350 46 99 191 421 321 715 134 303 328 717 446 955 230 462 224 451 352 750
+196 458 212 502 189 529 -25 30 -88 18 -236 -44z m0 -247 c-232 -551 -334
+-772 -491 -1063 -194 -361 -266 -517 -549 -1184 -149 -350 -218 -501 -389
+-846 -133 -268 -169 -320 -222 -320 -81 0 -835 450 -1176 702 -68 50 -133 95
+-146 101 -12 6 -22 13 -22 17 0 14 197 208 315 310 66 57 224 205 350 329 398
+390 839 785 1200 1074 138 110 279 226 315 257 36 31 175 148 310 260 135 112
+301 252 370 310 102 87 153 127 166 130 1 0 -13 -35 -31 -77z m-430 -29 c-11
+-8 -116 -74 -233 -147 -624 -387 -556 -343 -1317 -854 -319 -214 -679 -461
+-800 -548 -306 -221 -857 -587 -918 -611 -7 -2 -44 20 -82 49 -39 29 -137 90
+-219 135 -163 91 -266 157 -456 297 -69 50 -153 110 -187 133 -34 23 -64 46
+-68 52 -9 15 40 35 166 68 63 17 200 61 305 97 104 37 356 123 559 192 204 69
+510 177 680 240 171 63 414 153 540 200 275 102 602 215 1175 408 234 79 522
+180 640 224 118 44 220 80 225 80 6 0 1 -6 -10 -15z m-225 -298 c-68 -62 -389
+-329 -530 -441 -317 -251 -675 -567 -1110 -979 -146 -138 -337 -317 -425 -397
+-88 -81 -213 -201 -278 -267 -144 -148 -163 -185 -177 -334 -26 -280 -233
+-1297 -252 -1238 -7 20 -39 288 -93 774 -48 430 -97 789 -120 876 -8 30 -13
+55 -12 56 1 1 31 14 67 29 98 41 162 81 570 359 206 140 551 373 765 517 215
+144 465 315 556 380 170 120 354 242 444 293 28 16 151 95 275 176 302 197
+357 231 320 196z m-2290 -2470 c28 -24 125 -93 214 -152 l162 -108 -66 -95
+c-36 -53 -91 -130 -121 -171 -31 -41 -89 -124 -129 -185 -68 -104 -402 -556
+-407 -552 -1 2 16 72 37 157 54 213 83 348 135 644 45 257 90 481 101 497 9
+16 21 10 74 -35z"/>
+        </g>
+    </svg>
+</div>
+<div class="box box1"></div>-->
+<div class="boxArea a">a</div>
+<div class="boxArea b">b</div>
+<div class="boxArea c">c</div>
+<div class="boxArea"></div>
+<script>
+<!--   이렇게 작성 하면 해당영역으로 스크롤을 내렸을 때 반응하는게 아니라  바로 동작 함 !! -->
+    /*gsap.to(".box2",{
+        x:400,duration:2
+        }
+    )*/
+
+/* 해당영역에 맞게 특정 스크롤트리거를 일으키는 방법  + 한번만 실행됨*/
+    /*gsap.registerPlugin(ScrollTrigger)
+    gsap.to(".box2",{
+        scrollTrigger:".box2",
+        x:400,
+        duration:2
+    })*/
+
+
+    gsap.to(".b",{
+        //viewport에 도착했을 때 마다 무언가를 적용하려면 scrollTrigger:{} 인 obect로 만들기
+        scrollTrigger:{
+            //marker를 표시해준다
+            markers : true,
+            trigger:'.b', //start 기준점을  잡을 element 지정
+        //     start 속성
+            //지정을 따로 하지않을경우 보통 페이지 스크롤 시 trigger요소가 viewport 최하단에 도달 했을 때 시작함
+            // 이 시작점을 조정하고 싶을 때 쓰는 속성
+            // top, bottom, center,     pixel, percentages(relative) 가능
+            /*
+            * ex1)
+            * start : "top center" =>  top(of the trigger element) center(of the view port) => 트리거 요소의 top 부분이 viewport 의 중간을 지날 때를 시작 기준점으로!!
+            * start : "20px(relative to trigger element) 80%(relative to viewport)"
+            * */
+            start : "20px 50%", //값을 하나만 넣을 경우 viewport 기준 설정
+            endTrigger : ".c",
+            end : "-100px 20%",
+            /*
+            ex1)end : "-100px(of the endTrigger element) 100px(relative to view port)"
+            ex2) end : +=300 이런 식으로 쓰게되면 start 기준점에서 +=300(px 안써도 됨) 떨어진 곳을 end 기준점으로 삼고
+            이때 scroll-start 지점이  곧 scroll-end지점이 된다.
+            ex3) end : () => "+=" +
+                            document.querySelector('.c').offsetWidth,  이때 css로 설정된 요소의 높이가 height: 20vh라면 브라우저 창을 조절 할 때마다 end 포인트가 다시 설정될 것
+*/
+            toggleActions:"restart pause resume reverse",
+            toggleClass : 'red'
+            //toggleAcctions 의 각 4자리에 올 수 있는 값 : play, pause, resume, reverse, restart, reset, complete, none
+            /* 각 자리의 뜻 ●,☆,★,■
+            * ● : onEnter -> trigger 요소의 start 기준점이  scroll-start에 막 진입했을 때
+            * ☆ : onLeave -> endTrigger요소의 end 기준점이 scroll-end에 도달했을 때 (endTrigger요소를 지정하지 않았을 때는 trigger요소에 지정한 end 기준점)
+            * ★ : onEnterBack -> onLeave 이벤트 후 다시 endTrigger요소의 end기준점이 scroll-end에 다시 진입했을 때
+            * ■ : onLeaveBack -> trigger 요소의 start 기준점이 scroll-start에 다시 도달했을 때
+            * */
+            /*
+            * restart : each time it enters the viewport ..refresh
+            * pause : 아직 진행 중이어도 그 위치에서 멈춤
+            * resume :  멈춘 상태에 이어서 다시 재생
+            * */
+        }
+        ,x:600,duration:6,})
+</script>
+</body>
+</html>

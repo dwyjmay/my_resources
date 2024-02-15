@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scrollTrigger</title>
+    <script src="../../static/js/gsap.min.js"></script>
+    <script src="../../static/js/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div style="height: 1000px;"></div>
+<div class="boxArea a">a</div>
+<div class="boxArea b">b</div>
+<div class="boxArea c">c</div>
+<div class="boxArea ghost">c</div>
+<div style="height: 100vh;"></div>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".c",{
+        scrollTrigger:{
+            trigger:".c",
+            start:"top center",
+            end:"top 100px",
+            scrub:1,
+            pin:true,
+            markers:true,
+            pinSpacing: false,
+        },
+        x:400,
+        rotation:360,
+        ease:'none',
+        duration:3
+    })
+</script>
+</body>
+</html>

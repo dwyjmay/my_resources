@@ -8,6 +8,8 @@
   }
 }
 
+@mixin lineCrop($h, $line) { white-space: normal; height: $h; word-wrap: break-word; display: -webkit-box; -webkit-line-clamp: $line; -webkit-box-orient: vertical; overflow: hidden; }
+
 /*
   $object: before or after
   $position : relative or absolute or fixed
