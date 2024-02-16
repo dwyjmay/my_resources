@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>커스텀 event 객체와 트리거발생</title>
+    <link rel="stylesheet" href="/static/css/default.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/font.css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/static/css/clipboard/style.css">
+    <script src="/static/js/clipboard/clipboard.min.js"></script>
+    <script src="/static/js/clipboard/script.js"></script>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>일반 addEventLister</h1>
+        <article class="explanation">
+            <div class="form-typeA">
+                <div class="field-cell">
+                    <p>로그인 버튼을 눌러보세요!</p>
+                    <div class="field">
+                        <button type="button" id="test1-btn">로그인</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-wrap">
+                <div class="view">
+                    <script>
+                        document.getElementById("test1-btn").addEventListener('click',function(){
+                            alert('로그인이 되었습니다.')
+                        })
+                    </script>
+                </div>
+                <div class="code">
+                    <textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+                </div>
+            </div>
+        </article>
+
+        <h1>커스텀 eventListener (트리거 dispatchEvent() )</h1>
+        <article class="explanation">
+            <div class="form-typeA">
+                <div class="field-cell">
+                    <label for="test2">커스텀</label>
+                    <div class="field">
+                        <input type="text" required id="test2" onkeyup="custom();">
+                        <button type="button" id="test2-btn" onclick="event.currentTarget.dispatchEvent(eventtest)">커스텀이벤트</button>
+                    </div>
+                </div>
+            </div>
+            <div class="exp-typeB">new Event(type, options)</div>
+            <ol>
+                <li><span class="exp-typeA">type</span> : 이벤트의 이름을 나타내는 문자열</li>
+                <li><span class="exp-typeA">options</span> : 객체</li>
+                <li><span class="exp-typeC">bubbles</span> : 이벤트 버블링 여부 (boolean, default : false)</li>
+                <li><span class="exp-typeC">cancelable</span> : 이벤트를 취소할 수 있는지 여부 (boolean, default : false)</li>
+            </ol>
+            ex ) const evt = new Event("look", { bubbles: true, cancelable: false });
+            <div class="preview-wrap">
+                <div class="view">
+                    <script>
+                        const eventtest = new Event("build");
+                        document.getElementById("test2-btn").addEventListener("build",function(){
+                                alert('행복했던 날들이었다 - 데이식스');
+                            }
+                        )
+                        /*    document.getElementById("test2-btn").addEventListener("click",function(e){
+                                console.log(e.target)
+                                //alert('행복했던 날들이었다 - 데이식스')
+                                }
+                            )*/
+
+                        function custom(){
+                            if(window.event.keyCode===13){
+                                document.getElementById("test2-btn").dispatchEvent(eventtest)
+                            }
+                        }
+
+
+                    </script>
+                </div>
+                <div class="code">
+                    <textarea name="code" cols="30" aria-label="텍스트 영역"></textarea>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
+</body>
+</html>

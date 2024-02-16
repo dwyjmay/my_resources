@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>엔터키 동작</title>
+    <link rel="stylesheet" href="/static/css/default.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/font.css">
+    <script src="/static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/static/css/clipboard/style.css">
+    <script src="/static/js/clipboard/clipboard.min.js"></script>
+    <script src="/static/js/clipboard/script.js"></script>
+</head>
+<body>
+<main>
+    <section class="section">
+        <h1>입력창에서 엔터키 누르면 버튼에 연결시키기</h1>
+        <article class="explanation">
+            <div class="form-typeA">
+                <div class="field-cell">
+                    <label for="test1">엔터키테스트1</label>
+                    <div class="field">
+                        <input type="text" required id="test1" onkeyup="fnEnterKey();">
+                        <button type="button" id="test1-btn">로그인</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
+<script>
+    const evt = new Event ("click");
+    //const evt = new MouseEvent("click");
+    function fnEnterKey(){
+        if(window.event.keyCode == 13){
+            document.getElementById("test1-btn").dispatchEvent(evt)
+        }
+    }
+
+    document.getElementById("test1-btn").addEventListener('click',function(){
+        alert('로그인이 되었습니다.')
+    })
+</script>
+</body>
+</html>
