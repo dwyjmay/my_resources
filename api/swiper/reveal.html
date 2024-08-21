@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>swiper -reveil </title>
+    <script src="js/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <script src="../../static/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="./css/reveal.css">
+</head>
+<body>
+<!-- Slider main container -->
+<div class="swiper img-swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div><img src="http://dwyjmay.efusioni.com:8080/m/images/ai-graphic-lab/section3-01.jpg" alt=""></div>
+        </div>
+        <div class="swiper-slide">
+            <div><img src="http://dwyjmay.efusioni.com:8080/m/images/ai-graphic-lab/section3-02.jpg" alt=""></div>
+        </div>
+        <div class="swiper-slide">
+            <div><img src="http://dwyjmay.efusioni.com:8080/m/images/ai-graphic-lab/section3-03.jpg" alt=""></div>
+        </div>
+        <div class="swiper-slide">
+            <div><img src="http://dwyjmay.efusioni.com:8080/m/images/ai-graphic-lab/section3-04.jpg" alt=""></div>
+        </div>
+    </div>
+    <span class="caption">원하는 일러스트 동작을 다양한 스타일로 변형</span>
+</div>
+<script>
+    let imgSwiper = new Swiper('.img-swiper', {
+        effect: 'fade',
+        speed: 0,
+        loop: true,
+        on: {
+            realIndexChange: function (swiper) {
+                const direction = swiper.touches.startX > swiper.touches.currentX ? 'forward' : 'backward';
+                $(swiper.slidesEl).removeClass('forward backward').addClass(direction)
+
+                let customActiveIdx = swiper.activeIndex
+                let customPrevIdx = customActiveIdx === 0 ? swiper.slides.length - 1 : customActiveIdx - 1;
+                let customNextIdx = swiper.slides.length - 1 === customActiveIdx ? 0 : customActiveIdx + 1;
+
+                swiper.slides.forEach(function (el) {
+                    $(el).removeClass('custom-active custom-prev custom-next')
+                })
+
+                $(swiper.slides[customPrevIdx]).addClass('custom-prev')
+                $(swiper.slides[customActiveIdx]).addClass('custom-active')
+                $(swiper.slides[customNextIdx]).addClass('custom-next')
+
+            },
+            init: function (swiper) {
+                let customActiveIdx = swiper.activeIndex
+                let customPrevIdx = customActiveIdx === 0 ? swiper.slides.length - 1 : customActiveIdx - 1;
+                let customNextIdx = swiper.slides.length - 1 === customActiveIdx ? 0 : customActiveIdx + 1;
+                $(swiper.slidesEl).addClass('forward')
+                swiper.slides.forEach(function (el) {
+                    $(el).removeClass('custom-active custom-prev custom-next')
+                })
+
+                $(swiper.slides[customPrevIdx]).addClass('custom-prev')
+                $(swiper.slides[customActiveIdx]).addClass('custom-active')
+                $(swiper.slides[customNextIdx]).addClass('custom-next')
+
+            }
+        },
+    })
+</script>
+</body>
+</html>

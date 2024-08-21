@@ -1,0 +1,92 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/*
+.swiper-slide > div의 넓이는  사용할 페이지의 기본 여백에 따라 바꾸어 줘야함
+
+if  양쪽에 16px 씩 padding이 들어간다면
+.swiper-slide > div의 넓이는  width:calc(100vw - 32px); height:height : calc((100vw - 32px) * 1.3334);
+
+if 페이지에 여백이 없다면
+.swiper-slide > div의 넓이는  width:calc(100vw); height:height : calc((100vw) * 1.3334);
+*/
+.img-swiper {
+  overflow: hidden;
+  margin-top: 48px;
+}
+.img-swiper .swiper-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+}
+.img-swiper .swiper-slide {
+  opacity: 0 !important;
+}
+.img-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+}
+.img-swiper .swiper-slide > div {
+  width: 100vw;
+  max-width: none;
+  height: 133.34vw;
+  overflow: hidden;
+  transition: 0.4s width ease-in-out;
+}
+.img-swiper .custom-prev {
+  opacity: 1 !important;
+}
+.img-swiper .custom-prev > div {
+  width: 100%;
+}
+.img-swiper .custom-active {
+  opacity: 1 !important;
+}
+.img-swiper .custom-active > div {
+  width: 100%;
+}
+.img-swiper .custom-next > div {
+  width: 0;
+}
+.img-swiper .forward .custom-prev {
+  z-index: 1;
+}
+.img-swiper .forward .custom-active {
+  z-index: 5;
+}
+.img-swiper .forward .custom-active > div {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.img-swiper .forward .custom-next {
+  z-index: 1;
+}
+.img-swiper .backward .custom-prev {
+  z-index: 0;
+}
+.img-swiper .backward .custom-active {
+  z-index: 1;
+}
+.img-swiper .backward .custom-next {
+  z-index: 5;
+  opacity: 1 !important;
+}
+.img-swiper .backward .custom-next > div {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.img-swiper .caption {
+  display: block;
+  margin-top: 16px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/*# sourceMappingURL=reveal.css.map */
