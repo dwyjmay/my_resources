@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/default.css">
+    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <!-- js -->
+    <script src="../../static/js/jquery-3.6.4.min.js"></script>
+    <style>
+        .empty{height:200vh;}
+    </style>
+
+</head>
+<body>
+<main>
+    <section class="section">
+        <div class="empty"></div>
+        <h1>url #nameA</h1>
+        <article class="explanation">
+            <span class="exp-typeA">유형2</span>
+            <a href="" name="nameA"></a>
+        </article>
+
+
+        <h1>인풋태그 이용</h1>
+        <article class="explanation">
+            <span class="exp-typeA">유형1</span>
+            <input type="text" placeholder="값을 입력하세요" id="">
+        </article>
+
+        <h1>방법3</h1>
+    </section>
+</main>
+<script>
+    $(function(){
+        /* 유형1  - disabled 옵션이 있으면 불가능, readonly는 가능 */
+        //$('input').focus();
+
+
+        //location.href='http://localhost:8083/script/pageScrolling/page-move.html#nameA'
+
+        /*유형2*/
+        //텍스트가 없이 태그들만 존재하는 곳에서는 작동하지 않는다..?  공백문자소용없음 텍스트여야함   ???????????????????? 움...
+        location.hash='nameA'
+
+        /*<a href="#" target="_blank"></a> 처럼 동작하게 하려면*/
+        //window.open('about:blank').location.href='http://localhost:6723/codingapple/javascriptES6/part1_1.jsp'
+
+        //   document.getElementById('test').scrollIntoView(true);
+    })
+</script>
+</body>
+</html>
